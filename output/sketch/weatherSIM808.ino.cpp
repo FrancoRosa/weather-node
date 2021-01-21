@@ -1,3 +1,6 @@
+#include <Arduino.h>
+#line 1 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 1 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 #define led 13
 #define m_tx 2
 #define m_rx 3
@@ -6,6 +9,15 @@
 #include <SoftwareSerial.h>
 SoftwareSerial mSerial(m_rx, m_tx);
 
+#line 9 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+void processingModeData(char c);
+#line 13 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+void mPower();
+#line 19 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+void setup();
+#line 26 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+void loop();
+#line 9 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void processingModeData(char c) {
   Serial.write(c);
 }
@@ -32,4 +44,5 @@ void loop(){
     processingModeData(mSerial.read());
   }
 }
+
 

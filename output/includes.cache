@@ -1,0 +1,27 @@
+[
+  {
+    "Sourcefile": "",
+    "Include": "",
+    "Includepath": "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino"
+  },
+  {
+    "Sourcefile": "",
+    "Include": "",
+    "Includepath": "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\variants\\standard"
+  },
+  {
+    "Sourcefile": "c:\\Users\\fx\\Upwork\\weather-node\\output\\sketch\\weatherSIM808.ino.cpp",
+    "Include": "SoftwareSerial.h",
+    "Includepath": "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\libraries\\SoftwareSerial\\src"
+  },
+  {
+    "Sourcefile": "c:\\Users\\fx\\Upwork\\weather-node\\output\\sketch\\weatherSIM808.ino.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\libraries\\SoftwareSerial\\src\\SoftwareSerial.cpp",
+    "Include": "",
+    "Includepath": ""
+  }
+]
