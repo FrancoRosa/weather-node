@@ -1,0 +1,9 @@
+Campos:
+id:
+Lat:
+Log:
+Hum:
+Temp:
+Cooncentracion PM1:
+Cooncentracion PM2:
+timestamp:
