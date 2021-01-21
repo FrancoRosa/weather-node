@@ -1,0 +1,6 @@
+{
+    "sketch": "weatherSIM808.ino",
+    "board": "arduino:avr:uno",
+    "output": "output",
+    "port": "COM6"
+}
