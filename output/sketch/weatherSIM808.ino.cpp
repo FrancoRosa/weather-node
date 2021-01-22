@@ -30,7 +30,7 @@ void mPower(){
 
 void setup(){
   pinMode(led, OUTPUT);
-  pinMode(m_pw, OUTPUT);
+  // pinMode(m_pw, OUTPUT);
   Serial.begin(19200);
   mSerial.begin(19200);
 }

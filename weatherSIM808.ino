@@ -18,9 +18,9 @@ void mPower(){
 
 void setup(){
   pinMode(led, OUTPUT);
-  pinMode(m_pw, OUTPUT);
-  Serial.begin(19200);
-  mSerial.begin(19200);
+  // pinMode(m_pw, OUTPUT);
+  Serial.begin(115200);
+  mSerial.begin(9600);
 }
 
 void loop(){

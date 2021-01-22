@@ -20,7 +20,7 @@ void mPower(){
 
 void setup(){
   pinMode(13, 0x1);
-  pinMode(7, 0x1);
+  // pinMode(m_pw, OUTPUT);
   Serial.begin(19200);
   mSerial.begin(19200);
 }

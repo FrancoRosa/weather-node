@@ -7,7 +7,7 @@
   {
     "Sourcefile": "",
     "Include": "",
-    "Includepath": "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\variants\\standard"
+    "Includepath": "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\variants\\eightanaloginputs"
   },
   {
     "Sourcefile": "c:\\Users\\fx\\Upwork\\weather-node\\output\\sketch\\weatherSIM808.ino.cpp",
