@@ -1,0 +1,27 @@
+Commands secuency to send POST Request
+#AT+SAPBR=3,1,"Contype","GPRS"
+#AT+SAPBR=3,1,"APN","CLARO"
+
+AT+CMEE=2
+
+AT+SAPBR=1,1
+AT+SAPBR=2,1
+AT+SAPBR=0,1
+
+AT+HTTPINIT
+AT+HTTPPARA = "CID",1
+AT+HTTPPARA = "URL","https://sensor-network-lora.herokuapp.com/api/devices"
+AT+HTTPPARA = "URL","http://sensor-network-lora.herokuapp.com/api/devices"
+AT+HTTPPARA = "URL","http://sensor-network-lora.herokuapp.com/api/sensors"
+AT+HTTPPARA = "URL","http://sensor-network-lora.herokuapp.com/api/sensors"
+
+AT+HTTPACTION=0
+AT+HTTPREAD
+AT+HTTPTERM
+
+
+
+
+
+GET test:
+curl -i -X GET https://sensor-network-lora.herokuapp.com/api/devices
