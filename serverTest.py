@@ -1,7 +1,7 @@
 # Update sensor data on server with python
 
 import requests
-url = 'https://sensor-network-lora.herokuapp.com/api/sensors'
+url = 'http://sensor-network-lora.herokuapp.com/api/sensors'
 
 sensors = {
   "temperature": 18,
