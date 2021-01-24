@@ -27,6 +27,12 @@ DHT dht(dht_pin, dht_type);
 volatile float temperature = 0;
 volatile float humidity = 0;
 
+const int pm2_buff_size = 40;
+volatile int pm2_i = 0;
+volatile int pm2_value = 0;
+char pm2_buff[pm2_buff_size];
+
+
 void readTempHum() {
   humidity = dht.readHumidity();
   temperature = dht.readTemperature();
@@ -37,8 +43,29 @@ void readTempHum() {
   Serial.println();
 }
 
-void processingModeData(char c) {
+void readPM2() {
+  while(Serial3.available()) {
+    processingPM2Data(Serial3.read());
+  }
+}
+
+void processingPM2Data(char c) {
   Serial.write(c);
+  pm2_buff[pm2_i]=c;
+  if (pm2_buff[pm2_i]   == 0x1C && 
+      pm2_buff[pm2_i-1] == 0x00 && 
+      pm2_buff[pm2_i-2] == 0x4D &&
+      pm2_buff[pm2_i-3] == 0x42 &&
+      pm2_i == 31) {
+    Serial.print("CRC1: ");
+    Serial.print(pm2_buff[27],HEX);
+    Serial.print(", CRC2: ");
+    Serial.print(pm2_buff[28],HEX);
+    Serial.println();
+    pm2_i=0;
+  }
+  pm2_i++;
+  if (pm2_i>=pm2_buff_size) pm2_i=0;
 }
 
 void mPower(){
@@ -47,9 +74,8 @@ void mPower(){
   digitalWrite(m_pw,HIGH);
 }
 
-void setup(){
+void setup() {
   pinMode(led_pin, OUTPUT);
-
   Serial.begin(9600);
   Serial1.begin(9600);
   Serial2.begin(9600);
@@ -58,15 +84,9 @@ void setup(){
 }
 
 void loop(){
-  
-  delay(500);
-  digitalWrite(led_pin, HIGH);
-  delay(500);
-  digitalWrite(led_pin, LOW);
-  Serial.println("Serial_0");
-  Serial1.println("Serial_1");
-  Serial2.println("Serial_2");
-  Serial3.println("Serial_3");
-  readTempHum();
+  digitalWrite(led_pin, HIGH); delay(500);
+  digitalWrite(led_pin, LOW); delay(500);
+  // readTempHum();
+  readPM2();
 }
 

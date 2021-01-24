@@ -31,7 +31,38 @@ Comands used to send an http request from this modem
 |AT+HTTPREAD        | Show server response                |
 |AT+HTTPTERM        | Finish HTTP service                 |
 
- 
+
+## PM2 - PM2.5 Sensor (PM5003)
+Particle sensor, his datasheet can be found [here]('/assets/pm2.pdf')
+Sample serial output at 9600bps, checkbit: none, stopbits: 1
+```
+42 4d 00 1c 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 97 00 01 42
+```
+
+Data frame fields:
+| Position | Default | Description |
+| -------- | ------- | ----------- |
+| 1        | 0x42    | Start Char |
+| 2        | 0x4d    | Start Char |
+| 3,4      | 0x00 0x1c | Frame len 2*13+2 (data+crc)|
+| 5,6      |   --    | Data1 PM1.0 (ug/cm3) (CF=1, standard particle)|
+| 7,8      |   --    | Data2 PM2.5 (ug/cm3) (CF=1, standard particle)|
+| 9,10     |   --    | Data3 PM10 (ug/cm3) (CF=1, standard particle)|
+| 11,12    |   --    | Data4 PM1.0 (ug/cm3) (under atmosferic environment)|
+| 13,14    |   --    | Data5 PM2.5 (ug/cm3) (under atmosferic environment)|
+| 15,16    |   --    | Data6 (ug/cm3) (under atmosferic environment)|
+| 17,18    |   --    | Data7 Number of particles with diameter beyond 0.3 um in 0.1 L of air|
+| 19,20    |   --    | Data8 Number of particles with diameter beyond 0.5 um in 0.1 L of air|
+| 21,22    |   --    | Data9 Number of particles with diameter beyond 1.0 um in 0.1 L of air|
+| 23,24    |   --    | Data10 Number of particles with diameter beyond 2.5 um in 0.1 L of air|
+| 25,26    |   --    | Data11 Number of particles with diameter beyond 5.0 um in 0.1 L of air|
+| 27,28    |   --    | Data12 Number of particles with diameter beyond 10.0 um in 0.1 L of air|
+| 29,30    |   --    | Data13 reserved |
+| 31,32    |   --    | CRC High & low |
+
+As we are focus on the standard particle (CF=1) we will read bytes 7 and 8 
+
 ## Steps followed to build this project.
  - Set up enviroment make the arduino blink
  - Echo the terminal to the simcom808 input and test the AT command
