@@ -1,15 +1,34 @@
 c:\Users\fx\Upwork\weather-node\output\core\HardwareSerial.cpp.o: \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino\HardwareSerial.cpp \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino\Arduino.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino\binary.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino\WCharacter.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino\WString.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino\HardwareSerial.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino\Stream.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino\Print.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino\Printable.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino\USBAPI.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\variants\eightanaloginputs/pins_arduino.h \
- c:\program\ files\ (x86)\arduino\hardware\arduino\avr\variants\standard\pins_arduino.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino\HardwareSerial_private.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino\wiring_private.h
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\cores\maple\HardwareSerial.cpp \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\cores\maple\HardwareSerial.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/include/libmaple/libmaple_types.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\cores\maple\Print.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\cores\maple\WString.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\cores\maple/avr/pgmspace.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\cores\maple\Printable.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\cores\maple\boards.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\cores\maple/wirish_types.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/include/libmaple/gpio.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/stm32f1/include/series/gpio.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/include/libmaple/stm32.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/stm32f1/include/series/stm32.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/include/libmaple/exti.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/stm32f1/include/series/exti.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/include/libmaple/rcc.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/stm32f1/include/series/rcc.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/include/libmaple/bitband.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/include/libmaple/timer.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/stm32f1/include/series/timer.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/include/libmaple/libmaple.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/include/libmaple/util.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/include/libmaple/delay.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/include/libmaple/nvic.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/stm32f1/include/series/nvic.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/include/libmaple/adc.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/stm32f1/include/series/adc.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\variants\generic_stm32f103c/board/board.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/stm32f1/include/series/usart.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\cores\maple\Stream.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/include/libmaple/usart.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/include/libmaple/ring_buffer.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/stm32f1/include/series/usart.h

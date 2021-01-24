@@ -1,13 +1,8 @@
 c:\Users\fx\Upwork\weather-node\output\core\Print.cpp.o: \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino\Print.cpp \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino\Arduino.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino\binary.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino\WCharacter.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino\WString.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino\HardwareSerial.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino\Stream.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino\Print.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino\Printable.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino\USBAPI.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\variants\eightanaloginputs/pins_arduino.h \
- c:\program\ files\ (x86)\arduino\hardware\arduino\avr\variants\standard\pins_arduino.h
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\cores\maple\Print.cpp \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\cores\maple\Print.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\system/libmaple/include/libmaple/libmaple_types.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\cores\maple\WString.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\cores\maple/avr/pgmspace.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\cores\maple\Printable.h \
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\cores\maple\wirish_math.h

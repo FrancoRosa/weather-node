@@ -2,17 +2,17 @@
   {
     "Sourcefile": "",
     "Include": "",
-    "Includepath": "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino"
+    "Includepath": "C:\\Users\\fx\\AppData\\Local\\Arduino15\\packages\\stm32duino\\hardware\\STM32F1\\2020.12.26\\cores\\maple"
   },
   {
     "Sourcefile": "",
     "Include": "",
-    "Includepath": "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\variants\\eightanaloginputs"
+    "Includepath": "C:\\Users\\fx\\AppData\\Local\\Arduino15\\packages\\stm32duino\\hardware\\STM32F1\\2020.12.26\\variants\\generic_stm32f103c"
   },
   {
     "Sourcefile": "c:\\Users\\fx\\Upwork\\weather-node\\output\\sketch\\weatherSIM808.ino.cpp",
-    "Include": "SoftwareSerial.h",
-    "Includepath": "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\libraries\\SoftwareSerial\\src"
+    "Include": "DHT.h",
+    "Includepath": "C:\\Users\\fx\\Documents\\Arduino\\libraries\\DHT_sensor_library"
   },
   {
     "Sourcefile": "c:\\Users\\fx\\Upwork\\weather-node\\output\\sketch\\weatherSIM808.ino.cpp",
@@ -20,7 +20,22 @@
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\libraries\\SoftwareSerial\\src\\SoftwareSerial.cpp",
+    "Sourcefile": "C:\\Users\\fx\\Documents\\Arduino\\libraries\\DHT_sensor_library\\DHT.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "C:\\Users\\fx\\Documents\\Arduino\\libraries\\DHT_sensor_library\\DHT_U.cpp",
+    "Include": "Adafruit_Sensor.h",
+    "Includepath": "C:\\Users\\fx\\Documents\\Arduino\\libraries\\Adafruit_Unified_Sensor"
+  },
+  {
+    "Sourcefile": "C:\\Users\\fx\\Documents\\Arduino\\libraries\\DHT_sensor_library\\DHT_U.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "C:\\Users\\fx\\Documents\\Arduino\\libraries\\Adafruit_Unified_Sensor\\Adafruit_Sensor.cpp",
     "Include": "",
     "Includepath": ""
   }

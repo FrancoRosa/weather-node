@@ -1,7 +1,7 @@
 {
     "sketch": "weatherSIM808.ino",
-    "board": "arduino:avr:nano",
+    "board": "stm32duino:STM32F1:genericSTM32F103C6",
     "output": "output",
     "port": "COM3",
-    "configuration": "cpu=atmega328old"
+    "configuration": "upload_method=STLinkMethod,cpu_speed=speed_48mhz,opt=osstd"
 }

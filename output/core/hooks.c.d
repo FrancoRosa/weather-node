@@ -1,2 +1,2 @@
 c:\Users\fx\Upwork\weather-node\output\core\hooks.c.o: \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino\hooks.c
+ C:\Users\fx\AppData\Local\Arduino15\packages\stm32duino\hardware\STM32F1\2020.12.26\cores\maple\hooks.c

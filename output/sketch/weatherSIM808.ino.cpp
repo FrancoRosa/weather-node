@@ -1,23 +1,56 @@
 #include <Arduino.h>
 #line 1 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 #line 1 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
-#define led 13
+// Weather station node
+// BoardURL: http://dan.drown.org/stm32duino/package_STM32duino_index.json
+// Version: 2020.12.26
+//    board: stm32duino:STM32F1:genericSTM32F103C6,
+//    configuration: upload_method=STLinkMethod,
+//                   cpu_speed=speed_48mhz,
+//                   opt=osstd
+
+// Conections:
+//   Device   Port      TX   RX
+//   USB      Serial0   --   --  
+//   SIM808   Serial1   PA9  PA10  
+//   PM1      Serial2   PA2  PA3
+//   PM2      Serial3   PB10 PB11
+//   AM3201   GPIO      PB0
+#include "DHT.h"
+
+#define led_pin  PC13
+#define dht_pin  PB0
+#define dht_type DHT21
 #define m_tx 2
 #define m_rx 3
 #define m_pw 7
 
-#include <SoftwareSerial.h>
-SoftwareSerial mSerial(m_rx, m_tx);
+DHT dht(dht_pin, dht_type);
 
-#line 9 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+volatile float temperature = 0;
+volatile float humidity = 0;
+
+#line 30 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+void readTempHum();
+#line 40 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void processingModeData(char c);
-#line 13 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 44 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void mPower();
-#line 19 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 50 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void setup();
-#line 26 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 60 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void loop();
-#line 9 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 30 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+void readTempHum() {
+  humidity = dht.readHumidity();
+  temperature = dht.readTemperature();
+  Serial.print("temp: ");
+  Serial.print(temperature);
+  Serial.print(", hum: ");
+  Serial.print(humidity);
+  Serial.println();
+}
+
 void processingModeData(char c) {
   Serial.write(c);
 }
@@ -29,20 +62,26 @@ void mPower(){
 }
 
 void setup(){
-  pinMode(led, OUTPUT);
-  // pinMode(m_pw, OUTPUT);
-  Serial.begin(19200);
-  mSerial.begin(19200);
+  pinMode(led_pin, OUTPUT);
+
+  Serial.begin(9600);
+  Serial1.begin(9600);
+  Serial2.begin(9600);
+  Serial3.begin(9600);
+  dht.begin();
 }
 
 void loop(){
-  delay(1000);
-  digitalWrite(led, HIGH);
-  delay(1000);
-  digitalWrite(led, LOW);
-  while(mSerial.available()) {
-    processingModeData(mSerial.read());
-  }
+  
+  delay(500);
+  digitalWrite(led_pin, HIGH);
+  delay(500);
+  digitalWrite(led_pin, LOW);
+  Serial.println("Serial_0");
+  Serial1.println("Serial_1");
+  Serial2.println("Serial_2");
+  Serial3.println("Serial_3");
+  readTempHum();
 }
 
 
