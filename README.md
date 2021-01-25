@@ -11,6 +11,8 @@ To send data to our server we use the SIM808 GPRS modem [Duinopeak SIM808 GSM/GP
 
 The data will be sent periodicly to our server using POST requests, for this purpose we can use the available documentation [SIM808 IP Appication Note](/assets/sim800_series_ip_application_note_v1.00.jpg).
 
+
+### HTTP Request and communication
 Comands used to send an http request from this modem
 
 | Command           | Purpose                             |
@@ -31,7 +33,64 @@ Comands used to send an http request from this modem
 |AT+HTTPREAD        | Show server response                |
 |AT+HTTPTERM        | Finish HTTP service                 |
 
+### GPS related commands
+This is a brief from the necessary commands to turn on and get GPS data (location and time), for more information you can see this [Application Note](SIM808_GPS_Application_Note_V1.00.pdf)
 
+| Command           | Purpose                       |
+| ------- | ------- |
+|AT+CGPSPWR=1           | Turn GPS on              |
+|AT+CGPSPWR=0           | Turn GPS off             |
+|AT+CGPSSTATUS?        | Returns the GPS status   |
+|AT+CGPSINF=0           | Get Basic GPS Info       |
+
+After powering the GPS service, it is mandatory to read the GPS status in order to validate the return data, the gps status should be:
+```
++CGPSSTATUS: Location 3D Fix
+```
+
+Data shown after requesting a basic GPS info
+```
++CGPSINF: 0,1332.179300,7157.209700,3288.200000,20210125043921.000,0,8,0.166680,177.949997
+```
+If we split the returned data between commas, we have the following 
+
+| Position | Value             | Meaning |
+| -------  | ----------------- | ------- |
+|       1  | 0                 | mode              |
+|       2  | 1332.179300       | longitude         |
+|       3  | 7157.209700       | latitude          |
+|       4  | 3288.200000       | altitude          |
+|       5  | 20210125043921.000| UTC time          |
+|       6  | 0                 | time to first fix |
+|       7  | 8                 | satellites in view| 
+|       8  | 0.166680          | speed over ground |
+|       9  | 177.949997        | course            |
+
+
+## PM1 - nova PM sensor (SDS011)
+Particle sensor, his datasheet can be found [here](/assets/pm1_ds.pdf)
+Sample serial output at 9600bps, checkbit: none, stopbits: 1
+```
+aa c0 06 00 07 00 26 06 39 ab
+```
+Data frame fields:
+| Position | Default | Description   |
+| -------- | ------- | -----------   |
+| 1        | 0xaa    | Frame start   |
+| 2        | 0xc0    | Command       |
+| 3        | Data1   | PM2.5 LowByte |
+| 4        | Data2   | PM2.5 HighByte|
+| 5        | Data3   | PM10 LowByte  |
+| 6        | Data4   | PM10 HighByte |
+| 7        | Data5   | ID byte 1 |
+| 8        | Data6   | ID byte 2 |
+| 9        | ---     | CheckSum (Data1+Data2+...) |
+| 10       | 0xab    | Frame end |
+
+As we are using PM2.5 we will read Data1 and Data2, then, the concentration should be:
+```
+  PM = HighByte*256 + LowByte
+```
 ## PM2 - PM2.5 Sensor (PM5003)
 Particle sensor, his datasheet can be found [here]('/assets/pm2.pdf')
 Sample serial output at 9600bps, checkbit: none, stopbits: 1

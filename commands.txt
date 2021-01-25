@@ -16,6 +16,12 @@ AT+HTTPACTION=1
 AT+HTTPREAD
 AT+HTTPTERM
 
+#### GPS ####
+AT+CGPSPWR=1 
+AT+CGPSINF=0 
+
+
+
 #### Nova PM Sensor ####
 
 Read PWM Output
