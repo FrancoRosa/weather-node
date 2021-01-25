@@ -25,15 +25,18 @@
 
 DHT dht(dht_pin, dht_type);
 
+// variables to save temp and humidity
 volatile float temperature = 0;
 volatile float humidity = 0;
 
+// variables to manage PM1
 const int pm1_buff_size = 15;
 volatile int pm1_i = 0;
 volatile int pm1_value = 0;
 char pm1_buff[pm1_buff_size];
 volatile bool pm1_ok = false;
 
+// variables to manage PM2
 const int pm2_buff_size = 40;
 volatile int pm2_i = 0;
 volatile int pm2_value = 0;

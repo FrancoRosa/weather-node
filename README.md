@@ -66,6 +66,43 @@ If we split the returned data between commas, we have the following
 |       8  | 0.166680          | speed over ground |
 |       9  | 177.949997        | course            |
 
+### GLONASS related commands
+Taken fron the [SIM800 Series Glonnas Application Note]('/assets/SIM800 Series_GNSS_Application Note V1.00.pdf')
+
+| Command       | Purpose                      |
+| ------------- | ---------------------------- |
+| AT+CGNSPWR=1  | Turn on GNSS Power supply    |
+| AT+CGNSPWR=0  | Turn GPS off                 |
+| AT+CGNSINF    | GNSS Natigation information  |
+
+The returned data from AT+CGNSINF looks like this:
+```
++CGNSINF: 1,1,20210125060840.000,-13.536150,-71.953617,3338.500,0.44,222.1,1,,1.4,1.7,1.0,,12,6,,,46,,
+```
+| Index | Parameter                  | Unit              | Range      | Length |
+| ----- | ---------                  | ----              | -----      | ------ |
+|    1  | GPS run status             | --                | 0-1        | 1  |
+|    2  | Fix status                 | --                | 0-1        | 1  |
+|    3  | UTC date & Time            | yyyyMMddhhmmss.ss | mixed      | 18 |
+|    4  | Latitude                   | ±dd.dddddd        | [-90,90]   | 10 |
+|    5  | Longitude                  | ±ddd.dddddd       | [-180,180] | 10 |
+|    6  | MSL Altitude               | meters            | --         | 8 |
+|    7  | Speed Over Ground          | Km/hour           | [0,999.99] | 6 |
+|    8  | Course Over Ground         | degrees           | [0,360.00] | 6 |
+|    9  | Fix Mode                   | --                | 0,1,2[1]   | 1 |
+|    10 | Reserved1                  | 0                 |            | 0 |
+|    11 | HDOP                       | --                | [0,99.9]   | 4 |
+|    12 | PDOP                       | --                | [0,99.9]   | 4 |
+|    13 | VDOP                       | --                | [0,99.9]   | 4 |
+|    14 | Reserved2                  | 0                 |            | 0 |
+|    15 | GPS Satellites in View     | --                | [0,99]     | 2 |
+|    16 | GNSS Satellites Used       | --                | [0,99]     | 2 |
+|    17 | GLONASS Satellites in View | --                | [0,99]     | 2 |
+|    18 | Reserved3                  | 0                 |            | 0 |
+|    19 | C/N0 max                   | dBHz              | [0,55]     | 2 |
+|    20 | HPA[2]                     | meters            | [0,9999.9] | 6 |  
+|    21 | VPA[2]                     | meters            | [0,9999.9] | 6 |
+
 
 ## PM1 - nova PM sensor (SDS011)
 Particle sensor, his datasheet can be found [here](/assets/pm1_ds.pdf)
