@@ -15,7 +15,6 @@
 //   AM3201   GPIO      PB0
 
 #include "DHT.h"
-#include "ArduinoJson.h"
 
 #define led_pin  PC13
 #define dht_pin  PB0
@@ -25,7 +24,6 @@
 #define m_pw 7
 
 DHT dht(dht_pin, dht_type);
-StaticJsonDocument<200> doc;
 // variables to save temp and humidity
 volatile float temperature = 0;
 volatile float humidity = 0;
@@ -49,9 +47,19 @@ const char key_temperature[] = "18";
 const char key_humidity[]    = "19";
 const char key_latitude[]    = "21";
 const char key_longitude[]   = "22";
-const char key_PM1[]         = "23";
-const char key_PM2[]         = "24";
+const char key_pm1_value[]   = "23";
+const char key_pm2_value[]   = "24";
 const char key_timestamp[]   = "26";
+
+// GNSS Variables
+char timestamp[] = "20210125060840.000";
+char latitude[] = "-13.536150";
+char longitude[] = "-71.953617";
+
+// POST Variables
+char post_buffer[300];
+char id_buffer[50];
+char value_buffer[200];
 
 void readTempHum() {
   humidity = dht.readHumidity();
@@ -68,7 +76,6 @@ void readPM2() {
     processingPM2Data(Serial3.read());
   }
 }
-
 
 void readPM1() {
   while(Serial2.available()) {
@@ -119,7 +126,38 @@ void displayValues() {
 }
 
 void createFrame() {
-  doc[] = 
+  // sprintf(
+  //   id_buffer,
+  //   "'id':[%s,%s,%s,%s,%s,%s,%s]",
+  //   key_temperature,
+  //   key_humidity,
+  //   key_latitude,
+  //   key_longitude,
+  //   key_pm1_value,
+  //   key_pm2_value,
+  //   key_timestamp
+  // );
+
+  // sprintf(
+  //   value_buffer,
+  //   "'value':[%s,%s,%s,%s,%s,%s,%s]",
+  //   key_temperature,
+  //   key_humidity,
+  //   key_latitude,
+  //   key_longitude,
+  //   key_pm1_value,
+  //   key_pm2_value,
+  //   key_timestamp
+  // );
+
+  // sprintf(
+  //   post_buffer,
+  //   "{'sensor': {%s, %s}}",
+  //   id_buffer,
+  //   value_buffer
+  // );
+
+  sprintf(post_buffer, "{\"sensor\": {%d, %d}}", 1, 2);
 }
 
 void showBuffers(){
@@ -142,6 +180,7 @@ void showBuffers(){
   Serial.println("");
   
 }
+
 void mPower() {
   digitalWrite(m_pw,LOW);
   delay(1000);
@@ -167,7 +206,10 @@ void loop(){
   readTempHum();
   readPM2();
   readPM1();
-  showBuffers();
-  displayValues();
+  // showBuffers();
+  // displayValues();
+  createFrame();
+  // Serial.println();
+  Serial.println(post_buffer);
 }
 

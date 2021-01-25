@@ -19,7 +19,6 @@
 # 18 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino" 2
 # 26 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 DHT dht(PB0, 21 /**< DHT TYPE 21 */);
-
 // variables to save temp and humidity
 volatile float temperature = 0;
 volatile float humidity = 0;
@@ -38,6 +37,25 @@ volatile int pm2_value = 0;
 char pm2_buff[pm2_buff_size];
 volatile bool pm2_ok = 0x0;
 
+// json keys
+const char key_temperature[] = "18";
+const char key_humidity[] = "19";
+const char key_latitude[] = "21";
+const char key_longitude[] = "22";
+const char key_pm1_value[] = "23";
+const char key_pm2_value[] = "24";
+const char key_timestamp[] = "26";
+
+// GNSS Variables
+char timestamp[] = "20210125060840.000";
+char latitude[] = "-13.536150";
+char longitude[] = "-71.953617";
+
+// POST Variables
+char post_buffer[300];
+char id_buffer[50];
+char value_buffer[200];
+
 void readTempHum() {
   humidity = dht.readHumidity();
   temperature = dht.readTemperature();
@@ -53,7 +71,6 @@ void readPM2() {
     processingPM2Data(Serial3.read());
   }
 }
-
 
 void readPM1() {
   while(Serial2.available()) {
@@ -103,6 +120,41 @@ void displayValues() {
   Serial.println();
 }
 
+void createFrame() {
+  // sprintf(
+  //   id_buffer,
+  //   "'id':[%s,%s,%s,%s,%s,%s,%s]",
+  //   key_temperature,
+  //   key_humidity,
+  //   key_latitude,
+  //   key_longitude,
+  //   key_pm1_value,
+  //   key_pm2_value,
+  //   key_timestamp
+  // );
+
+  // sprintf(
+  //   value_buffer,
+  //   "'value':[%s,%s,%s,%s,%s,%s,%s]",
+  //   key_temperature,
+  //   key_humidity,
+  //   key_latitude,
+  //   key_longitude,
+  //   key_pm1_value,
+  //   key_pm2_value,
+  //   key_timestamp
+  // );
+
+  // sprintf(
+  //   post_buffer,
+  //   "{'sensor': {%s, %s}}",
+  //   id_buffer,
+  //   value_buffer
+  // );
+
+  sprintf(post_buffer, "{\"sensor\": {%d, %d}}", 1, 2);
+}
+
 void showBuffers(){
   Serial.print("Buffer PM1: ");
   for (int i = 0; i < 10; i++) {
@@ -123,6 +175,7 @@ void showBuffers(){
   Serial.println("");
 
 }
+
 void mPower() {
   digitalWrite(7,0x0);
   delay(1000);
@@ -148,6 +201,9 @@ void loop(){
   readTempHum();
   readPM2();
   readPM1();
-  showBuffers();
-  displayValues();
+  // showBuffers();
+  // displayValues();
+  createFrame();
+  // Serial.println();
+  Serial.println(post_buffer);
 }

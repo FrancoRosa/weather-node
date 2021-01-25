@@ -27,7 +27,6 @@
 #define m_pw 7
 
 DHT dht(dht_pin, dht_type);
-
 // variables to save temp and humidity
 volatile float temperature = 0;
 volatile float humidity = 0;
@@ -46,29 +45,50 @@ volatile int pm2_value = 0;
 char pm2_buff[pm2_buff_size];
 volatile bool pm2_ok = false;
 
-#line 46 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+// json keys
+const char key_temperature[] = "18";
+const char key_humidity[]    = "19";
+const char key_latitude[]    = "21";
+const char key_longitude[]   = "22";
+const char key_pm1_value[]   = "23";
+const char key_pm2_value[]   = "24";
+const char key_timestamp[]   = "26";
+
+// GNSS Variables
+char timestamp[] = "20210125060840.000";
+char latitude[] = "-13.536150";
+char longitude[] = "-71.953617";
+
+// POST Variables
+char post_buffer[300];
+char id_buffer[50];
+char value_buffer[200];
+
+#line 64 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void readTempHum();
-#line 56 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 74 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void readPM2();
-#line 63 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 80 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void readPM1();
-#line 69 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 86 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void processingPM2Data(char c);
-#line 84 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 101 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void processingPM1Data(char c);
-#line 98 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 115 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void displayValues();
-#line 111 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 128 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+void createFrame();
+#line 163 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void showBuffers();
-#line 131 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 184 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void mPower();
-#line 137 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 190 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void blink();
-#line 142 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 195 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void setup();
-#line 151 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 204 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void loop();
-#line 46 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 64 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void readTempHum() {
   humidity = dht.readHumidity();
   temperature = dht.readTemperature();
@@ -84,7 +104,6 @@ void readPM2() {
     processingPM2Data(Serial3.read());
   }
 }
-
 
 void readPM1() {
   while(Serial2.available()) {
@@ -134,6 +153,41 @@ void displayValues() {
   Serial.println();
 }
 
+void createFrame() {
+  // sprintf(
+  //   id_buffer,
+  //   "'id':[%s,%s,%s,%s,%s,%s,%s]",
+  //   key_temperature,
+  //   key_humidity,
+  //   key_latitude,
+  //   key_longitude,
+  //   key_pm1_value,
+  //   key_pm2_value,
+  //   key_timestamp
+  // );
+
+  // sprintf(
+  //   value_buffer,
+  //   "'value':[%s,%s,%s,%s,%s,%s,%s]",
+  //   key_temperature,
+  //   key_humidity,
+  //   key_latitude,
+  //   key_longitude,
+  //   key_pm1_value,
+  //   key_pm2_value,
+  //   key_timestamp
+  // );
+
+  // sprintf(
+  //   post_buffer,
+  //   "{'sensor': {%s, %s}}",
+  //   id_buffer,
+  //   value_buffer
+  // );
+
+  sprintf(post_buffer, "{\"sensor\": {%d, %d}}", 1, 2);
+}
+
 void showBuffers(){
   Serial.print("Buffer PM1: ");
   for (int i = 0; i < 10; i++) {
@@ -154,6 +208,7 @@ void showBuffers(){
   Serial.println("");
   
 }
+
 void mPower() {
   digitalWrite(m_pw,LOW);
   delay(1000);
@@ -179,8 +234,11 @@ void loop(){
   readTempHum();
   readPM2();
   readPM1();
-  showBuffers();
-  displayValues();
+  // showBuffers();
+  // displayValues();
+  createFrame();
+  // Serial.println();
+  Serial.println(post_buffer);
 }
 
 
