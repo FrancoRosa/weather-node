@@ -15,19 +15,23 @@
 //   PM1      Serial2   PA2  PA3
 //   PM2      Serial3   PB10 PB11
 //   AM3201   GPIO      PB0
-# 17 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino" 2
-# 25 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+
+# 18 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino" 2
+# 26 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 DHT dht(PB0, 21 /**< DHT TYPE 21 */);
 
+// variables to save temp and humidity
 volatile float temperature = 0;
 volatile float humidity = 0;
 
+// variables to manage PM1
 const int pm1_buff_size = 15;
 volatile int pm1_i = 0;
 volatile int pm1_value = 0;
 char pm1_buff[pm1_buff_size];
 volatile bool pm1_ok = 0x0;
 
+// variables to manage PM2
 const int pm2_buff_size = 40;
 volatile int pm2_i = 0;
 volatile int pm2_value = 0;
@@ -64,7 +68,7 @@ void processingPM2Data(char c) {
       pm2_buff[pm2_i-1] == 0x00 &&
       pm2_buff[pm2_i-2] == 0x4D &&
       pm2_buff[pm2_i-3] == 0x42) {
-    pm2_value = pm2_buff[7]*256 + pm2_buff[8];
+    pm2_value = pm2_buff[1]*256 + pm2_buff[2];
     pm2_i=0;
     pm2_ok=0x1;
   }
@@ -95,6 +99,7 @@ void displayValues() {
   Serial.print(pm1_value);
   Serial.print(", PM2: ");
   Serial.print(pm2_value);
+  Serial.println();
   Serial.println();
 }
 

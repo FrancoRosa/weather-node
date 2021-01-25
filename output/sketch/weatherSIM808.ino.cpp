@@ -16,6 +16,7 @@
 //   PM1      Serial2   PA2  PA3
 //   PM2      Serial3   PB10 PB11
 //   AM3201   GPIO      PB0
+
 #include "DHT.h"
 
 #define led_pin  PC13
@@ -27,44 +28,47 @@
 
 DHT dht(dht_pin, dht_type);
 
+// variables to save temp and humidity
 volatile float temperature = 0;
 volatile float humidity = 0;
 
+// variables to manage PM1
 const int pm1_buff_size = 15;
 volatile int pm1_i = 0;
 volatile int pm1_value = 0;
 char pm1_buff[pm1_buff_size];
 volatile bool pm1_ok = false;
 
+// variables to manage PM2
 const int pm2_buff_size = 40;
 volatile int pm2_i = 0;
 volatile int pm2_value = 0;
 char pm2_buff[pm2_buff_size];
 volatile bool pm2_ok = false;
 
-#line 42 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 46 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void readTempHum();
-#line 52 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 56 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void readPM2();
-#line 59 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 63 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void readPM1();
-#line 65 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 69 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void processingPM2Data(char c);
-#line 80 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 84 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void processingPM1Data(char c);
-#line 94 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 98 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void displayValues();
-#line 106 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 111 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void showBuffers();
-#line 126 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 131 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void mPower();
-#line 132 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
-void blink();
 #line 137 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+void blink();
+#line 142 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void setup();
-#line 146 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 151 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void loop();
-#line 42 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 46 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void readTempHum() {
   humidity = dht.readHumidity();
   temperature = dht.readTemperature();
@@ -95,7 +99,7 @@ void processingPM2Data(char c) {
       pm2_buff[pm2_i-1] == 0x00 && 
       pm2_buff[pm2_i-2] == 0x4D &&
       pm2_buff[pm2_i-3] == 0x42) {
-    pm2_value = pm2_buff[7]*256 + pm2_buff[8];
+    pm2_value = pm2_buff[1]*256 + pm2_buff[2];
     pm2_i=0;
     pm2_ok=true;
   }
@@ -126,6 +130,7 @@ void displayValues() {
   Serial.print(pm1_value);
   Serial.print(", PM2: ");
   Serial.print(pm2_value);
+  Serial.println();
   Serial.println();
 }
 

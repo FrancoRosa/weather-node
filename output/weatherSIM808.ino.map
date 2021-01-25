@@ -936,9 +936,9 @@ START GROUP
 LOAD c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libnosys.a
 END GROUP
                 0x20002800                PROVIDE (__msp_init, (ORIGIN (ram) + 0x2800))
-                0x08000a08                PROVIDE (__exc_reset, __start__)
+                0x08000a10                PROVIDE (__exc_reset, __start__)
 
-.text           0x08000000     0x5000
+.text           0x08000000     0x5010
                 0x08000000                __text_start__ = .
  *(.stm32.interrupt_vector)
  .stm32.interrupt_vector
@@ -956,744 +956,745 @@ END GROUP
                 0x080001e0       0x6c c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
                 0x080001e0                processingPM1Data(char)
  .text._Z13displayValuesv
-                0x0800024c       0x98 c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
+                0x0800024c       0x9c c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
                 0x0800024c                displayValues()
  .text._Z11showBuffersv
-                0x080002e4       0xc8 c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
-                0x080002e4                showBuffers()
+                0x080002e8       0xc8 c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
+                0x080002e8                showBuffers()
  .text._Z5blinkv
-                0x080003ac       0x26 c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
-                0x080003ac                blink()
- *fill*         0x080003d2        0x2 
+                0x080003b0       0x26 c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
+                0x080003b0                blink()
+ *fill*         0x080003d6        0x2 
  .text._Z5setupv
-                0x080003d4       0x54 c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
-                0x080003d4                setup()
+                0x080003d8       0x54 c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
+                0x080003d8                setup()
  .text.startup._GLOBAL__sub_I_dht
-                0x08000428       0x10 c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
+                0x0800042c       0x10 c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
  .text._Z7readPM2v
-                0x08000438       0x20 c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
-                0x08000438                readPM2()
+                0x0800043c       0x20 c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
+                0x0800043c                readPM2()
  .text._Z7readPM1v
-                0x08000458       0x20 c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
-                0x08000458                readPM1()
+                0x0800045c       0x20 c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
+                0x0800045c                readPM1()
  .text._Z4loopv
-                0x08000478       0x1e c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
-                0x08000478                loop()
+                0x0800047c       0x1e c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
+                0x0800047c                loop()
  .text._ZN3DHTC2Ehhh
-                0x08000496        0xc c:\Users\fx\Upwork\weather-node\output\libraries\DHT_sensor_library\DHT.cpp.o
-                0x08000496                DHT::DHT(unsigned char, unsigned char, unsigned char)
-                0x08000496                DHT::DHT(unsigned char, unsigned char, unsigned char)
- *fill*         0x080004a2        0x2 
+                0x0800049a        0xc c:\Users\fx\Upwork\weather-node\output\libraries\DHT_sensor_library\DHT.cpp.o
+                0x0800049a                DHT::DHT(unsigned char, unsigned char, unsigned char)
+                0x0800049a                DHT::DHT(unsigned char, unsigned char, unsigned char)
+ *fill*         0x080004a6        0x2 
  .text._ZN3DHT5beginEh
-                0x080004a4       0x20 c:\Users\fx\Upwork\weather-node\output\libraries\DHT_sensor_library\DHT.cpp.o
-                0x080004a4                DHT::begin(unsigned char)
+                0x080004a8       0x20 c:\Users\fx\Upwork\weather-node\output\libraries\DHT_sensor_library\DHT.cpp.o
+                0x080004a8                DHT::begin(unsigned char)
  .text._ZN3DHT11expectPulseEb
-                0x080004c4       0x28 c:\Users\fx\Upwork\weather-node\output\libraries\DHT_sensor_library\DHT.cpp.o
-                0x080004c4                DHT::expectPulse(bool)
+                0x080004c8       0x28 c:\Users\fx\Upwork\weather-node\output\libraries\DHT_sensor_library\DHT.cpp.o
+                0x080004c8                DHT::expectPulse(bool)
  .text._ZN3DHT4readEb
-                0x080004ec      0x11c c:\Users\fx\Upwork\weather-node\output\libraries\DHT_sensor_library\DHT.cpp.o
-                0x080004ec                DHT::read(bool)
+                0x080004f0      0x11c c:\Users\fx\Upwork\weather-node\output\libraries\DHT_sensor_library\DHT.cpp.o
+                0x080004f0                DHT::read(bool)
+ *fill*         0x0800060c        0x4 
  .text._ZN3DHT15readTemperatureEbb
-                0x08000608      0x130 c:\Users\fx\Upwork\weather-node\output\libraries\DHT_sensor_library\DHT.cpp.o
-                0x08000608                DHT::readTemperature(bool, bool)
+                0x08000610      0x130 c:\Users\fx\Upwork\weather-node\output\libraries\DHT_sensor_library\DHT.cpp.o
+                0x08000610                DHT::readTemperature(bool, bool)
  .text._ZN3DHT12readHumidityEb
-                0x08000738       0x80 c:\Users\fx\Upwork\weather-node\output\libraries\DHT_sensor_library\DHT.cpp.o
-                0x08000738                DHT::readHumidity(bool)
+                0x08000740       0x80 c:\Users\fx\Upwork\weather-node\output\libraries\DHT_sensor_library\DHT.cpp.o
+                0x08000740                DHT::readHumidity(bool)
  .text._Z9boardInitv
-                0x080007b8        0x2 c:\Users\fx\Upwork\weather-node\output\core\board.cpp.o
-                0x080007b8                boardInit()
- *fill*         0x080007ba        0x2 
+                0x080007c0        0x2 c:\Users\fx\Upwork\weather-node\output\core\board.cpp.o
+                0x080007c0                boardInit()
+ *fill*         0x080007c2        0x2 
  .text.startup._GLOBAL__sub_I__Z9boardInitv
-                0x080007bc       0x48 c:\Users\fx\Upwork\weather-node\output\core\board.cpp.o
+                0x080007c4       0x48 c:\Users\fx\Upwork\weather-node\output\core\board.cpp.o
  .text._ZL18adc_default_configP7adc_dev
-                0x08000804       0x1c c:\Users\fx\Upwork\weather-node\output\core\wirish\boards.cpp.o
+                0x0800080c       0x1c c:\Users\fx\Upwork\weather-node\output\core\wirish\boards.cpp.o
  .text._ZL20timer_default_configP9timer_dev
-                0x08000820       0x9e c:\Users\fx\Upwork\weather-node\output\core\wirish\boards.cpp.o
- *fill*         0x080008be        0x2 
+                0x08000828       0x9e c:\Users\fx\Upwork\weather-node\output\core\wirish\boards.cpp.o
+ *fill*         0x080008c6        0x2 
  .text._Z4initv
-                0x080008c0       0xb8 c:\Users\fx\Upwork\weather-node\output\core\wirish\boards.cpp.o
-                0x080008c0                init()
+                0x080008c8       0xb8 c:\Users\fx\Upwork\weather-node\output\core\wirish\boards.cpp.o
+                0x080008c8                init()
  .text._ZN6wirish4priv15board_reset_pllEv
-                0x08000978        0x2 c:\Users\fx\Upwork\weather-node\output\core\wirish\boards_setup.cpp.o
-                0x08000978                wirish::priv::board_reset_pll()
+                0x08000980        0x2 c:\Users\fx\Upwork\weather-node\output\core\wirish\boards_setup.cpp.o
+                0x08000980                wirish::priv::board_reset_pll()
  .text._ZN6wirish4priv28board_setup_clock_prescalersEv
-                0x0800097a       0x30 c:\Users\fx\Upwork\weather-node\output\core\wirish\boards_setup.cpp.o
-                0x0800097a                wirish::priv::board_setup_clock_prescalers()
+                0x08000982       0x30 c:\Users\fx\Upwork\weather-node\output\core\wirish\boards_setup.cpp.o
+                0x08000982                wirish::priv::board_setup_clock_prescalers()
  .text._ZN6wirish4priv16board_setup_gpioEv
-                0x080009aa        0x4 c:\Users\fx\Upwork\weather-node\output\core\wirish\boards_setup.cpp.o
-                0x080009aa                wirish::priv::board_setup_gpio()
- *fill*         0x080009ae        0x2 
+                0x080009b2        0x4 c:\Users\fx\Upwork\weather-node\output\core\wirish\boards_setup.cpp.o
+                0x080009b2                wirish::priv::board_setup_gpio()
+ *fill*         0x080009b6        0x2 
  .text._ZN6wirish4priv15board_setup_usbEv
-                0x080009b0       0x54 c:\Users\fx\Upwork\weather-node\output\core\wirish\boards_setup.cpp.o
-                0x080009b0                wirish::priv::board_setup_usb()
+                0x080009b8       0x54 c:\Users\fx\Upwork\weather-node\output\core\wirish\boards_setup.cpp.o
+                0x080009b8                wirish::priv::board_setup_usb()
  .text._ZN6wirish4priv11series_initEv
-                0x08000a04        0x4 c:\Users\fx\Upwork\weather-node\output\core\wirish\boards_setup.cpp.o
-                0x08000a04                wirish::priv::series_init()
- .text          0x08000a08       0x10 c:\Users\fx\Upwork\weather-node\output\core\wirish\start.S.o
-                0x08000a08                __start__
- .text.start_c  0x08000a18       0x58 c:\Users\fx\Upwork\weather-node\output\core\wirish\start_c.c.o
-                0x08000a18                start_c
- .text._sbrk    0x08000a70       0x44 c:\Users\fx\Upwork\weather-node\output\core\wirish\syscalls.c.o
-                0x08000a70                _sbrk
+                0x08000a0c        0x4 c:\Users\fx\Upwork\weather-node\output\core\wirish\boards_setup.cpp.o
+                0x08000a0c                wirish::priv::series_init()
+ .text          0x08000a10       0x10 c:\Users\fx\Upwork\weather-node\output\core\wirish\start.S.o
+                0x08000a10                __start__
+ .text.start_c  0x08000a20       0x58 c:\Users\fx\Upwork\weather-node\output\core\wirish\start_c.c.o
+                0x08000a20                start_c
+ .text._sbrk    0x08000a78       0x44 c:\Users\fx\Upwork\weather-node\output\core\wirish\syscalls.c.o
+                0x08000a78                _sbrk
  .text.rb_full_count
-                0x08000ab4       0x22 c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
+                0x08000abc       0x22 c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
  .text._ZN14HardwareSerial4readEv
-                0x08000ad6       0x3a c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
-                0x08000ad6                HardwareSerial::read()
+                0x08000ade       0x3a c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
+                0x08000ade                HardwareSerial::read()
  .text._ZN14HardwareSerial9availableEv
-                0x08000b10        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
-                0x08000b10                HardwareSerial::available()
+                0x08000b18        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
+                0x08000b18                HardwareSerial::available()
  .text._ZN14HardwareSerial4peekEv
-                0x08000b1c       0x22 c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
-                0x08000b1c                HardwareSerial::peek()
+                0x08000b24       0x22 c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
+                0x08000b24                HardwareSerial::peek()
  .text._ZN14HardwareSerial5flushEv
-                0x08000b3e       0x1a c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
-                0x08000b3e                HardwareSerial::flush()
+                0x08000b46       0x1a c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
+                0x08000b46                HardwareSerial::flush()
  .text._ZN14HardwareSerial5writeEh
-                0x08000b58       0x1e c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
-                0x08000b58                HardwareSerial::write(unsigned char)
- *fill*         0x08000b76        0x2 
+                0x08000b60       0x1e c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
+                0x08000b60                HardwareSerial::write(unsigned char)
+ *fill*         0x08000b7e        0x2 
  .text._ZN14HardwareSerialC2EP9usart_devhh
-                0x08000b78       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
-                0x08000b78                HardwareSerial::HardwareSerial(usart_dev*, unsigned char, unsigned char)
-                0x08000b78                HardwareSerial::HardwareSerial(usart_dev*, unsigned char, unsigned char)
+                0x08000b80       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
+                0x08000b80                HardwareSerial::HardwareSerial(usart_dev*, unsigned char, unsigned char)
+                0x08000b80                HardwareSerial::HardwareSerial(usart_dev*, unsigned char, unsigned char)
  .text._ZN14HardwareSerial5beginEmh
-                0x08000b94       0x78 c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
-                0x08000b94                HardwareSerial::begin(unsigned long, unsigned char)
+                0x08000b9c       0x78 c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
+                0x08000b9c                HardwareSerial::begin(unsigned long, unsigned char)
  .text._ZN14HardwareSerial5beginEm
-                0x08000c0c        0x6 c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
-                0x08000c0c                HardwareSerial::begin(unsigned long)
+                0x08000c14        0x6 c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
+                0x08000c14                HardwareSerial::begin(unsigned long)
  .text._ZN5Print5writeEPKvm
-                0x08000c12       0x20 c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
-                0x08000c12                Print::write(void const*, unsigned long)
+                0x08000c1a       0x20 c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
+                0x08000c1a                Print::write(void const*, unsigned long)
  .text._ZN5Print5writeEPKc
-                0x08000c32       0x1e c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
-                0x08000c32                Print::write(char const*)
+                0x08000c3a       0x1e c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
+                0x08000c3a                Print::write(char const*)
  .text._ZN5Print5printEc
-                0x08000c50        0xa c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
-                0x08000c50                Print::print(char)
+                0x08000c58        0xa c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
+                0x08000c58                Print::print(char)
  .text._ZN5Print5printEPKc
-                0x08000c5a        0xa c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
-                0x08000c5a                Print::print(char const*)
+                0x08000c62        0xa c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
+                0x08000c62                Print::print(char const*)
  .text._ZN5Print7printlnEv
-                0x08000c64       0x18 c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
-                0x08000c64                Print::println()
+                0x08000c6c       0x18 c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
+                0x08000c6c                Print::println()
  .text._ZN5Print7printlnEPKc
-                0x08000c7c       0x14 c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
-                0x08000c7c                Print::println(char const*)
+                0x08000c84       0x14 c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
+                0x08000c84                Print::println(char const*)
  .text._ZN5Print11printNumberEyh
-                0x08000c90       0x84 c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
-                0x08000c90                Print::printNumber(unsigned long long, unsigned char)
+                0x08000c98       0x84 c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
+                0x08000c98                Print::printNumber(unsigned long long, unsigned char)
  .text._ZN5Print5printExi
-                0x08000d14       0x32 c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
-                0x08000d14                Print::print(long long, int)
+                0x08000d1c       0x32 c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
+                0x08000d1c                Print::print(long long, int)
  .text._ZN5Print5printEii
-                0x08000d46       0x12 c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
-                0x08000d46                Print::print(int, int)
+                0x08000d4e       0x12 c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
+                0x08000d4e                Print::print(int, int)
  .text._ZN5Print10printFloatEdh
-                0x08000d58      0x158 c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
-                0x08000d58                Print::printFloat(double, unsigned char)
+                0x08000d60      0x158 c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
+                0x08000d60                Print::printFloat(double, unsigned char)
  .text._ZN5Print5printEdi
-                0x08000eb0        0xa c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
-                0x08000eb0                Print::print(double, int)
+                0x08000eb8        0xa c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
+                0x08000eb8                Print::print(double, int)
  .text.adc_init
-                0x08000eba       0x14 c:\Users\fx\Upwork\weather-node\output\core\core.a(adc.c.o)
-                0x08000eba                adc_init
+                0x08000ec2       0x14 c:\Users\fx\Upwork\weather-node\output\core\core.a(adc.c.o)
+                0x08000ec2                adc_init
  .text.adc_set_extsel
-                0x08000ece       0x12 c:\Users\fx\Upwork\weather-node\output\core\core.a(adc.c.o)
-                0x08000ece                adc_set_extsel
+                0x08000ed6       0x12 c:\Users\fx\Upwork\weather-node\output\core\core.a(adc.c.o)
+                0x08000ed6                adc_set_extsel
  .text.adc_set_sample_rate
-                0x08000ee0       0x30 c:\Users\fx\Upwork\weather-node\output\core\core.a(adc.c.o)
-                0x08000ee0                adc_set_sample_rate
+                0x08000ee8       0x30 c:\Users\fx\Upwork\weather-node\output\core\core.a(adc.c.o)
+                0x08000ee8                adc_set_sample_rate
  .text.__irq_adc
-                0x08000f10       0x50 c:\Users\fx\Upwork\weather-node\output\core\core.a(adc_f1.c.o)
-                0x08000f10                __irq_adc
+                0x08000f18       0x50 c:\Users\fx\Upwork\weather-node\output\core\core.a(adc_f1.c.o)
+                0x08000f18                __irq_adc
  .text.adc_calibrate
-                0x08000f60       0x24 c:\Users\fx\Upwork\weather-node\output\core\core.a(adc_f1.c.o)
-                0x08000f60                adc_calibrate
+                0x08000f68       0x24 c:\Users\fx\Upwork\weather-node\output\core\core.a(adc_f1.c.o)
+                0x08000f68                adc_calibrate
  .text.adc_set_prescaler
-                0x08000f84        0x8 c:\Users\fx\Upwork\weather-node\output\core\core.a(adc_f1.c.o)
-                0x08000f84                adc_set_prescaler
+                0x08000f8c        0x8 c:\Users\fx\Upwork\weather-node\output\core\core.a(adc_f1.c.o)
+                0x08000f8c                adc_set_prescaler
  .text.adc_foreach
-                0x08000f8c       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(adc_f1.c.o)
-                0x08000f8c                adc_foreach
+                0x08000f94       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(adc_f1.c.o)
+                0x08000f94                adc_foreach
  .text.adc_enable_single_swstart
-                0x08000fa8       0x36 c:\Users\fx\Upwork\weather-node\output\core\core.a(adc_f1.c.o)
-                0x08000fa8                adc_enable_single_swstart
+                0x08000fb0       0x36 c:\Users\fx\Upwork\weather-node\output\core\core.a(adc_f1.c.o)
+                0x08000fb0                adc_enable_single_swstart
  .text.dma_irq_handler
-                0x08000fde       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(dma_f1.c.o)
- *fill*         0x08000ffa        0x2 
+                0x08000fe6       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(dma_f1.c.o)
+ *fill*         0x08001002        0x2 
  .text.__irq_dma1_channel1
-                0x08000ffc       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(dma_f1.c.o)
-                0x08000ffc                __irq_dma1_channel1
+                0x08001004       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(dma_f1.c.o)
+                0x08001004                __irq_dma1_channel1
  .text.__irq_dma1_channel2
-                0x0800100c       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(dma_f1.c.o)
-                0x0800100c                __irq_dma1_channel2
+                0x08001014       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(dma_f1.c.o)
+                0x08001014                __irq_dma1_channel2
  .text.__irq_dma1_channel3
-                0x0800101c       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(dma_f1.c.o)
-                0x0800101c                __irq_dma1_channel3
+                0x08001024       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(dma_f1.c.o)
+                0x08001024                __irq_dma1_channel3
  .text.__irq_dma1_channel4
-                0x0800102c       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(dma_f1.c.o)
-                0x0800102c                __irq_dma1_channel4
+                0x08001034       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(dma_f1.c.o)
+                0x08001034                __irq_dma1_channel4
  .text.__irq_dma1_channel5
-                0x0800103c       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(dma_f1.c.o)
-                0x0800103c                __irq_dma1_channel5
+                0x08001044       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(dma_f1.c.o)
+                0x08001044                __irq_dma1_channel5
  .text.__irq_dma1_channel6
-                0x0800104c       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(dma_f1.c.o)
-                0x0800104c                __irq_dma1_channel6
+                0x08001054       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(dma_f1.c.o)
+                0x08001054                __irq_dma1_channel6
  .text.__irq_dma1_channel7
-                0x0800105c       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(dma_f1.c.o)
-                0x0800105c                __irq_dma1_channel7
- *fill*         0x0800106c        0x4 
- .text          0x08001070       0x60 c:\Users\fx\Upwork\weather-node\output\core\core.a(exc.S.o)
-                0x08001070                __exc_nmi
-                0x08001074                __exc_hardfault
-                0x08001078                __exc_memmanage
-                0x0800107c                __exc_busfault
-                0x08001080                __exc_usagefault
+                0x08001064       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(dma_f1.c.o)
+                0x08001064                __irq_dma1_channel7
+ *fill*         0x08001074        0xc 
+ .text          0x08001080       0x60 c:\Users\fx\Upwork\weather-node\output\core\core.a(exc.S.o)
+                0x08001080                __exc_nmi
+                0x08001084                __exc_hardfault
+                0x08001088                __exc_memmanage
+                0x0800108c                __exc_busfault
+                0x08001090                __exc_usagefault
  .text.dispatch_single_exti
-                0x080010d0       0x2c c:\Users\fx\Upwork\weather-node\output\core\core.a(exti.c.o)
-                0x080010d0                dispatch_single_exti
+                0x080010e0       0x2c c:\Users\fx\Upwork\weather-node\output\core\core.a(exti.c.o)
+                0x080010e0                dispatch_single_exti
  .text.dispatch_extis
-                0x080010fc       0x4c c:\Users\fx\Upwork\weather-node\output\core\core.a(exti.c.o)
-                0x080010fc                dispatch_extis
+                0x0800110c       0x4c c:\Users\fx\Upwork\weather-node\output\core\core.a(exti.c.o)
+                0x0800110c                dispatch_extis
  .text.__irq_exti0
-                0x08001148        0x6 c:\Users\fx\Upwork\weather-node\output\core\core.a(exti.c.o)
-                0x08001148                __irq_exti0
+                0x08001158        0x6 c:\Users\fx\Upwork\weather-node\output\core\core.a(exti.c.o)
+                0x08001158                __irq_exti0
  .text.__irq_exti1
-                0x0800114e        0x6 c:\Users\fx\Upwork\weather-node\output\core\core.a(exti.c.o)
-                0x0800114e                __irq_exti1
+                0x0800115e        0x6 c:\Users\fx\Upwork\weather-node\output\core\core.a(exti.c.o)
+                0x0800115e                __irq_exti1
  .text.__irq_exti2
-                0x08001154        0x6 c:\Users\fx\Upwork\weather-node\output\core\core.a(exti.c.o)
-                0x08001154                __irq_exti2
+                0x08001164        0x6 c:\Users\fx\Upwork\weather-node\output\core\core.a(exti.c.o)
+                0x08001164                __irq_exti2
  .text.__irq_exti3
-                0x0800115a        0x6 c:\Users\fx\Upwork\weather-node\output\core\core.a(exti.c.o)
-                0x0800115a                __irq_exti3
+                0x0800116a        0x6 c:\Users\fx\Upwork\weather-node\output\core\core.a(exti.c.o)
+                0x0800116a                __irq_exti3
  .text.__irq_exti4
-                0x08001160        0x6 c:\Users\fx\Upwork\weather-node\output\core\core.a(exti.c.o)
-                0x08001160                __irq_exti4
+                0x08001170        0x6 c:\Users\fx\Upwork\weather-node\output\core\core.a(exti.c.o)
+                0x08001170                __irq_exti4
  .text.__irq_exti9_5
-                0x08001166        0x8 c:\Users\fx\Upwork\weather-node\output\core\core.a(exti.c.o)
-                0x08001166                __irq_exti9_5
+                0x08001176        0x8 c:\Users\fx\Upwork\weather-node\output\core\core.a(exti.c.o)
+                0x08001176                __irq_exti9_5
  .text.__irq_exti15_10
-                0x0800116e        0x8 c:\Users\fx\Upwork\weather-node\output\core\core.a(exti.c.o)
-                0x0800116e                __irq_exti15_10
- *fill*         0x08001176        0x2 
+                0x0800117e        0x8 c:\Users\fx\Upwork\weather-node\output\core\core.a(exti.c.o)
+                0x0800117e                __irq_exti15_10
+ *fill*         0x08001186        0x2 
  .text.flash_set_latency
-                0x08001178       0x14 c:\Users\fx\Upwork\weather-node\output\core\core.a(flash.c.o)
-                0x08001178                flash_set_latency
+                0x08001188       0x14 c:\Users\fx\Upwork\weather-node\output\core\core.a(flash.c.o)
+                0x08001188                flash_set_latency
  .text.gpio_init_all
-                0x0800118c       0x30 c:\Users\fx\Upwork\weather-node\output\core\core.a(gpio_f1.c.o)
-                0x0800118c                gpio_init_all
+                0x0800119c       0x30 c:\Users\fx\Upwork\weather-node\output\core\core.a(gpio_f1.c.o)
+                0x0800119c                gpio_init_all
  .text.gpio_set_mode
-                0x080011bc       0x50 c:\Users\fx\Upwork\weather-node\output\core\core.a(gpio_f1.c.o)
-                0x080011bc                gpio_set_mode
+                0x080011cc       0x50 c:\Users\fx\Upwork\weather-node\output\core\core.a(gpio_f1.c.o)
+                0x080011cc                gpio_set_mode
  .text.afio_init
-                0x0800120c       0x12 c:\Users\fx\Upwork\weather-node\output\core\core.a(gpio_f1.c.o)
-                0x0800120c                afio_init
- *fill*         0x0800121e        0x2 
+                0x0800121c       0x12 c:\Users\fx\Upwork\weather-node\output\core\core.a(gpio_f1.c.o)
+                0x0800121c                afio_init
+ *fill*         0x0800122e        0x2 
  .text.__irq_i2c1_ev
-                0x08001220        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(i2c_f1.c.o)
-                0x08001220                __irq_i2c1_ev
+                0x08001230        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(i2c_f1.c.o)
+                0x08001230                __irq_i2c1_ev
  .text.__irq_i2c2_ev
-                0x0800122c        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(i2c_f1.c.o)
-                0x0800122c                __irq_i2c2_ev
+                0x0800123c        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(i2c_f1.c.o)
+                0x0800123c                __irq_i2c2_ev
  .text.__irq_i2c1_er
-                0x08001238        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(i2c_f1.c.o)
-                0x08001238                __irq_i2c1_er
+                0x08001248        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(i2c_f1.c.o)
+                0x08001248                __irq_i2c1_er
  .text.__irq_i2c2_er
-                0x08001244        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(i2c_f1.c.o)
-                0x08001244                __irq_i2c2_er
+                0x08001254        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(i2c_f1.c.o)
+                0x08001254                __irq_i2c2_er
  .text.nvic_irq_set_priority
-                0x08001250       0x28 c:\Users\fx\Upwork\weather-node\output\core\core.a(nvic.c.o)
-                0x08001250                nvic_irq_set_priority
+                0x08001260       0x28 c:\Users\fx\Upwork\weather-node\output\core\core.a(nvic.c.o)
+                0x08001260                nvic_irq_set_priority
  .text.nvic_init
-                0x08001278       0x30 c:\Users\fx\Upwork\weather-node\output\core\core.a(nvic.c.o)
-                0x08001278                nvic_init
+                0x08001288       0x30 c:\Users\fx\Upwork\weather-node\output\core\core.a(nvic.c.o)
+                0x08001288                nvic_init
  .text.nvic_sys_reset
-                0x080012a8       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(nvic.c.o)
-                0x080012a8                nvic_sys_reset
+                0x080012b8       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(nvic.c.o)
+                0x080012b8                nvic_sys_reset
  .text.rcc_dev_clk
-                0x080012c4        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc.c.o)
-                0x080012c4                rcc_dev_clk
+                0x080012d4        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc.c.o)
+                0x080012d4                rcc_dev_clk
  .text.rcc_switch_sysclk
-                0x080012d0       0x20 c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc.c.o)
-                0x080012d0                rcc_switch_sysclk
+                0x080012e0       0x20 c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc.c.o)
+                0x080012e0                rcc_switch_sysclk
  .text.rcc_turn_on_clk
-                0x080012f0       0x1a c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc.c.o)
-                0x080012f0                rcc_turn_on_clk
+                0x08001300       0x1a c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc.c.o)
+                0x08001300                rcc_turn_on_clk
  .text.rcc_turn_off_clk
-                0x0800130a       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc.c.o)
-                0x0800130a                rcc_turn_off_clk
+                0x0800131a       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc.c.o)
+                0x0800131a                rcc_turn_off_clk
  .text.rcc_is_clk_ready
-                0x08001326       0x18 c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc.c.o)
-                0x08001326                rcc_is_clk_ready
- *fill*         0x0800133e        0x2 
+                0x08001336       0x18 c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc.c.o)
+                0x08001336                rcc_is_clk_ready
+ *fill*         0x0800134e        0x2 
  .text.rcc_configure_pll
-                0x08001340       0x18 c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc_f1.c.o)
-                0x08001340                rcc_configure_pll
+                0x08001350       0x18 c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc_f1.c.o)
+                0x08001350                rcc_configure_pll
  .text.rcc_clk_enable
-                0x08001358       0x30 c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc_f1.c.o)
-                0x08001358                rcc_clk_enable
+                0x08001368       0x30 c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc_f1.c.o)
+                0x08001368                rcc_clk_enable
  .text.rcc_reset_dev
-                0x08001388       0x34 c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc_f1.c.o)
-                0x08001388                rcc_reset_dev
+                0x08001398       0x34 c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc_f1.c.o)
+                0x08001398                rcc_reset_dev
  .text.rcc_set_prescaler
-                0x080013bc       0x20 c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc_f1.c.o)
-                0x080013bc                rcc_set_prescaler
+                0x080013cc       0x20 c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc_f1.c.o)
+                0x080013cc                rcc_set_prescaler
  .text.rcc_clk_disable
-                0x080013dc       0x30 c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc_f1.c.o)
-                0x080013dc                rcc_clk_disable
- .text          0x0800140c        0x2 c:\Users\fx\Upwork\weather-node\output\core\core.a(isrs.S.o)
-                0x0800140c                __stm32reservedexception9
-                0x0800140c                __exc_debug_monitor
-                0x0800140c                __exc_svc
-                0x0800140c                __irq_can_rx1
-                0x0800140c                __irq_spi2
-                0x0800140c                __irq_can_sce
-                0x0800140c                __irq_pvd
-                0x0800140c                __irq_tamper
-                0x0800140c                __default_handler
-                0x0800140c                __irq_wwdg
-                0x0800140c                __stm32reservedexception10
-                0x0800140c                __irq_flash
-                0x0800140c                __stm32reservedexception13
-                0x0800140c                __irq_rtc
-                0x0800140c                __irq_spi1
-                0x0800140c                __stm32reservedexception7
-                0x0800140c                __irq_usb_hp_can_tx
-                0x0800140c                __irq_rtcalarm
-                0x0800140c                __stm32reservedexception8
-                0x0800140c                __exc_pendsv
-                0x0800140c                __irq_usbwakeup
-                0x0800140c                __irq_rcc
- *fill*         0x0800140e        0x2 
+                0x080013ec       0x30 c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc_f1.c.o)
+                0x080013ec                rcc_clk_disable
+ .text          0x0800141c        0x2 c:\Users\fx\Upwork\weather-node\output\core\core.a(isrs.S.o)
+                0x0800141c                __stm32reservedexception9
+                0x0800141c                __exc_debug_monitor
+                0x0800141c                __exc_svc
+                0x0800141c                __irq_can_rx1
+                0x0800141c                __irq_spi2
+                0x0800141c                __irq_can_sce
+                0x0800141c                __irq_pvd
+                0x0800141c                __irq_tamper
+                0x0800141c                __default_handler
+                0x0800141c                __irq_wwdg
+                0x0800141c                __stm32reservedexception10
+                0x0800141c                __irq_flash
+                0x0800141c                __stm32reservedexception13
+                0x0800141c                __irq_rtc
+                0x0800141c                __irq_spi1
+                0x0800141c                __stm32reservedexception7
+                0x0800141c                __irq_usb_hp_can_tx
+                0x0800141c                __irq_rtcalarm
+                0x0800141c                __stm32reservedexception8
+                0x0800141c                __exc_pendsv
+                0x0800141c                __irq_usbwakeup
+                0x0800141c                __irq_rcc
+ *fill*         0x0800141e        0x2 
  .text.systick_init
-                0x08001410       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(systick.c.o)
-                0x08001410                systick_init
+                0x08001420       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(systick.c.o)
+                0x08001420                systick_init
  .text.__exc_systick
-                0x08001420       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(systick.c.o)
-                0x08001420                __exc_systick
+                0x08001430       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(systick.c.o)
+                0x08001430                __exc_systick
  .text.timer_oc_set_mode
-                0x0800143c       0x3a c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
+                0x0800144c       0x3a c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
  .text.dispatch_general
-                0x08001476       0x66 c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
+                0x08001486       0x66 c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
  .text.timer_cc_enable
-                0x080014dc       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
+                0x080014ec       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
  .text.timer_foreach
-                0x080014f8       0x28 c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
-                0x080014f8                timer_foreach
+                0x08001508       0x28 c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
+                0x08001508                timer_foreach
  .text.timer_init
-                0x08001520       0x14 c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
-                0x08001520                timer_init
+                0x08001530       0x14 c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
+                0x08001530                timer_init
  .text.timer_has_cc_channel
-                0x08001534       0x30 c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
-                0x08001534                timer_has_cc_channel
+                0x08001544       0x30 c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
+                0x08001544                timer_has_cc_channel
  .text.timer_detach_interrupt
-                0x08001564       0x1e c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
-                0x08001564                timer_detach_interrupt
+                0x08001574       0x1e c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
+                0x08001574                timer_detach_interrupt
  .text.input_capture_mode
-                0x08001582       0x1a c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
-                0x08001582                input_capture_mode
+                0x08001592       0x1a c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
+                0x08001592                input_capture_mode
  .text.timer_set_mode
-                0x0800159c       0x8c c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
-                0x0800159c                timer_set_mode
+                0x080015ac       0x8c c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
+                0x080015ac                timer_set_mode
  .text.__irq_tim1_brk
-                0x08001628       0x24 c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
-                0x08001628                __irq_tim1_brk
+                0x08001638       0x24 c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
+                0x08001638                __irq_tim1_brk
  .text.__irq_tim1_up
-                0x0800164c       0x24 c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
-                0x0800164c                __irq_tim1_up
+                0x0800165c       0x24 c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
+                0x0800165c                __irq_tim1_up
  .text.__irq_tim1_trg_com
-                0x08001670       0x34 c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
-                0x08001670                __irq_tim1_trg_com
+                0x08001680       0x34 c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
+                0x08001680                __irq_tim1_trg_com
  .text.__irq_tim1_cc
-                0x080016a4       0x50 c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
-                0x080016a4                __irq_tim1_cc
+                0x080016b4       0x50 c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
+                0x080016b4                __irq_tim1_cc
  .text.__irq_tim2
-                0x080016f4        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
-                0x080016f4                __irq_tim2
+                0x08001704        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
+                0x08001704                __irq_tim2
  .text.__irq_tim3
-                0x08001700        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
-                0x08001700                __irq_tim3
+                0x08001710        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
+                0x08001710                __irq_tim3
  .text.__irq_tim4
-                0x0800170c        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
-                0x0800170c                __irq_tim4
+                0x0800171c        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
+                0x0800171c                __irq_tim4
  .text.usart_init
-                0x08001718       0x4c c:\Users\fx\Upwork\weather-node\output\core\core.a(usart.c.o)
-                0x08001718                usart_init
+                0x08001728       0x4c c:\Users\fx\Upwork\weather-node\output\core\core.a(usart.c.o)
+                0x08001728                usart_init
  .text.usart_enable
-                0x08001764       0x14 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart.c.o)
-                0x08001764                usart_enable
+                0x08001774       0x14 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart.c.o)
+                0x08001774                usart_enable
  .text.usart_tx
-                0x08001778       0x9c c:\Users\fx\Upwork\weather-node\output\core\core.a(usart.c.o)
-                0x08001778                usart_tx
+                0x08001788       0x9c c:\Users\fx\Upwork\weather-node\output\core\core.a(usart.c.o)
+                0x08001788                usart_tx
  .text.usart_irq
-                0x08001814       0xc8 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart_f1.c.o)
+                0x08001824       0xc8 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart_f1.c.o)
  .text.usart_config_gpios_async
-                0x080018dc       0x4a c:\Users\fx\Upwork\weather-node\output\core\core.a(usart_f1.c.o)
-                0x080018dc                usart_config_gpios_async
+                0x080018ec       0x4a c:\Users\fx\Upwork\weather-node\output\core\core.a(usart_f1.c.o)
+                0x080018ec                usart_config_gpios_async
  .text.usart_set_baud_rate
-                0x08001926       0x3c c:\Users\fx\Upwork\weather-node\output\core\core.a(usart_f1.c.o)
-                0x08001926                usart_set_baud_rate
- *fill*         0x08001962        0x2 
+                0x08001936       0x3c c:\Users\fx\Upwork\weather-node\output\core\core.a(usart_f1.c.o)
+                0x08001936                usart_set_baud_rate
+ *fill*         0x08001972        0x2 
  .text.__irq_usart1
-                0x08001964       0x18 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart_f1.c.o)
-                0x08001964                __irq_usart1
+                0x08001974       0x18 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart_f1.c.o)
+                0x08001974                __irq_usart1
  .text.__irq_usart2
-                0x0800197c       0x18 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart_f1.c.o)
-                0x0800197c                __irq_usart2
+                0x0800198c       0x18 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart_f1.c.o)
+                0x0800198c                __irq_usart2
  .text.__irq_usart3
-                0x08001994       0x18 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart_f1.c.o)
-                0x08001994                __irq_usart3
+                0x080019a4       0x18 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart_f1.c.o)
+                0x080019a4                __irq_usart3
  .text._usart_clock_freq
-                0x080019ac       0x24 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart_private.c.o)
-                0x080019ac                _usart_clock_freq
+                0x080019bc       0x24 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart_private.c.o)
+                0x080019bc                _usart_clock_freq
  .text.usb_resume
-                0x080019d0       0xb4 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb.c.o)
+                0x080019e0       0xb4 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb.c.o)
  .text.usb_init_usblib
-                0x08001a84       0x48 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb.c.o)
-                0x08001a84                usb_init_usblib
+                0x08001a94       0x48 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb.c.o)
+                0x08001a94                usb_init_usblib
  .text.__irq_usb_lp_can_rx0
-                0x08001acc      0x1c8 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb.c.o)
-                0x08001acc                __irq_usb_lp_can_rx0
+                0x08001adc      0x1c8 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb.c.o)
+                0x08001adc                __irq_usb_lp_can_rx0
  .text.usb_set_ep_rx_stat
-                0x08001c94       0x22 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
- *fill*         0x08001cb6        0x2 
+                0x08001ca4       0x22 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+ *fill*         0x08001cc6        0x2 
  .text.vcomGetSetLineCoding
-                0x08001cb8       0x18 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x08001cc8       0x18 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
  .text.usbDataSetup
-                0x08001cd0       0x54 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x08001ce0       0x54 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
  .text.usbNoDataSetup
-                0x08001d24       0x50 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x08001d34       0x50 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
  .text.usbGetInterfaceSetting
-                0x08001d74       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x08001d84       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
  .text.usbSetConfiguration
-                0x08001d84       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x08001d94       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
  .text.usbSetDeviceAddress
-                0x08001da0       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x08001db0       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
  .text.usbGetStringDescriptor
-                0x08001db0       0x20 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x08001dc0       0x20 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
  .text.usbGetConfigDescriptor
-                0x08001dd0        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x08001de0        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
  .text.usbGetDeviceDescriptor
-                0x08001ddc        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
- .text.usbInit  0x08001de8       0x44 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x08001dec        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+ .text.usbInit  0x08001df8       0x44 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
  .text.vcomDataTxCb
-                0x08001e2c       0xa0 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x08001e3c       0xa0 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
  .text.usbReset
-                0x08001ecc      0x160 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x08001edc      0x160 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
  .text.vcomDataRxCb
-                0x0800202c       0x7c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x0800203c       0x7c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
  .text.usb_cdcacm_set_hooks
-                0x080020a8       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
-                0x080020a8                usb_cdcacm_set_hooks
+                0x080020b8       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x080020b8                usb_cdcacm_set_hooks
  .text.usb_cdcacm_enable
-                0x080020c4       0x38 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
-                0x080020c4                usb_cdcacm_enable
+                0x080020d4       0x38 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x080020d4                usb_cdcacm_enable
  .text.usb_cdcacm_tx
-                0x080020fc       0x60 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
-                0x080020fc                usb_cdcacm_tx
+                0x0800210c       0x60 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x0800210c                usb_cdcacm_tx
  .text.usb_cdcacm_data_available
-                0x0800215c       0x18 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
-                0x0800215c                usb_cdcacm_data_available
+                0x0800216c       0x18 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x0800216c                usb_cdcacm_data_available
  .text.usb_cdcacm_peek
-                0x08002174       0x38 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
-                0x08002174                usb_cdcacm_peek
+                0x08002184       0x38 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x08002184                usb_cdcacm_peek
  .text.usb_cdcacm_rx
-                0x080021ac       0x34 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
-                0x080021ac                usb_cdcacm_rx
+                0x080021bc       0x34 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x080021bc                usb_cdcacm_rx
  .text.usb_cdcacm_peek_ex
-                0x080021e0       0x40 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
-                0x080021e0                usb_cdcacm_peek_ex
+                0x080021f0       0x40 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x080021f0                usb_cdcacm_peek_ex
  .text.usb_cdcacm_get_dtr
-                0x08002220       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
-                0x08002220                usb_cdcacm_get_dtr
+                0x08002230       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x08002230                usb_cdcacm_get_dtr
  .text.usb_set_ep_rx_count
-                0x08002230       0x4c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_reg_map.c.o)
-                0x08002230                usb_set_ep_rx_count
+                0x08002240       0x4c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_reg_map.c.o)
+                0x08002240                usb_set_ep_rx_count
  .text.Standard_GetConfiguration
-                0x0800227c       0x24 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
-                0x0800227c                Standard_GetConfiguration
+                0x0800228c       0x24 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
+                0x0800228c                Standard_GetConfiguration
  .text.Standard_GetInterface
-                0x080022a0       0x24 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
-                0x080022a0                Standard_GetInterface
+                0x080022b0       0x24 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
+                0x080022b0                Standard_GetInterface
  .text.Standard_GetStatus
-                0x080022c4       0x90 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
-                0x080022c4                Standard_GetStatus
+                0x080022d4       0x90 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
+                0x080022d4                Standard_GetStatus
  .text.DataStageIn
-                0x08002354       0xa8 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
+                0x08002364       0xa8 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
  .text.Standard_SetConfiguration
-                0x080023fc       0x38 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
-                0x080023fc                Standard_SetConfiguration
+                0x0800240c       0x38 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
+                0x0800240c                Standard_SetConfiguration
  .text.Standard_SetInterface
-                0x08002434       0x48 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
-                0x08002434                Standard_SetInterface
+                0x08002444       0x48 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
+                0x08002444                Standard_SetInterface
  .text.Standard_ClearFeature
-                0x0800247c       0xd0 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
-                0x0800247c                Standard_ClearFeature
+                0x0800248c       0xd0 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
+                0x0800248c                Standard_ClearFeature
  .text.Standard_SetEndPointFeature
-                0x0800254c       0x84 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
-                0x0800254c                Standard_SetEndPointFeature
+                0x0800255c       0x84 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
+                0x0800255c                Standard_SetEndPointFeature
  .text.Standard_SetDeviceFeature
-                0x080025d0       0x24 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
-                0x080025d0                Standard_SetDeviceFeature
+                0x080025e0       0x24 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
+                0x080025e0                Standard_SetDeviceFeature
  .text.Standard_GetDescriptorData
-                0x080025f4       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
-                0x080025f4                Standard_GetDescriptorData
+                0x08002604       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
+                0x08002604                Standard_GetDescriptorData
  .text.Post0_Process
-                0x08002610       0x40 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
-                0x08002610                Post0_Process
+                0x08002620       0x40 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
+                0x08002620                Post0_Process
  .text.Setup0_Process
-                0x08002650      0x2d0 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
-                0x08002650                Setup0_Process
+                0x08002660      0x2d0 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
+                0x08002660                Setup0_Process
  .text.Out0_Process
-                0x08002920       0xc8 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
-                0x08002920                Out0_Process
+                0x08002930       0xc8 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
+                0x08002930                Out0_Process
  .text.SetDeviceAddress
-                0x080029e8       0x38 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
-                0x080029e8                SetDeviceAddress
+                0x080029f8       0x38 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
+                0x080029f8                SetDeviceAddress
  .text.In0_Process
-                0x08002a20       0x5c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
-                0x08002a20                In0_Process
+                0x08002a30       0x5c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
+                0x08002a30                In0_Process
  .text.NOP_Process
-                0x08002a7c        0x2 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
-                0x08002a7c                NOP_Process
+                0x08002a8c        0x2 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
+                0x08002a8c                NOP_Process
  .text.UserToPMABufferCopy
-                0x08002a7e       0x30 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_mem.c.o)
-                0x08002a7e                UserToPMABufferCopy
+                0x08002a8e       0x30 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_mem.c.o)
+                0x08002a8e                UserToPMABufferCopy
  .text.PMAToUserBufferCopy
-                0x08002aae       0x32 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_mem.c.o)
-                0x08002aae                PMAToUserBufferCopy
+                0x08002abe       0x32 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_mem.c.o)
+                0x08002abe                PMAToUserBufferCopy
  .text.SetEPTxStatus
-                0x08002ae0       0x2a c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_regs.c.o)
-                0x08002ae0                SetEPTxStatus
+                0x08002af0       0x2a c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_regs.c.o)
+                0x08002af0                SetEPTxStatus
  .text.ClearDTOG_RX
-                0x08002b0a       0x20 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_regs.c.o)
-                0x08002b0a                ClearDTOG_RX
+                0x08002b1a       0x20 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_regs.c.o)
+                0x08002b1a                ClearDTOG_RX
  .text.ClearDTOG_TX
-                0x08002b2a       0x20 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_regs.c.o)
-                0x08002b2a                ClearDTOG_TX
- *fill*         0x08002b4a        0x2 
+                0x08002b3a       0x20 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_regs.c.o)
+                0x08002b3a                ClearDTOG_TX
+ *fill*         0x08002b5a        0x2 
  .text.GetEPTxAddr
-                0x08002b4c       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_regs.c.o)
-                0x08002b4c                GetEPTxAddr
+                0x08002b5c       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_regs.c.o)
+                0x08002b5c                GetEPTxAddr
  .text.GetEPRxAddr
-                0x08002b68       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_regs.c.o)
-                0x08002b68                GetEPRxAddr
+                0x08002b78       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_regs.c.o)
+                0x08002b78                GetEPRxAddr
  .text.SetEPTxCount
-                0x08002b84       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_regs.c.o)
-                0x08002b84                SetEPTxCount
+                0x08002b94       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_regs.c.o)
+                0x08002b94                SetEPTxCount
  .text.SetEPRxCount
-                0x08002ba0       0x40 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_regs.c.o)
-                0x08002ba0                SetEPRxCount
- .text.throb    0x08002be0       0x4c c:\Users\fx\Upwork\weather-node\output\core\core.a(util.c.o)
-                0x08002be0                throb
- .text.__error  0x08002c2c       0x14 c:\Users\fx\Upwork\weather-node\output\core\core.a(util.c.o)
-                0x08002c2c                __error
+                0x08002bb0       0x40 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_regs.c.o)
+                0x08002bb0                SetEPRxCount
+ .text.throb    0x08002bf0       0x4c c:\Users\fx\Upwork\weather-node\output\core\core.a(util.c.o)
+                0x08002bf0                throb
+ .text.__error  0x08002c3c       0x14 c:\Users\fx\Upwork\weather-node\output\core\core.a(util.c.o)
+                0x08002c3c                __error
  .text.startup._Z7premainv
-                0x08002c40        0x4 c:\Users\fx\Upwork\weather-node\output\core\core.a(main.cpp.o)
-                0x08002c40                premain()
+                0x08002c50        0x4 c:\Users\fx\Upwork\weather-node\output\core\core.a(main.cpp.o)
+                0x08002c50                premain()
  .text.startup.main
-                0x08002c44        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(main.cpp.o)
-                0x08002c44                main
+                0x08002c54        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(main.cpp.o)
+                0x08002c54                main
  .text._Z7pinModeh13WiringPinMode
-                0x08002c50       0x84 c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_digital_f1.cpp.o)
-                0x08002c50                pinMode(unsigned char, WiringPinMode)
+                0x08002c60       0x84 c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_digital_f1.cpp.o)
+                0x08002c60                pinMode(unsigned char, WiringPinMode)
  .text._ZN9USBSerial9availableEv
-                0x08002cd4        0x4 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
-                0x08002cd4                USBSerial::available()
+                0x08002ce4        0x4 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
+                0x08002ce4                USBSerial::available()
  .text._ZN9USBSerial4peekEv
-                0x08002cd8       0x1e c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
-                0x08002cd8                USBSerial::peek()
+                0x08002ce8       0x1e c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
+                0x08002ce8                USBSerial::peek()
  .text._ZN9USBSerial4readEv
-                0x08002cf6       0x1e c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
-                0x08002cf6                USBSerial::read()
+                0x08002d06       0x1e c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
+                0x08002d06                USBSerial::read()
  .text._ZL14ifaceSetupHookjPv
-                0x08002d14       0x38 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
+                0x08002d24       0x38 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
  .text._ZL6rxHookjPv
-                0x08002d4c       0x6c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
+                0x08002d5c       0x6c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
  .text._ZN9USBSerialC2Ev
-                0x08002db8       0x14 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
-                0x08002db8                USBSerial::USBSerial()
-                0x08002db8                USBSerial::USBSerial()
+                0x08002dc8       0x14 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
+                0x08002dc8                USBSerial::USBSerial()
+                0x08002dc8                USBSerial::USBSerial()
  .text._ZN9USBSerial5beginEv
-                0x08002dcc       0x34 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
-                0x08002dcc                USBSerial::begin()
+                0x08002ddc       0x34 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
+                0x08002ddc                USBSerial::begin()
  .text._ZN9USBSerial5beginEm
-                0x08002e00       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
-                0x08002e00                USBSerial::begin(unsigned long)
+                0x08002e10       0x10 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
+                0x08002e10                USBSerial::begin(unsigned long)
  .text._ZN9USBSerial5writeEPKhm
-                0x08002e10       0x4c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
-                0x08002e10                USBSerial::write(unsigned char const*, unsigned long)
+                0x08002e20       0x4c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
+                0x08002e20                USBSerial::write(unsigned char const*, unsigned long)
  .text._ZN9USBSerial5writeEh
-                0x08002e5c       0x16 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
-                0x08002e5c                USBSerial::write(unsigned char)
+                0x08002e6c       0x16 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
+                0x08002e6c                USBSerial::write(unsigned char)
  .text._ZN9USBSerial5writeEPKc
-                0x08002e72       0x1a c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
-                0x08002e72                USBSerial::write(char const*)
+                0x08002e82       0x1a c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
+                0x08002e82                USBSerial::write(char const*)
  .text._ZN9USBSerial4readEPhm
-                0x08002e8c       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
-                0x08002e8c                USBSerial::read(unsigned char*, unsigned long)
+                0x08002e9c       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
+                0x08002e9c                USBSerial::read(unsigned char*, unsigned long)
  .text._ZN9USBSerial5flushEv
-                0x08002ea8       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
-                0x08002ea8                USBSerial::flush()
+                0x08002eb8       0x1c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
+                0x08002eb8                USBSerial::flush()
  .text.startup._GLOBAL__sub_I__ZN9USBSerial9_hasBegunE
-                0x08002ec4        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
+                0x08002ed4        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
  .text._Z11digitalReadh
-                0x08002ed0       0x2c c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_digital.cpp.o)
-                0x08002ed0                digitalRead(unsigned char)
+                0x08002ee0       0x2c c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_digital.cpp.o)
+                0x08002ee0                digitalRead(unsigned char)
  .text._Z12digitalWritehh
-                0x08002efc       0x2c c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_digital.cpp.o)
-                0x08002efc                digitalWrite(unsigned char, unsigned char)
+                0x08002f0c       0x2c c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_digital.cpp.o)
+                0x08002f0c                digitalWrite(unsigned char, unsigned char)
  .text._ZL6microsv
-                0x08002f28       0x34 c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_time.cpp.o)
+                0x08002f38       0x34 c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_time.cpp.o)
  .text._Z5delaym
-                0x08002f5c       0x2a c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_time.cpp.o)
-                0x08002f5c                delay(unsigned long)
+                0x08002f6c       0x2a c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_time.cpp.o)
+                0x08002f6c                delay(unsigned long)
  .text._Z17delayMicrosecondsm
-                0x08002f86        0xe c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_time.cpp.o)
-                0x08002f86                delayMicroseconds(unsigned long)
- .text.__empty  0x08002f94        0x2 c:\Users\fx\Upwork\weather-node\output\core\core.a(hooks.c.o)
-                0x08002f94                yield
+                0x08002f96        0xe c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_time.cpp.o)
+                0x08002f96                delayMicroseconds(unsigned long)
+ .text.__empty  0x08002fa4        0x2 c:\Users\fx\Upwork\weather-node\output\core\core.a(hooks.c.o)
+                0x08002fa4                yield
  .text.bkp_init
-                0x08002f96       0x18 c:\Users\fx\Upwork\weather-node\output\core\core.a(bkp_f1.c.o)
-                0x08002f96                bkp_init
- *fill*         0x08002fae        0x2 
+                0x08002fa6       0x18 c:\Users\fx\Upwork\weather-node\output\core\core.a(bkp_f1.c.o)
+                0x08002fa6                bkp_init
+ *fill*         0x08002fbe        0x2 
  .text.bkp_enable_writes
-                0x08002fb0        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(bkp_f1.c.o)
-                0x08002fb0                bkp_enable_writes
+                0x08002fc0        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(bkp_f1.c.o)
+                0x08002fc0                bkp_enable_writes
  .text.bkp_disable_writes
-                0x08002fbc        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(bkp_f1.c.o)
-                0x08002fbc                bkp_disable_writes
+                0x08002fcc        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(bkp_f1.c.o)
+                0x08002fcc                bkp_disable_writes
  .text.bkp_write
-                0x08002fc8       0x16 c:\Users\fx\Upwork\weather-node\output\core\core.a(bkp_f1.c.o)
-                0x08002fc8                bkp_write
+                0x08002fd8       0x16 c:\Users\fx\Upwork\weather-node\output\core\core.a(bkp_f1.c.o)
+                0x08002fd8                bkp_write
  .text.gpio_init
-                0x08002fde       0x14 c:\Users\fx\Upwork\weather-node\output\core\core.a(gpio.c.o)
-                0x08002fde                gpio_init
+                0x08002fee       0x14 c:\Users\fx\Upwork\weather-node\output\core\core.a(gpio.c.o)
+                0x08002fee                gpio_init
  .text.i2c_disable_irq
-                0x08002ff2        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(i2c.c.o)
- *fill*         0x08002ffe        0x2 
+                0x08003002        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(i2c.c.o)
+ *fill*         0x0800300e        0x2 
  .text._i2c_irq_handler
-                0x08003000      0x3d8 c:\Users\fx\Upwork\weather-node\output\core\core.a(i2c.c.o)
-                0x08003000                _i2c_irq_handler
+                0x08003010      0x3d8 c:\Users\fx\Upwork\weather-node\output\core\core.a(i2c.c.o)
+                0x08003010                _i2c_irq_handler
  .text._i2c_irq_error_handler
-                0x080033d8       0x74 c:\Users\fx\Upwork\weather-node\output\core\core.a(i2c.c.o)
-                0x080033d8                _i2c_irq_error_handler
- .text          0x0800344c      0x370 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_arm_addsubdf3.o)
-                0x0800344c                __aeabi_drsub
-                0x08003454                __aeabi_dsub
-                0x08003454                __subdf3
-                0x08003458                __aeabi_dadd
-                0x08003458                __adddf3
-                0x080036d0                __floatunsidf
-                0x080036d0                __aeabi_ui2d
-                0x080036f0                __floatsidf
-                0x080036f0                __aeabi_i2d
-                0x08003714                __aeabi_f2d
-                0x08003714                __extendsfdf2
-                0x08003750                __floatundidf
-                0x08003750                __aeabi_ul2d
-                0x08003760                __floatdidf
-                0x08003760                __aeabi_l2d
- .text          0x080037bc      0x424 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_arm_muldivdf3.o)
-                0x080037bc                __aeabi_dmul
-                0x080037bc                __muldf3
-                0x08003a10                __divdf3
-                0x08003a10                __aeabi_ddiv
- .text          0x08003be0      0x110 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_arm_cmpdf2.o)
-                0x08003be0                __gtdf2
-                0x08003be0                __gedf2
-                0x08003be8                __ltdf2
-                0x08003be8                __ledf2
-                0x08003bf0                __nedf2
-                0x08003bf0                __eqdf2
-                0x08003bf0                __cmpdf2
-                0x08003c6c                __aeabi_cdrcmple
-                0x08003c7c                __aeabi_cdcmpeq
-                0x08003c7c                __aeabi_cdcmple
-                0x08003c8c                __aeabi_dcmpeq
-                0x08003ca0                __aeabi_dcmplt
-                0x08003cb4                __aeabi_dcmple
-                0x08003cc8                __aeabi_dcmpge
-                0x08003cdc                __aeabi_dcmpgt
- .text          0x08003cf0       0x50 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_arm_fixdfsi.o)
-                0x08003cf0                __aeabi_d2iz
-                0x08003cf0                __fixdfsi
- .text          0x08003d40       0xa0 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_arm_truncdfsf2.o)
-                0x08003d40                __truncdfsf2
-                0x08003d40                __aeabi_d2f
- .text          0x08003de0      0x21c c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_arm_addsubsf3.o)
-                0x08003de0                __aeabi_frsub
-                0x08003de8                __subsf3
-                0x08003de8                __aeabi_fsub
-                0x08003dec                __aeabi_fadd
-                0x08003dec                __addsf3
-                0x08003f4c                __aeabi_ui2f
-                0x08003f4c                __floatunsisf
-                0x08003f54                __aeabi_i2f
-                0x08003f54                __floatsisf
-                0x08003f70                __aeabi_ul2f
-                0x08003f70                __floatundisf
-                0x08003f80                __aeabi_l2f
-                0x08003f80                __floatdisf
- .text          0x08003ffc       0x2c c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_aeabi_uldivmod.o)
-                0x08003ffc                __aeabi_uldivmod
- .text          0x08004028       0x30 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_fixdfdi.o)
-                0x08004028                __fixdfdi
-                0x08004028                __aeabi_d2lz
- .text          0x08004058       0x44 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_fixunsdfdi.o)
-                0x08004058                __fixunsdfdi
-                0x08004058                __aeabi_d2ulz
- .text          0x0800409c       0x60 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(bpabi.o)
-                0x0800409c                __gnu_ldivmod_helper
-                0x080040cc                __gnu_uldivmod_helper
- .text          0x080040fc        0x4 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_dvmd_tls.o)
-                0x080040fc                __aeabi_idiv0
-                0x080040fc                __aeabi_ldiv0
- .text          0x08004100       0x40 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_arm_fixunsdfsi.o)
-                0x08004100                __aeabi_d2uiz
-                0x08004100                __fixunsdfsi
- .text          0x08004140      0x2a0 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_divdi3.o)
-                0x08004140                __divdi3
- .text          0x080043e0      0x290 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_udivdi3.o)
-                0x080043e0                __udivdi3
- .text.__errno  0x08004670        0xc c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-errno.o)
-                0x08004670                __errno
+                0x080033e8       0x74 c:\Users\fx\Upwork\weather-node\output\core\core.a(i2c.c.o)
+                0x080033e8                _i2c_irq_error_handler
+ .text          0x0800345c      0x370 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_arm_addsubdf3.o)
+                0x0800345c                __aeabi_drsub
+                0x08003464                __aeabi_dsub
+                0x08003464                __subdf3
+                0x08003468                __aeabi_dadd
+                0x08003468                __adddf3
+                0x080036e0                __floatunsidf
+                0x080036e0                __aeabi_ui2d
+                0x08003700                __floatsidf
+                0x08003700                __aeabi_i2d
+                0x08003724                __aeabi_f2d
+                0x08003724                __extendsfdf2
+                0x08003760                __floatundidf
+                0x08003760                __aeabi_ul2d
+                0x08003770                __floatdidf
+                0x08003770                __aeabi_l2d
+ .text          0x080037cc      0x424 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_arm_muldivdf3.o)
+                0x080037cc                __aeabi_dmul
+                0x080037cc                __muldf3
+                0x08003a20                __divdf3
+                0x08003a20                __aeabi_ddiv
+ .text          0x08003bf0      0x110 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_arm_cmpdf2.o)
+                0x08003bf0                __gtdf2
+                0x08003bf0                __gedf2
+                0x08003bf8                __ltdf2
+                0x08003bf8                __ledf2
+                0x08003c00                __nedf2
+                0x08003c00                __eqdf2
+                0x08003c00                __cmpdf2
+                0x08003c7c                __aeabi_cdrcmple
+                0x08003c8c                __aeabi_cdcmpeq
+                0x08003c8c                __aeabi_cdcmple
+                0x08003c9c                __aeabi_dcmpeq
+                0x08003cb0                __aeabi_dcmplt
+                0x08003cc4                __aeabi_dcmple
+                0x08003cd8                __aeabi_dcmpge
+                0x08003cec                __aeabi_dcmpgt
+ .text          0x08003d00       0x50 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_arm_fixdfsi.o)
+                0x08003d00                __aeabi_d2iz
+                0x08003d00                __fixdfsi
+ .text          0x08003d50       0xa0 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_arm_truncdfsf2.o)
+                0x08003d50                __truncdfsf2
+                0x08003d50                __aeabi_d2f
+ .text          0x08003df0      0x21c c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_arm_addsubsf3.o)
+                0x08003df0                __aeabi_frsub
+                0x08003df8                __subsf3
+                0x08003df8                __aeabi_fsub
+                0x08003dfc                __aeabi_fadd
+                0x08003dfc                __addsf3
+                0x08003f5c                __aeabi_ui2f
+                0x08003f5c                __floatunsisf
+                0x08003f64                __aeabi_i2f
+                0x08003f64                __floatsisf
+                0x08003f80                __aeabi_ul2f
+                0x08003f80                __floatundisf
+                0x08003f90                __aeabi_l2f
+                0x08003f90                __floatdisf
+ .text          0x0800400c       0x2c c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_aeabi_uldivmod.o)
+                0x0800400c                __aeabi_uldivmod
+ .text          0x08004038       0x30 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_fixdfdi.o)
+                0x08004038                __fixdfdi
+                0x08004038                __aeabi_d2lz
+ .text          0x08004068       0x44 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_fixunsdfdi.o)
+                0x08004068                __fixunsdfdi
+                0x08004068                __aeabi_d2ulz
+ .text          0x080040ac       0x60 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(bpabi.o)
+                0x080040ac                __gnu_ldivmod_helper
+                0x080040dc                __gnu_uldivmod_helper
+ .text          0x0800410c        0x4 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_dvmd_tls.o)
+                0x0800410c                __aeabi_idiv0
+                0x0800410c                __aeabi_ldiv0
+ .text          0x08004110       0x40 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_arm_fixunsdfsi.o)
+                0x08004110                __aeabi_d2uiz
+                0x08004110                __fixunsdfsi
+ .text          0x08004150      0x2a0 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_divdi3.o)
+                0x08004150                __divdi3
+ .text          0x080043f0      0x290 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_udivdi3.o)
+                0x080043f0                __udivdi3
+ .text.__errno  0x08004680        0xc c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-errno.o)
+                0x08004680                __errno
  .text.__libc_init_array
-                0x0800467c       0x50 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-init.o)
-                0x0800467c                __libc_init_array
- .text.malloc   0x080046cc       0x10 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-malloc.o)
-                0x080046cc                malloc
+                0x0800468c       0x50 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-init.o)
+                0x0800468c                __libc_init_array
+ .text.malloc   0x080046dc       0x10 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-malloc.o)
+                0x080046dc                malloc
  .text._malloc_r
-                0x080046dc      0x538 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-mallocr.o)
-                0x080046dc                _malloc_r
+                0x080046ec      0x538 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-mallocr.o)
+                0x080046ec                _malloc_r
  .text.__malloc_lock
-                0x08004c14        0x4 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-mlock.o)
-                0x08004c14                __malloc_lock
+                0x08004c24        0x4 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-mlock.o)
+                0x08004c24                __malloc_lock
  .text.__malloc_unlock
-                0x08004c18        0x4 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-mlock.o)
-                0x08004c18                __malloc_unlock
- .text._sbrk_r  0x08004c1c       0x24 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-sbrkr.o)
-                0x08004c1c                _sbrk_r
- .text.strlen   0x08004c40       0x60 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-strlen.o)
-                0x08004c40                strlen
+                0x08004c28        0x4 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-mlock.o)
+                0x08004c28                __malloc_unlock
+ .text._sbrk_r  0x08004c2c       0x24 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-sbrkr.o)
+                0x08004c2c                _sbrk_r
+ .text.strlen   0x08004c50       0x60 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-strlen.o)
+                0x08004c50                strlen
  .text.startup.register_fini
-                0x08004ca0       0x14 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-__call_atexit.o)
- .text.atexit   0x08004cb4        0xc c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-atexit.o)
-                0x08004cb4                atexit
+                0x08004cb0       0x14 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-__call_atexit.o)
+ .text.atexit   0x08004cc4        0xc c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-atexit.o)
+                0x08004cc4                atexit
  .text.__libc_fini_array
-                0x08004cc0       0x30 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-fini.o)
-                0x08004cc0                __libc_fini_array
+                0x08004cd0       0x30 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-fini.o)
+                0x08004cd0                __libc_fini_array
  .text._malloc_trim_r
-                0x08004cf0       0x9c c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-freer.o)
-                0x08004cf0                _malloc_trim_r
- .text._free_r  0x08004d8c      0x198 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-freer.o)
-                0x08004d8c                _free_r
+                0x08004d00       0x9c c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-freer.o)
+                0x08004d00                _malloc_trim_r
+ .text._free_r  0x08004d9c      0x198 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-freer.o)
+                0x08004d9c                _free_r
  .text.__register_exitproc
-                0x08004f24       0xa8 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-__atexit.o)
-                0x08004f24                __register_exitproc
+                0x08004f34       0xa8 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-__atexit.o)
+                0x08004f34                __register_exitproc
  *(.plt)
  *(.gnu.warning)
  *(.glue_7t)
@@ -1706,71 +1707,71 @@ END GROUP
  *(.gcc_except_table)
  *(.eh_frame_hdr)
  *(.eh_frame)
- .eh_frame      0x08004fcc        0x0 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m/crtbegin.o
-                0x08004fcc                . = ALIGN (0x4)
+ .eh_frame      0x08004fdc        0x0 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m/crtbegin.o
+                0x08004fdc                . = ALIGN (0x4)
  *(.init)
- .init          0x08004fcc        0x4 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m/crti.o
-                0x08004fcc                _init
- .init          0x08004fd0        0x8 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m/crtn.o
-                0x08004fd8                . = ALIGN (0x4)
-                0x08004fd8                __preinit_array_start = .
+ .init          0x08004fdc        0x4 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m/crti.o
+                0x08004fdc                _init
+ .init          0x08004fe0        0x8 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m/crtn.o
+                0x08004fe8                . = ALIGN (0x4)
+                0x08004fe8                __preinit_array_start = .
  *(.preinit_array)
-                0x08004fd8                __preinit_array_end = .
-                0x08004fd8                . = ALIGN (0x4)
-                0x08004fd8                __init_array_start = .
+                0x08004fe8                __preinit_array_end = .
+                0x08004fe8                . = ALIGN (0x4)
+                0x08004fe8                __init_array_start = .
  *(SORT(.init_array.*))
  .init_array.00000
-                0x08004fd8        0x4 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-__call_atexit.o)
+                0x08004fe8        0x4 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-__call_atexit.o)
  .init_array.00101
-                0x08004fdc        0x4 c:\Users\fx\Upwork\weather-node\output\core\core.a(main.cpp.o)
+                0x08004fec        0x4 c:\Users\fx\Upwork\weather-node\output\core\core.a(main.cpp.o)
  *(.init_array)
- .init_array    0x08004fe0        0x4 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m/crtbegin.o
- .init_array    0x08004fe4        0x4 c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
- .init_array    0x08004fe8        0x4 c:\Users\fx\Upwork\weather-node\output\core\board.cpp.o
- .init_array    0x08004fec        0x4 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
-                0x08004ff0                __init_array_end = .
-                0x08004ff0                . = ALIGN (0x4)
+ .init_array    0x08004ff0        0x4 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m/crtbegin.o
+ .init_array    0x08004ff4        0x4 c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
+ .init_array    0x08004ff8        0x4 c:\Users\fx\Upwork\weather-node\output\core\board.cpp.o
+ .init_array    0x08004ffc        0x4 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
+                0x08005000                __init_array_end = .
+                0x08005000                . = ALIGN (0x4)
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT(.ctors.*))
  *crtend.o(.ctors)
-                0x08004ff0                . = ALIGN (0x4)
+                0x08005000                . = ALIGN (0x4)
  *(.fini)
- .fini          0x08004ff0        0x4 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m/crti.o
-                0x08004ff0                _fini
- .fini          0x08004ff4        0x8 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m/crtn.o
-                0x08004ffc                . = ALIGN (0x4)
-                0x08004ffc                __fini_array_start = .
+ .fini          0x08005000        0x4 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m/crti.o
+                0x08005000                _fini
+ .fini          0x08005004        0x8 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m/crtn.o
+                0x0800500c                . = ALIGN (0x4)
+                0x0800500c                __fini_array_start = .
  *(.fini_array)
- .fini_array    0x08004ffc        0x4 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m/crtbegin.o
+ .fini_array    0x0800500c        0x4 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m/crtbegin.o
  *(SORT(.fini_array.*))
-                0x08005000                __fini_array_end = .
+                0x08005010                __fini_array_end = .
  *crtbegin.o(.dtors)
  *(EXCLUDE_FILE(*crtend.o) .dtors)
  *(SORT(.dtors.*))
  *crtend.o(.dtors)
 
-.v4_bx          0x08005000        0x0
+.v4_bx          0x08005010        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x08005000        0x0
+.iplt           0x08005010        0x0
  .iplt          0x00000000        0x0 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m/crtbegin.o
 
-.text.align     0x08005000        0x0
-                0x08005000                . = ALIGN (0x8)
-                0x08005000                __text_end__ = .
-                0x08005000                __exidx_start = .
+.text.align     0x08005010        0x0
+                0x08005010                . = ALIGN (0x8)
+                0x08005010                __text_end__ = .
+                0x08005010                __exidx_start = .
 
-.ARM.exidx      0x08005000        0x8
+.ARM.exidx      0x08005010        0x8
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
- .ARM.exidx     0x08005000        0x8 c:\Users\fx\Upwork\weather-node\output\core\wirish\start.S.o
- .ARM.exidx     0x08005008        0x0 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_divdi3.o)
+ .ARM.exidx     0x08005010        0x8 c:\Users\fx\Upwork\weather-node\output\core\wirish\start.S.o
+ .ARM.exidx     0x08005018        0x0 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_divdi3.o)
                                   0x8 (size before relaxing)
- .ARM.exidx     0x08005008        0x0 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_udivdi3.o)
+ .ARM.exidx     0x08005018        0x0 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a(_udivdi3.o)
                                   0x8 (size before relaxing)
-                0x08005008                __exidx_end = .
+                0x08005018                __exidx_end = .
 
-.data           0x20000000      0xca8 load address 0x08005008
+.data           0x20000000      0xca8 load address 0x08005018
                 0x20000000                __data_start__ = .
                 0x20000000        0x4 LONG 0x0
                 0x20000008                . = ALIGN (0x8)
@@ -1878,62 +1879,62 @@ END GROUP
  *fill*         0x20000ca4        0x4 
                 0x20000ca8                __data_end__ = .
 
-.jcr            0x20000ca8        0x0 load address 0x08005cb0
+.jcr            0x20000ca8        0x0 load address 0x08005cc0
  .jcr           0x20000ca8        0x0 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m/crtbegin.o
 
-.igot.plt       0x20000ca8        0x0 load address 0x08005cb0
+.igot.plt       0x20000ca8        0x0 load address 0x08005cc0
  .igot.plt      0x00000000        0x0 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m/crtbegin.o
 
-.rodata         0x08005cb0      0x3d4
+.rodata         0x08005cc0      0x3d4
  *(.rodata .rodata.* .gnu.linkonce.r.*)
  .rodata.str1.1
-                0x08005cb0       0x42 c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
+                0x08005cc0       0x42 c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
                                  0x45 (size before relaxing)
- *fill*         0x08005cf2        0x2 
+ *fill*         0x08005d02        0x2 
  .rodata.PIN_MAP
-                0x08005cf4      0x230 c:\Users\fx\Upwork\weather-node\output\core\board.cpp.o
-                0x08005cf4                PIN_MAP
- *fill*         0x08005f24        0x4 
+                0x08005d04      0x230 c:\Users\fx\Upwork\weather-node\output\core\board.cpp.o
+                0x08005d04                PIN_MAP
+ *fill*         0x08005f34        0x4 
  .rodata._ZTV14HardwareSerial
-                0x08005f28       0x28 c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
-                0x08005f28                vtable for HardwareSerial
+                0x08005f38       0x28 c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
+                0x08005f38                vtable for HardwareSerial
  .rodata.str1.1
-                0x08005f50       0x11 c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
- *fill*         0x08005f61        0x3 
- .rodata.GPIOC  0x08005f64        0x4 c:\Users\fx\Upwork\weather-node\output\core\core.a(gpio_f1.c.o)
-                0x08005f64                GPIOC
+                0x08005f60       0x11 c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
+ *fill*         0x08005f71        0x3 
+ .rodata.GPIOC  0x08005f74        0x4 c:\Users\fx\Upwork\weather-node\output\core\core.a(gpio_f1.c.o)
+                0x08005f74                GPIOC
  .rodata.rcc_dev_table
-                0x08005f68       0x5c c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc_f1.c.o)
-                0x08005f68                rcc_dev_table
+                0x08005f78       0x5c c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc_f1.c.o)
+                0x08005f78                rcc_dev_table
  .rodata.masks.4420
-                0x08005fc4       0x14 c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc_f1.c.o)
+                0x08005fd4       0x14 c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc_f1.c.o)
  .rodata.usbVcomDescriptor_iProduct
-                0x08005fd8        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x08005fe8        0xc c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
  .rodata.usbVcomDescriptor_iManufacturer
-                0x08005fe4       0x12 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x08005ff4       0x12 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
  .rodata.usbVcomDescriptor_Device
-                0x08005ff6       0x12 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x08006006       0x12 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
  .rodata.usbVcomDescriptor_Config
-                0x08006008       0x43 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+                0x08006018       0x43 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
  .rodata.usbVcomDescriptor_LangID
-                0x0800604b        0x4 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
- *fill*         0x0800604f        0x1 
+                0x0800605b        0x4 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+ *fill*         0x0800605f        0x1 
  .rodata._ZTV9USBSerial
-                0x08006050       0x28 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
-                0x08006050                vtable for USBSerial
+                0x08006060       0x28 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
+                0x08006060                vtable for USBSerial
  .rodata.str1.4
-                0x08006078        0x4 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-impure.o)
+                0x08006088        0x4 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-impure.o)
  .rodata._global_impure_ptr
-                0x0800607c        0x4 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-impure.o)
-                0x0800607c                _global_impure_ptr
+                0x0800608c        0x4 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a(lib_a-impure.o)
+                0x0800608c                _global_impure_ptr
  *(.USER_FLASH)
-                0x08006080                . = ALIGN (0x4)
-                0x08006080                _lm_rom_img_cfgp = .
-                0x08006080        0x4 LONG 0x8005008 LOADADDR (.data)
+                0x08006090                . = ALIGN (0x4)
+                0x08006090                _lm_rom_img_cfgp = .
+                0x08006090        0x4 LONG 0x8005018 LOADADDR (.data)
                 0x200010f8                _lm_heap_start = DEFINED (_lm_heap_start)?_lm_heap_start:_end
                 0x20002800                _lm_heap_end = DEFINED (_lm_heap_end)?_lm_heap_end:__msp_init
 
-.rel.dyn        0x08006084        0x0
+.rel.dyn        0x08006094        0x0
  .rel.iplt      0x00000000        0x0 c:/users/fx/appdata/local/arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m/crtbegin.o
 
 .bss            0x20000ca8      0x450
@@ -2185,58 +2186,58 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000    0x2359c
+.debug_info     0x00000000    0x235b0
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0xced c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
- .debug_info    0x00000ced      0xb60 c:\Users\fx\Upwork\weather-node\output\libraries\DHT_sensor_library\DHT.cpp.o
- .debug_info    0x0000184d     0x1270 c:\Users\fx\Upwork\weather-node\output\libraries\DHT_sensor_library\DHT_U.cpp.o
- .debug_info    0x00002abd      0x8eb c:\Users\fx\Upwork\weather-node\output\libraries\Adafruit_Unified_Sensor\Adafruit_Sensor.cpp.o
- .debug_info    0x000033a8      0xf2e c:\Users\fx\Upwork\weather-node\output\core\board.cpp.o
- .debug_info    0x000042d6     0x142b c:\Users\fx\Upwork\weather-node\output\core\wirish\boards.cpp.o
- .debug_info    0x00005701     0x10c7 c:\Users\fx\Upwork\weather-node\output\core\wirish\boards_setup.cpp.o
- .debug_info    0x000067c8       0xf1 c:\Users\fx\Upwork\weather-node\output\core\wirish\start.S.o
- .debug_info    0x000068b9      0x14d c:\Users\fx\Upwork\weather-node\output\core\wirish\start_c.c.o
- .debug_info    0x00006a06      0x5cd c:\Users\fx\Upwork\weather-node\output\core\wirish\syscalls.c.o
- .debug_info    0x00006fd3     0x29ea c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
- .debug_info    0x000099bd     0x258c c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
- .debug_info    0x0000bf49      0x526 c:\Users\fx\Upwork\weather-node\output\core\core.a(cxxabi-compat.cpp.o)
- .debug_info    0x0000c46f      0x79a c:\Users\fx\Upwork\weather-node\output\core\core.a(adc.c.o)
- .debug_info    0x0000cc09      0xe4a c:\Users\fx\Upwork\weather-node\output\core\core.a(adc_f1.c.o)
- .debug_info    0x0000da53     0x18b1 c:\Users\fx\Upwork\weather-node\output\core\core.a(dma_f1.c.o)
- .debug_info    0x0000f304       0xe1 c:\Users\fx\Upwork\weather-node\output\core\core.a(exc.S.o)
- .debug_info    0x0000f3e5      0xd3c c:\Users\fx\Upwork\weather-node\output\core\core.a(exti.c.o)
- .debug_info    0x00010121      0x213 c:\Users\fx\Upwork\weather-node\output\core\core.a(exti_f1.c.o)
- .debug_info    0x00010334      0x128 c:\Users\fx\Upwork\weather-node\output\core\core.a(flash.c.o)
- .debug_info    0x0001045c      0x715 c:\Users\fx\Upwork\weather-node\output\core\core.a(gpio_f1.c.o)
- .debug_info    0x00010b71      0xc25 c:\Users\fx\Upwork\weather-node\output\core\core.a(i2c_f1.c.o)
- .debug_info    0x00011796      0x5a2 c:\Users\fx\Upwork\weather-node\output\core\core.a(nvic.c.o)
- .debug_info    0x00011d38      0x556 c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc.c.o)
- .debug_info    0x0001228e      0xb64 c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc_f1.c.o)
- .debug_info    0x00012df2       0xf6 c:\Users\fx\Upwork\weather-node\output\core\core.a(isrs.S.o)
- .debug_info    0x00012ee8      0x182 c:\Users\fx\Upwork\weather-node\output\core\core.a(systick.c.o)
- .debug_info    0x0001306a     0x197d c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
- .debug_info    0x000149e7      0xc32 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart.c.o)
- .debug_info    0x00015619      0xb89 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart_f1.c.o)
- .debug_info    0x000161a2      0x595 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart_private.c.o)
- .debug_info    0x00016737      0xd16 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb.c.o)
- .debug_info    0x0001744d     0x22d2 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
- .debug_info    0x0001971f      0x26c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_reg_map.c.o)
- .debug_info    0x0001998b      0xddf c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
- .debug_info    0x0001a76a      0x3ed c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_init.c.o)
- .debug_info    0x0001ab57      0x183 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_mem.c.o)
- .debug_info    0x0001acda      0xc88 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_regs.c.o)
- .debug_info    0x0001b962      0xad2 c:\Users\fx\Upwork\weather-node\output\core\core.a(util.c.o)
- .debug_info    0x0001c434       0x99 c:\Users\fx\Upwork\weather-node\output\core\core.a(main.cpp.o)
- .debug_info    0x0001c4cd      0x1a1 c:\Users\fx\Upwork\weather-node\output\core\core.a(new.cpp.o)
- .debug_info    0x0001c66e      0xc8a c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_digital_f1.cpp.o)
- .debug_info    0x0001d2f8     0x2afa c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
- .debug_info    0x0001fdf2      0xb0b c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_digital.cpp.o)
- .debug_info    0x000208fd      0x2c6 c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_time.cpp.o)
- .debug_info    0x00020bc3       0x33 c:\Users\fx\Upwork\weather-node\output\core\core.a(hooks.c.o)
- .debug_info    0x00020bf6      0x4ca c:\Users\fx\Upwork\weather-node\output\core\core.a(bkp_f1.c.o)
- .debug_info    0x000210c0      0x6f7 c:\Users\fx\Upwork\weather-node\output\core\core.a(dma.c.o)
- .debug_info    0x000217b7      0x313 c:\Users\fx\Upwork\weather-node\output\core\core.a(gpio.c.o)
- .debug_info    0x00021aca     0x1ad2 c:\Users\fx\Upwork\weather-node\output\core\core.a(i2c.c.o)
+ .debug_info    0x00000000      0xd01 c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
+ .debug_info    0x00000d01      0xb60 c:\Users\fx\Upwork\weather-node\output\libraries\DHT_sensor_library\DHT.cpp.o
+ .debug_info    0x00001861     0x1270 c:\Users\fx\Upwork\weather-node\output\libraries\DHT_sensor_library\DHT_U.cpp.o
+ .debug_info    0x00002ad1      0x8eb c:\Users\fx\Upwork\weather-node\output\libraries\Adafruit_Unified_Sensor\Adafruit_Sensor.cpp.o
+ .debug_info    0x000033bc      0xf2e c:\Users\fx\Upwork\weather-node\output\core\board.cpp.o
+ .debug_info    0x000042ea     0x142b c:\Users\fx\Upwork\weather-node\output\core\wirish\boards.cpp.o
+ .debug_info    0x00005715     0x10c7 c:\Users\fx\Upwork\weather-node\output\core\wirish\boards_setup.cpp.o
+ .debug_info    0x000067dc       0xf1 c:\Users\fx\Upwork\weather-node\output\core\wirish\start.S.o
+ .debug_info    0x000068cd      0x14d c:\Users\fx\Upwork\weather-node\output\core\wirish\start_c.c.o
+ .debug_info    0x00006a1a      0x5cd c:\Users\fx\Upwork\weather-node\output\core\wirish\syscalls.c.o
+ .debug_info    0x00006fe7     0x29ea c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
+ .debug_info    0x000099d1     0x258c c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
+ .debug_info    0x0000bf5d      0x526 c:\Users\fx\Upwork\weather-node\output\core\core.a(cxxabi-compat.cpp.o)
+ .debug_info    0x0000c483      0x79a c:\Users\fx\Upwork\weather-node\output\core\core.a(adc.c.o)
+ .debug_info    0x0000cc1d      0xe4a c:\Users\fx\Upwork\weather-node\output\core\core.a(adc_f1.c.o)
+ .debug_info    0x0000da67     0x18b1 c:\Users\fx\Upwork\weather-node\output\core\core.a(dma_f1.c.o)
+ .debug_info    0x0000f318       0xe1 c:\Users\fx\Upwork\weather-node\output\core\core.a(exc.S.o)
+ .debug_info    0x0000f3f9      0xd3c c:\Users\fx\Upwork\weather-node\output\core\core.a(exti.c.o)
+ .debug_info    0x00010135      0x213 c:\Users\fx\Upwork\weather-node\output\core\core.a(exti_f1.c.o)
+ .debug_info    0x00010348      0x128 c:\Users\fx\Upwork\weather-node\output\core\core.a(flash.c.o)
+ .debug_info    0x00010470      0x715 c:\Users\fx\Upwork\weather-node\output\core\core.a(gpio_f1.c.o)
+ .debug_info    0x00010b85      0xc25 c:\Users\fx\Upwork\weather-node\output\core\core.a(i2c_f1.c.o)
+ .debug_info    0x000117aa      0x5a2 c:\Users\fx\Upwork\weather-node\output\core\core.a(nvic.c.o)
+ .debug_info    0x00011d4c      0x556 c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc.c.o)
+ .debug_info    0x000122a2      0xb64 c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc_f1.c.o)
+ .debug_info    0x00012e06       0xf6 c:\Users\fx\Upwork\weather-node\output\core\core.a(isrs.S.o)
+ .debug_info    0x00012efc      0x182 c:\Users\fx\Upwork\weather-node\output\core\core.a(systick.c.o)
+ .debug_info    0x0001307e     0x197d c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
+ .debug_info    0x000149fb      0xc32 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart.c.o)
+ .debug_info    0x0001562d      0xb89 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart_f1.c.o)
+ .debug_info    0x000161b6      0x595 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart_private.c.o)
+ .debug_info    0x0001674b      0xd16 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb.c.o)
+ .debug_info    0x00017461     0x22d2 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+ .debug_info    0x00019733      0x26c c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_reg_map.c.o)
+ .debug_info    0x0001999f      0xddf c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
+ .debug_info    0x0001a77e      0x3ed c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_init.c.o)
+ .debug_info    0x0001ab6b      0x183 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_mem.c.o)
+ .debug_info    0x0001acee      0xc88 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_regs.c.o)
+ .debug_info    0x0001b976      0xad2 c:\Users\fx\Upwork\weather-node\output\core\core.a(util.c.o)
+ .debug_info    0x0001c448       0x99 c:\Users\fx\Upwork\weather-node\output\core\core.a(main.cpp.o)
+ .debug_info    0x0001c4e1      0x1a1 c:\Users\fx\Upwork\weather-node\output\core\core.a(new.cpp.o)
+ .debug_info    0x0001c682      0xc8a c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_digital_f1.cpp.o)
+ .debug_info    0x0001d30c     0x2afa c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
+ .debug_info    0x0001fe06      0xb0b c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_digital.cpp.o)
+ .debug_info    0x00020911      0x2c6 c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_time.cpp.o)
+ .debug_info    0x00020bd7       0x33 c:\Users\fx\Upwork\weather-node\output\core\core.a(hooks.c.o)
+ .debug_info    0x00020c0a      0x4ca c:\Users\fx\Upwork\weather-node\output\core\core.a(bkp_f1.c.o)
+ .debug_info    0x000210d4      0x6f7 c:\Users\fx\Upwork\weather-node\output\core\core.a(dma.c.o)
+ .debug_info    0x000217cb      0x313 c:\Users\fx\Upwork\weather-node\output\core\core.a(gpio.c.o)
+ .debug_info    0x00021ade     0x1ad2 c:\Users\fx\Upwork\weather-node\output\core\core.a(i2c.c.o)
 
 .debug_abbrev   0x00000000     0x7043
  *(.debug_abbrev)
@@ -2291,58 +2292,58 @@ END GROUP
  .debug_abbrev  0x00006b03      0x113 c:\Users\fx\Upwork\weather-node\output\core\core.a(gpio.c.o)
  .debug_abbrev  0x00006c16      0x42d c:\Users\fx\Upwork\weather-node\output\core\core.a(i2c.c.o)
 
-.debug_line     0x00000000     0xbd35
+.debug_line     0x00000000     0xbd36
  *(.debug_line)
- .debug_line    0x00000000      0x5be c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
- .debug_line    0x000005be      0x54d c:\Users\fx\Upwork\weather-node\output\libraries\DHT_sensor_library\DHT.cpp.o
- .debug_line    0x00000b0b      0x603 c:\Users\fx\Upwork\weather-node\output\libraries\DHT_sensor_library\DHT_U.cpp.o
- .debug_line    0x0000110e      0x3ef c:\Users\fx\Upwork\weather-node\output\libraries\Adafruit_Unified_Sensor\Adafruit_Sensor.cpp.o
- .debug_line    0x000014fd      0x448 c:\Users\fx\Upwork\weather-node\output\core\board.cpp.o
- .debug_line    0x00001945      0x4c1 c:\Users\fx\Upwork\weather-node\output\core\wirish\boards.cpp.o
- .debug_line    0x00001e06      0x4b2 c:\Users\fx\Upwork\weather-node\output\core\wirish\boards_setup.cpp.o
- .debug_line    0x000022b8       0xb3 c:\Users\fx\Upwork\weather-node\output\core\wirish\start.S.o
- .debug_line    0x0000236b       0xc1 c:\Users\fx\Upwork\weather-node\output\core\wirish\start_c.c.o
- .debug_line    0x0000242c      0x303 c:\Users\fx\Upwork\weather-node\output\core\wirish\syscalls.c.o
- .debug_line    0x0000272f      0x54e c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
- .debug_line    0x00002c7d      0x5bd c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
- .debug_line    0x0000323a      0x262 c:\Users\fx\Upwork\weather-node\output\core\core.a(cxxabi-compat.cpp.o)
- .debug_line    0x0000349c      0x339 c:\Users\fx\Upwork\weather-node\output\core\core.a(adc.c.o)
- .debug_line    0x000037d5      0x3e5 c:\Users\fx\Upwork\weather-node\output\core\core.a(adc_f1.c.o)
- .debug_line    0x00003bba      0x669 c:\Users\fx\Upwork\weather-node\output\core\core.a(dma_f1.c.o)
- .debug_line    0x00004223       0xb6 c:\Users\fx\Upwork\weather-node\output\core\core.a(exc.S.o)
- .debug_line    0x000042d9      0x412 c:\Users\fx\Upwork\weather-node\output\core\core.a(exti.c.o)
- .debug_line    0x000046eb      0x33a c:\Users\fx\Upwork\weather-node\output\core\core.a(exti_f1.c.o)
- .debug_line    0x00004a25      0x2bb c:\Users\fx\Upwork\weather-node\output\core\core.a(flash.c.o)
- .debug_line    0x00004ce0      0x364 c:\Users\fx\Upwork\weather-node\output\core\core.a(gpio_f1.c.o)
- .debug_line    0x00005044      0x447 c:\Users\fx\Upwork\weather-node\output\core\core.a(i2c_f1.c.o)
- .debug_line    0x0000548b      0x323 c:\Users\fx\Upwork\weather-node\output\core\core.a(nvic.c.o)
- .debug_line    0x000057ae      0x3bb c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc.c.o)
- .debug_line    0x00005b69      0x408 c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc_f1.c.o)
- .debug_line    0x00005f71       0xb3 c:\Users\fx\Upwork\weather-node\output\core\core.a(isrs.S.o)
- .debug_line    0x00006024      0x28e c:\Users\fx\Upwork\weather-node\output\core\core.a(systick.c.o)
- .debug_line    0x000062b2      0x61b c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
- .debug_line    0x000068cd      0x451 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart.c.o)
- .debug_line    0x00006d1e      0x458 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart_f1.c.o)
- .debug_line    0x00007176      0x2f7 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart_private.c.o)
- .debug_line    0x0000746d      0x52d c:\Users\fx\Upwork\weather-node\output\core\core.a(usb.c.o)
- .debug_line    0x0000799a      0x93b c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
- .debug_line    0x000082d5      0x2ee c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_reg_map.c.o)
- .debug_line    0x000085c3      0x42f c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
- .debug_line    0x000089f2      0x144 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_init.c.o)
- .debug_line    0x00008b36      0x17e c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_mem.c.o)
- .debug_line    0x00008cb4      0x5a8 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_regs.c.o)
- .debug_line    0x0000925c      0x3bf c:\Users\fx\Upwork\weather-node\output\core\core.a(util.c.o)
- .debug_line    0x0000961b       0xae c:\Users\fx\Upwork\weather-node\output\core\core.a(main.cpp.o)
- .debug_line    0x000096c9      0x1ce c:\Users\fx\Upwork\weather-node\output\core\core.a(new.cpp.o)
- .debug_line    0x00009897      0x3e8 c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_digital_f1.cpp.o)
- .debug_line    0x00009c7f      0x6be c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
- .debug_line    0x0000a33d      0x36d c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_digital.cpp.o)
- .debug_line    0x0000a6aa      0x351 c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_time.cpp.o)
- .debug_line    0x0000a9fb       0x97 c:\Users\fx\Upwork\weather-node\output\core\core.a(hooks.c.o)
- .debug_line    0x0000aa92      0x335 c:\Users\fx\Upwork\weather-node\output\core\core.a(bkp_f1.c.o)
- .debug_line    0x0000adc7      0x384 c:\Users\fx\Upwork\weather-node\output\core\core.a(dma.c.o)
- .debug_line    0x0000b14b      0x2e0 c:\Users\fx\Upwork\weather-node\output\core\core.a(gpio.c.o)
- .debug_line    0x0000b42b      0x90a c:\Users\fx\Upwork\weather-node\output\core\core.a(i2c.c.o)
+ .debug_line    0x00000000      0x5bf c:\Users\fx\Upwork\weather-node\output\sketch\weatherSIM808.ino.cpp.o
+ .debug_line    0x000005bf      0x54d c:\Users\fx\Upwork\weather-node\output\libraries\DHT_sensor_library\DHT.cpp.o
+ .debug_line    0x00000b0c      0x603 c:\Users\fx\Upwork\weather-node\output\libraries\DHT_sensor_library\DHT_U.cpp.o
+ .debug_line    0x0000110f      0x3ef c:\Users\fx\Upwork\weather-node\output\libraries\Adafruit_Unified_Sensor\Adafruit_Sensor.cpp.o
+ .debug_line    0x000014fe      0x448 c:\Users\fx\Upwork\weather-node\output\core\board.cpp.o
+ .debug_line    0x00001946      0x4c1 c:\Users\fx\Upwork\weather-node\output\core\wirish\boards.cpp.o
+ .debug_line    0x00001e07      0x4b2 c:\Users\fx\Upwork\weather-node\output\core\wirish\boards_setup.cpp.o
+ .debug_line    0x000022b9       0xb3 c:\Users\fx\Upwork\weather-node\output\core\wirish\start.S.o
+ .debug_line    0x0000236c       0xc1 c:\Users\fx\Upwork\weather-node\output\core\wirish\start_c.c.o
+ .debug_line    0x0000242d      0x303 c:\Users\fx\Upwork\weather-node\output\core\wirish\syscalls.c.o
+ .debug_line    0x00002730      0x54e c:\Users\fx\Upwork\weather-node\output\core\core.a(HardwareSerial.cpp.o)
+ .debug_line    0x00002c7e      0x5bd c:\Users\fx\Upwork\weather-node\output\core\core.a(Print.cpp.o)
+ .debug_line    0x0000323b      0x262 c:\Users\fx\Upwork\weather-node\output\core\core.a(cxxabi-compat.cpp.o)
+ .debug_line    0x0000349d      0x339 c:\Users\fx\Upwork\weather-node\output\core\core.a(adc.c.o)
+ .debug_line    0x000037d6      0x3e5 c:\Users\fx\Upwork\weather-node\output\core\core.a(adc_f1.c.o)
+ .debug_line    0x00003bbb      0x669 c:\Users\fx\Upwork\weather-node\output\core\core.a(dma_f1.c.o)
+ .debug_line    0x00004224       0xb6 c:\Users\fx\Upwork\weather-node\output\core\core.a(exc.S.o)
+ .debug_line    0x000042da      0x412 c:\Users\fx\Upwork\weather-node\output\core\core.a(exti.c.o)
+ .debug_line    0x000046ec      0x33a c:\Users\fx\Upwork\weather-node\output\core\core.a(exti_f1.c.o)
+ .debug_line    0x00004a26      0x2bb c:\Users\fx\Upwork\weather-node\output\core\core.a(flash.c.o)
+ .debug_line    0x00004ce1      0x364 c:\Users\fx\Upwork\weather-node\output\core\core.a(gpio_f1.c.o)
+ .debug_line    0x00005045      0x447 c:\Users\fx\Upwork\weather-node\output\core\core.a(i2c_f1.c.o)
+ .debug_line    0x0000548c      0x323 c:\Users\fx\Upwork\weather-node\output\core\core.a(nvic.c.o)
+ .debug_line    0x000057af      0x3bb c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc.c.o)
+ .debug_line    0x00005b6a      0x408 c:\Users\fx\Upwork\weather-node\output\core\core.a(rcc_f1.c.o)
+ .debug_line    0x00005f72       0xb3 c:\Users\fx\Upwork\weather-node\output\core\core.a(isrs.S.o)
+ .debug_line    0x00006025      0x28e c:\Users\fx\Upwork\weather-node\output\core\core.a(systick.c.o)
+ .debug_line    0x000062b3      0x61b c:\Users\fx\Upwork\weather-node\output\core\core.a(timer.c.o)
+ .debug_line    0x000068ce      0x451 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart.c.o)
+ .debug_line    0x00006d1f      0x458 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart_f1.c.o)
+ .debug_line    0x00007177      0x2f7 c:\Users\fx\Upwork\weather-node\output\core\core.a(usart_private.c.o)
+ .debug_line    0x0000746e      0x52d c:\Users\fx\Upwork\weather-node\output\core\core.a(usb.c.o)
+ .debug_line    0x0000799b      0x93b c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_cdcacm.c.o)
+ .debug_line    0x000082d6      0x2ee c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_reg_map.c.o)
+ .debug_line    0x000085c4      0x42f c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_core.c.o)
+ .debug_line    0x000089f3      0x144 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_init.c.o)
+ .debug_line    0x00008b37      0x17e c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_mem.c.o)
+ .debug_line    0x00008cb5      0x5a8 c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_regs.c.o)
+ .debug_line    0x0000925d      0x3bf c:\Users\fx\Upwork\weather-node\output\core\core.a(util.c.o)
+ .debug_line    0x0000961c       0xae c:\Users\fx\Upwork\weather-node\output\core\core.a(main.cpp.o)
+ .debug_line    0x000096ca      0x1ce c:\Users\fx\Upwork\weather-node\output\core\core.a(new.cpp.o)
+ .debug_line    0x00009898      0x3e8 c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_digital_f1.cpp.o)
+ .debug_line    0x00009c80      0x6be c:\Users\fx\Upwork\weather-node\output\core\core.a(usb_serial.cpp.o)
+ .debug_line    0x0000a33e      0x36d c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_digital.cpp.o)
+ .debug_line    0x0000a6ab      0x351 c:\Users\fx\Upwork\weather-node\output\core\core.a(wirish_time.cpp.o)
+ .debug_line    0x0000a9fc       0x97 c:\Users\fx\Upwork\weather-node\output\core\core.a(hooks.c.o)
+ .debug_line    0x0000aa93      0x335 c:\Users\fx\Upwork\weather-node\output\core\core.a(bkp_f1.c.o)
+ .debug_line    0x0000adc8      0x384 c:\Users\fx\Upwork\weather-node\output\core\core.a(dma.c.o)
+ .debug_line    0x0000b14c      0x2e0 c:\Users\fx\Upwork\weather-node\output\core\core.a(gpio.c.o)
+ .debug_line    0x0000b42c      0x90a c:\Users\fx\Upwork\weather-node\output\core\core.a(i2c.c.o)
 
 .debug_frame    0x00000000     0x2a24
  *(.debug_frame)

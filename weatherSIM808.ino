@@ -15,6 +15,7 @@
 //   AM3201   GPIO      PB0
 
 #include "DHT.h"
+#include "ArduinoJson.h"
 
 #define led_pin  PC13
 #define dht_pin  PB0
@@ -24,7 +25,7 @@
 #define m_pw 7
 
 DHT dht(dht_pin, dht_type);
-
+StaticJsonDocument<200> doc;
 // variables to save temp and humidity
 volatile float temperature = 0;
 volatile float humidity = 0;
@@ -42,6 +43,15 @@ volatile int pm2_i = 0;
 volatile int pm2_value = 0;
 char pm2_buff[pm2_buff_size];
 volatile bool pm2_ok = false;
+
+// json keys
+const char key_temperature[] = "18";
+const char key_humidity[]    = "19";
+const char key_latitude[]    = "21";
+const char key_longitude[]   = "22";
+const char key_PM1[]         = "23";
+const char key_PM2[]         = "24";
+const char key_timestamp[]   = "26";
 
 void readTempHum() {
   humidity = dht.readHumidity();
@@ -73,7 +83,7 @@ void processingPM2Data(char c) {
       pm2_buff[pm2_i-1] == 0x00 && 
       pm2_buff[pm2_i-2] == 0x4D &&
       pm2_buff[pm2_i-3] == 0x42) {
-    pm2_value = pm2_buff[7]*256 + pm2_buff[8];
+    pm2_value = pm2_buff[1]*256 + pm2_buff[2];
     pm2_i=0;
     pm2_ok=true;
   }
@@ -105,6 +115,11 @@ void displayValues() {
   Serial.print(", PM2: ");
   Serial.print(pm2_value);
   Serial.println();
+  Serial.println();
+}
+
+void createFrame() {
+  doc[] = 
 }
 
 void showBuffers(){
