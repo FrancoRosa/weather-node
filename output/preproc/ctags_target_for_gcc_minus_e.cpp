@@ -27,7 +27,8 @@
 // Enable to see console verbose
 const bool debug = 0x1;
 
-// Variables of environment
+// Environment variables
+DHT dht(PB9, 21 /**< DHT TYPE 21 */);
 volatile float temperature = 0;
 volatile float humidity = 0;
 
@@ -49,8 +50,8 @@ const char key_pm1_value[] = "23";
 const char key_pm2_value[] = "24";
 const char key_timestamp[] = "26";
 char post_buffer[120];
+const int post_period = 10; // Seconds before next post
 
-DHT dht(PB9, 21 /**< DHT TYPE 21 */);
 // variables to manage PM1
 const int pm1_buff_size = 15;
 int pm1_i = 0;
@@ -72,6 +73,8 @@ volatile bool flagOK = 0x0;
 volatile bool flagERROR = 0x0;
 volatile bool flagREG = 0x0;
 volatile bool flagGNS = 0x0;
+volatile bool flagHTTPACT = 0x0;
+volatile bool flagDOWNLOAD = 0x0;
 
 void readTempHum() {
   humidity = dht.readHumidity();
@@ -135,7 +138,7 @@ void displayValues() {
   Serial.println(temp_buffer);
 }
 
-void sendFrame(Stream *port) {
+void buildJSON() {
   sprintf(
     post_buffer,
     "{"
@@ -153,7 +156,6 @@ void sendFrame(Stream *port) {
     pm1_value, pm2_value,
     timestamp
   );
-  port->print(post_buffer);
 }
 
 void showBuffers(){
@@ -208,9 +210,9 @@ void procCGN() {
   if (pch != __null) {
     if (modem_buffer[12]=='1') { // if GNS is fixed
       flagGNS = 0x1;
-      // memmove(latitude , modem_buffer+33, 10); //JustPick lat and lon
-      // memmove(longitude, modem_buffer+44, 10); //JustPick lat and lon
-      // memmove(timestamp, modem_buffer+14, 18); //JustPick lat and lon
+      memmove(latitude , modem_buffer+33, 10); //JustPick lat and lon
+      memmove(longitude, modem_buffer+44, 10); //JustPick lat and lon
+      memmove(timestamp, modem_buffer+14, 18); //JustPick lat and lon
     }
   }
 }
@@ -250,21 +252,53 @@ bool sim808Init() {
 static void task_modem(void *pvParameters) {
   sim808Init();
   while(0x1) {
-    sendCommand("CGREG?", 5);
-    vTaskDelay(5000);
-    sendCommand("CGNSINF", 5);
-    vTaskDelay(5000);
+    vTaskDelay(post_period*1000);
+    if (!sendCommand("CGREG?", 5)) continue;
+    if (!sendCommand("CGNSINF", 5)) continue;
     if (flagREG) {
-      if (debug) Serial.println("... connected to network");
-      if (debug) Serial.println("... requesting location");
-      sendCommand("CGNSINF",10); //reads GLONASS data
-      vTaskDelay(2000);
+      sendCommand("CGNSINF",5); //reads GLONASS data
       if (flagGNS){
-        if (debug) Serial.println("... location found");
-        if (debug) Serial.print(latitude);
-        if (debug) Serial.print(longitude);
-        if (debug) Serial.print(timestamp);
+        int timeout;
+        sendCommand("SAPBR=1,1", 5);
+        sendCommand("SAPBR=2,1", 5);
+        sendCommand("HTTPINIT", 5);
+        sendCommand("HTTPPARA=\"CID\",1", 5);
+        sendCommand("HTTPPARA=\"CONTENT\",\"application/json\"", 5);
+        sendCommand("HTTPPARA=\"URL\",\"http://sensor-network-lora.herokuapp.com/api/sensors\"", 5);
+        buildJSON();
+        char request_buffer[20] = "";
+        sprintf(request_buffer, "AT+HTTPDATA=%d,1000\r", strlen(post_buffer));
+        Serial1.print(request_buffer);
+        flagHTTPACT = 0x0;
+        flagDOWNLOAD = 0x0;
+        timeout = 100;
+        while (timeout > 0) {
+          if (flagDOWNLOAD) {
+            Serial1.println(post_buffer);
+            Serial.println(post_buffer);
+            timeout = 0;
+          }
+          timeout--;
+          vTaskDelay(100);
+        }
+        sendCommand("HTTPACTION=1",10);
+        timeout = 100;
+        while (timeout > 0) {
+          if (flagHTTPACT) {
+            sendCommand("HTTPREAD",10);
+            sendCommand("HTTPTERM",10);
+            sendCommand("SAPBR=0,1",10);
+            timeout=0;
+          }
+          timeout--;
+          vTaskDelay(100);
+        }
+        vTaskDelay(10000);
+      } else {
+        continue;
       }
+    } else {
+      continue;
     }
   }
 }
@@ -283,6 +317,8 @@ static void task_readModem(void *pvParameters) {
         if (memcmp("ERROR", modem_buffer, 4)==0) flagERROR=0x1;
         if (memcmp("+CGR", modem_buffer, 4)==0) procCGR();
         if (memcmp("+CGN", modem_buffer, 4)==0) procCGN();
+        if (memcmp("+HTTPACT", modem_buffer, 8)==0) flagHTTPACT=0x1;
+        if (memcmp("DOWNLOAD", modem_buffer, 8)==0) flagDOWNLOAD=0x1;
         modem_i=0;
         for(int i=0; i<modem_buffer_size; i++) modem_buffer[i]=0;
       }
@@ -295,9 +331,9 @@ static void task_readModem(void *pvParameters) {
 static void task_sensors(void *pvParameters) {
   while(0x1) {
     blink();
-    // readTempHum();
-    // readPM2();
-    // readPM1();
+    readTempHum();
+    readPM2();
+    readPM1();
     // displayValues();
   }
 }
