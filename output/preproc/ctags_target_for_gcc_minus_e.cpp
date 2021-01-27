@@ -25,7 +25,7 @@
 
 
 // Enable to see console verbose
-const bool debug = 0x0;
+const bool debug = 0x1;
 
 // Variables of environment
 volatile float temperature = 0;
@@ -229,10 +229,12 @@ bool waitOk(int timeout) {
   int t = 0;
   while (timeout > t) {
     t++;
-    if (flagOK || flagERROR) return 0x1;
+    if (flagOK || flagERROR) {
+      vTaskDelay(100);
+      return 0x1;
+    }
     vTaskDelay(100);
   }
-  vTaskDelay(100);
   mPower();
   return 0x0;
 }
@@ -252,19 +254,18 @@ static void task_modem(void *pvParameters) {
     vTaskDelay(5000);
     sendCommand("CGNSINF", 5);
     vTaskDelay(5000);
-    // vTaskDelay(5000);
-    // if (flagREG) {
-    //   if (debug) Serial.println("... connected to network");
-    //   if (debug) Serial.println("... requesting location");
-    //   sendCommand("CGNSINF",10); //reads GLONASS data
-    //   vTaskDelay(2000);
-    //   if (flagGNS){
-    //     if (debug) Serial.println("... location found");
-    //     if (debug) Serial.print(latitude);
-    //     if (debug) Serial.print(longitude);
-    //     if (debug) Serial.print(timestamp);
-    //   }
-    // }
+    if (flagREG) {
+      if (debug) Serial.println("... connected to network");
+      if (debug) Serial.println("... requesting location");
+      sendCommand("CGNSINF",10); //reads GLONASS data
+      vTaskDelay(2000);
+      if (flagGNS){
+        if (debug) Serial.println("... location found");
+        if (debug) Serial.print(latitude);
+        if (debug) Serial.print(longitude);
+        if (debug) Serial.print(timestamp);
+      }
+    }
   }
 }
 
@@ -281,13 +282,13 @@ static void task_readModem(void *pvParameters) {
         if (memcmp("OK", modem_buffer, 2)==0) flagOK=0x1;
         if (memcmp("ERROR", modem_buffer, 4)==0) flagERROR=0x1;
         if (memcmp("+CGR", modem_buffer, 4)==0) procCGR();
-        // if (memcmp("+CGN",  modem_buffer, 4)==0) procCGN();
+        if (memcmp("+CGN", modem_buffer, 4)==0) procCGN();
         modem_i=0;
         for(int i=0; i<modem_buffer_size; i++) modem_buffer[i]=0;
       }
 
     }
-    vTaskDelay(500);
+    vTaskDelay(10);
   }
 }
 
@@ -316,12 +317,12 @@ void setup() {
 
    ;
 
-  xTaskGenericCreate( ( task_sensors ), ( "TSensors" ), ( 256 ), ( __null ), ( 1 ), ( __null ), ( __null ), ( __null ) )
+  xTaskGenericCreate( ( task_sensors ), ( "TSensors" ), ( 256 ), ( __null ), ( 2 ), ( __null ), ( __null ), ( __null ) )
 
 
    ;
 
-  xTaskGenericCreate( ( task_readModem ), ( "TReadModem" ), ( 128 ), ( __null ), ( 3 ), ( __null ), ( __null ), ( __null ) )
+  xTaskGenericCreate( ( task_readModem ), ( "TReadModem" ), ( 256 ), ( __null ), ( 1 ), ( __null ), ( __null ), ( __null ) )
 
 
    ;

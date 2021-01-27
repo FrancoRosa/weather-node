@@ -26,7 +26,7 @@
 #define dht_type DHT21
 
 // Enable to see console verbose
-const bool debug = false;
+const bool debug = true;
 
 // Variables of environment
 volatile float temperature = 0;
@@ -102,17 +102,17 @@ void procCGN();
 bool sendCommand(const char *command,int timeout);
 #line 223 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 bool waitOk(int timeout);
-#line 238 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 240 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 bool sim808Init();
-#line 246 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 248 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 static void task_modem(void *pvParameters);
-#line 269 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 270 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 static void task_readModem(void *pvParameters);
-#line 292 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 293 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 static void task_sensors(void *pvParameters);
-#line 302 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 303 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void setup();
-#line 330 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 331 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void loop();
 #line 74 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void readTempHum() {
@@ -271,10 +271,12 @@ bool waitOk(int timeout) {
   int t = 0;
   while (timeout > t)   {
     t++;
-    if (flagOK || flagERROR) return true;
+    if (flagOK || flagERROR) {
+      vTaskDelay(100);
+      return true;
+    }
     vTaskDelay(100);
   }
-  vTaskDelay(100);
   mPower();
   return false;
 }
@@ -294,19 +296,18 @@ static void task_modem(void *pvParameters) {
     vTaskDelay(5000);
     sendCommand("CGNSINF", 5);
     vTaskDelay(5000);
-    // vTaskDelay(5000);
-    // if (flagREG) {
-    //   if (debug) Serial.println("... connected to network");
-    //   if (debug) Serial.println("... requesting location");
-    //   sendCommand("CGNSINF",10); //reads GLONASS data
-    //   vTaskDelay(2000);
-    //   if (flagGNS){
-    //     if (debug) Serial.println("... location found");
-    //     if (debug) Serial.print(latitude);
-    //     if (debug) Serial.print(longitude);
-    //     if (debug) Serial.print(timestamp);
-    //   }
-    // }
+    if (flagREG) {
+      if (debug) Serial.println("... connected to network");
+      if (debug) Serial.println("... requesting location");
+      sendCommand("CGNSINF",10); //reads GLONASS data
+      vTaskDelay(2000);
+      if (flagGNS){
+        if (debug) Serial.println("... location found");
+        if (debug) Serial.print(latitude);
+        if (debug) Serial.print(longitude);
+        if (debug) Serial.print(timestamp);
+      }
+    }
   }
 }
 
@@ -323,13 +324,13 @@ static void task_readModem(void *pvParameters) {
         if (memcmp("OK",    modem_buffer, 2)==0) flagOK=true;
         if (memcmp("ERROR", modem_buffer, 4)==0) flagERROR=true;
         if (memcmp("+CGR",  modem_buffer, 4)==0) procCGR();
-        // if (memcmp("+CGN",  modem_buffer, 4)==0) procCGN();
+        if (memcmp("+CGN",  modem_buffer, 4)==0) procCGN();
         modem_i=0;
         for(int i=0; i<modem_buffer_size; i++) modem_buffer[i]=0; 
       }
 
     }
-    vTaskDelay(500);
+    vTaskDelay(10);
   }
 }
 
@@ -360,12 +361,12 @@ void setup() {
   
   xTaskCreate(
     task_sensors,"TSensors",
-    256,NULL,1,NULL
+    256,NULL,2,NULL
   );
   
   xTaskCreate(
     task_readModem,"TReadModem",
-    128,NULL,3,NULL
+    256,NULL,1,NULL
   );
   vTaskStartScheduler();
   while(true);

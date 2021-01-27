@@ -23,7 +23,7 @@
 #define dht_type DHT21
 
 // Enable to see console verbose
-const bool debug = false;
+const bool debug = true;
 
 // Variables of environment
 volatile float temperature = 0;
@@ -252,19 +252,18 @@ static void task_modem(void *pvParameters) {
     vTaskDelay(5000);
     sendCommand("CGNSINF", 5);
     vTaskDelay(5000);
-    // vTaskDelay(5000);
-    // if (flagREG) {
-    //   if (debug) Serial.println("... connected to network");
-    //   if (debug) Serial.println("... requesting location");
-    //   sendCommand("CGNSINF",10); //reads GLONASS data
-    //   vTaskDelay(2000);
-    //   if (flagGNS){
-    //     if (debug) Serial.println("... location found");
-    //     if (debug) Serial.print(latitude);
-    //     if (debug) Serial.print(longitude);
-    //     if (debug) Serial.print(timestamp);
-    //   }
-    // }
+    if (flagREG) {
+      if (debug) Serial.println("... connected to network");
+      if (debug) Serial.println("... requesting location");
+      sendCommand("CGNSINF",5); //reads GLONASS data
+      vTaskDelay(2000);
+      if (flagGNS){
+        if (debug) Serial.println("... location found");
+        if (debug) {Serial.print("lat: "), Serial.println(latitude);}
+        if (debug) {Serial.print("lon: "), Serial.println(longitude);}
+        if (debug) {Serial.print("time: "), Serial.println(timestamp);}
+      }
+    }
   }
 }
 
@@ -281,13 +280,13 @@ static void task_readModem(void *pvParameters) {
         if (memcmp("OK",    modem_buffer, 2)==0) flagOK=true;
         if (memcmp("ERROR", modem_buffer, 4)==0) flagERROR=true;
         if (memcmp("+CGR",  modem_buffer, 4)==0) procCGR();
-        // if (memcmp("+CGN",  modem_buffer, 4)==0) procCGN();
+        if (memcmp("+CGN",  modem_buffer, 4)==0) procCGN();
         modem_i=0;
         for(int i=0; i<modem_buffer_size; i++) modem_buffer[i]=0; 
       }
 
     }
-    vTaskDelay(500);
+    vTaskDelay(10);
   }
 }
 
@@ -318,12 +317,12 @@ void setup() {
   
   xTaskCreate(
     task_sensors,"TSensors",
-    256,NULL,1,NULL
+    256,NULL,2,NULL
   );
   
   xTaskCreate(
     task_readModem,"TReadModem",
-    128,NULL,3,NULL
+    256,NULL,1,NULL
   );
   vTaskStartScheduler();
   while(true);
