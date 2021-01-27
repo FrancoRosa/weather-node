@@ -6,33 +6,31 @@
 //                   cpu_speed=speed_48mhz,
 //                   opt=osstd
 
-// Conections:
+// Connections:
 //   Device   Port      TX   RX
 //   USB      Serial0   --   --  
 //   SIM808   Serial1   PA9  PA10  
-//   PM1      Serial2   PA2  PA3
-//   PM2      Serial3   PB10 PB11
+//   PM1      Serial2   PA2  PA3      SDS011
+//   PM2      Serial3   PB10 PB11     PMS5003
 //   AM3201   GPIO      PB0
 
 #include "DHT.h"
 
 #define led_pin  PC13
-#define dht_pin  PB0
+#define dht_pin  PB9
+#define pkey_pin PA0
 #define dht_type DHT21
-#define m_tx 2
-#define m_rx 3
-#define m_pw 7
 
-DHT dht(dht_pin, dht_type);
 
 // variables to save temp and humidity
+DHT dht(dht_pin, dht_type);
 volatile float temperature = 0;
 volatile float humidity = 0;
 
 // variables to manage PM1
 const int pm1_buff_size = 15;
 volatile int pm1_i = 0;
-volatile int pm1_value = 0;
+volatile float pm1_value = 0;
 char pm1_buff[pm1_buff_size];
 volatile bool pm1_ok = false;
 
@@ -43,7 +41,12 @@ volatile int pm2_value = 0;
 char pm2_buff[pm2_buff_size];
 volatile bool pm2_ok = false;
 
-// json keys
+// GNSS Variables
+char timestamp[19] = "20210125060840.000";
+char latitude[11] = "-13.536150";
+char longitude[11] = "-71.953617";
+
+// POST Variables
 const char key_temperature[] = "18";
 const char key_humidity[]    = "19";
 const char key_latitude[]    = "21";
@@ -51,21 +54,7 @@ const char key_longitude[]   = "22";
 const char key_pm1_value[]   = "23";
 const char key_pm2_value[]   = "24";
 const char key_timestamp[]   = "26";
-
-// GNSS Variables
-char timestamp[] = "20210125060840.000";
-char latitude[] = "-13.536150";
-char longitude[] = "-71.953617";
-
-// POST Variables
-#define post_size 30
-#define id_size 50
-#define value_size 50
-
-
-char post_buffer[post_size];
-char id_buffer[id_size];
-char value_buffer[value_size];
+char post_buffer[120];
 
 void readTempHum() {
   humidity = dht.readHumidity();
@@ -89,6 +78,20 @@ void readPM1() {
   }
 }
 
+void processingPM1Data(char c) {
+  // Serial.write(c);
+  pm1_buff[pm1_i]=c;
+  if (pm1_buff[pm1_i]   == 0xC0 && 
+      pm1_buff[pm1_i-1] == 0xAA && 
+      pm1_buff[pm1_i-2] == 0xAB) {
+    pm1_value = (pm1_buff[2]*256 + pm1_buff[1])/10;
+    pm1_i=0;
+    pm1_ok=true;
+  }
+  pm1_i++;
+  if (pm1_i>=pm1_buff_size) {pm1_i=0; pm1_ok=false;}
+}
+
 void processingPM2Data(char c) {
   // Serial.write(c);
   pm2_buff[pm2_i]=c;
@@ -104,73 +107,41 @@ void processingPM2Data(char c) {
   if (pm2_i>=pm2_buff_size) {pm2_i=0; pm2_ok=false;}
 }
 
-void processingPM1Data(char c) {
-  // Serial.write(c);
-  pm1_buff[pm1_i]=c;
-  if (pm1_buff[pm1_i]   == 0xC0 && 
-      pm1_buff[pm1_i-1] == 0xAA && 
-      pm1_buff[pm1_i-2] == 0xAB) {
-    pm1_value = pm1_buff[2]*256 + pm1_buff[1];
-    pm1_i=0;
-    pm1_ok=true;
-  }
-  pm1_i++;
-  if (pm1_i>=pm1_buff_size) {pm1_i=0; pm1_ok=false;}
-}
-
 void displayValues() {
-  Serial.print("temp: ");
-  Serial.print(temperature);
-  Serial.print(", hum: ");
-  Serial.print(humidity);
-  Serial.print(", PM1: ");
-  Serial.print(pm1_value);
-  Serial.print(", PM2: ");
-  Serial.print(pm2_value);
-  Serial.println();
-  Serial.println();
+  char temp_buffer[120];
+  sprintf(
+    temp_buffer,
+    "temp: %2.2f, hum: %2.2f\n"
+    "pm1: %2.2f, pm2: %d\n"
+    "lat: %s, lon: %s\n"
+    "time: %s\n",
+    temperature, humidity,
+    pm1_value, pm2_value,
+    latitude, longitude,
+    timestamp
+  );
+  Serial.println(temp_buffer);
 }
 
-void sendFrame(Stream *s) {
-  s->print("{\"sensor\":{");
-  s->print("\"id\":[");
-  s->print(key_temperature); s->print(",");
-  s->print(key_humidity); s->print(",");
-  s->print(key_latitude); s->print(",");
-  s->print(key_longitude); s->print(",");
-  s->print(key_pm1_value); s->print(",");
-  s->print(key_pm2_value); s->print(",");
-  s->print(key_timestamp); s->print("],");
-  s->print("\"value\":[");
-  s->print(padding3(temperature)); s->print(",");
-  s->print(padding3(humidity)); s->print(",");
-  s->print(latitude); s->print(",");
-  s->print(longitude); s->print(",");
-  s->print(padding4(pm1_value)); s->print(",");
-  s->print(padding4(pm2_value)); s->print(",");
-  s->print(timestamp); s->print("]");
-  s->print("}}");
-}
-
-void padding4(int number){
-  int count = 0;
-  if(number < 1000) count++;
-  if(number < 100) count++;
-  if(number < 10) count++;
-  while (count > 0){
-    Serial.print('0');  
-    count--;}
-  Serial.print(number);
-}
-
-void padding3(int number){
-  int count = 0;
-  if(number < 100) count++;
-  if(number < 10) count++;
-  while (count > 0){
-    Serial.print('0');  
-    count--;}
-  Serial.print(number);
+void sendFrame(Stream *port) {
+  sprintf(
+    post_buffer,
+    "{"
+      "\"sensor\":{"
+        "\"id\":[%s,%s,%s,%s,%s,%s,%s],"
+        "\"value\":[%2.1f,%2.1f,%s,%s,%2.1f,%d,%s]"
+      "}"
+    "}",
+    key_temperature, key_humidity,
+    key_latitude, key_longitude,
+    key_pm1_value, key_pm2_value,
+    key_timestamp,
+    temperature, humidity,
+    latitude, longitude,
+    pm1_value, pm2_value,
+    timestamp
+  );
+  port->print(post_buffer);
 }
 
 void showBuffers(){
@@ -195,9 +166,9 @@ void showBuffers(){
 }
 
 void mPower() {
-  digitalWrite(m_pw,LOW);
+  digitalWrite(pkey_pin,LOW);
   delay(1000);
-  digitalWrite(m_pw,HIGH);
+  digitalWrite(pkey_pin,HIGH);
 }
 
 void blink() {
@@ -219,10 +190,7 @@ void loop(){
   readTempHum();
   readPM2();
   readPM1();
-  // showBuffers();
-  // displayValues();
-  sendFrame(&Serial);
-  Serial.println();
+  displayValues();
   Serial.println();
 }
 

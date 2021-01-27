@@ -13,8 +13,8 @@
 //   Device   Port      TX   RX
 //   USB      Serial0   --   --  
 //   SIM808   Serial1   PA9  PA10  
-//   PM1      Serial2   PA2  PA3
-//   PM2      Serial3   PB10 PB11
+//   PM1      Serial2   PA2  PA3      SDS011
+//   PM2      Serial3   PB10 PB11     PMS5003
 //   AM3201   GPIO      PB0
 
 #include "DHT.h"
@@ -35,7 +35,7 @@ volatile float humidity = 0;
 // variables to manage PM1
 const int pm1_buff_size = 15;
 volatile int pm1_i = 0;
-volatile int pm1_value = 0;
+volatile float pm1_value = 0;
 char pm1_buff[pm1_buff_size];
 volatile bool pm1_ok = false;
 
@@ -56,49 +56,38 @@ const char key_pm2_value[]   = "24";
 const char key_timestamp[]   = "26";
 
 // GNSS Variables
-char timestamp[] = "20210125060840.000";
-char latitude[] = "-13.536150";
-char longitude[] = "-71.953617";
+char timestamp[19] = "20210125060840.000";
+char latitude[11] = "-13.536150";
+char longitude[11] = "-71.953617";
 
 // POST Variables
-#define post_size 30
-#define id_size 50
-#define value_size 50
+char post_buffer[120];
 
-
-char post_buffer[post_size];
-char id_buffer[id_size];
-char value_buffer[value_size];
-
-#line 70 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 63 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void readTempHum();
-#line 80 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 73 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void readPM2();
-#line 86 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 79 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void readPM1();
-#line 92 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
-void processingPM2Data(char c);
-#line 107 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 85 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void processingPM1Data(char c);
-#line 121 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 99 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+void processingPM2Data(char c);
+#line 115 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void displayValues();
-#line 134 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
-void sendFrame(Stream *s);
-#line 155 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
-void padding4(int number);
-#line 166 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
-void padding3(int number);
-#line 176 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 131 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+void sendFrame(Stream *port);
+#line 152 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void showBuffers();
-#line 197 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 173 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void mPower();
-#line 203 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 179 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void blink();
-#line 208 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 184 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void setup();
-#line 217 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 193 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void loop();
-#line 70 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 63 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void readTempHum() {
   humidity = dht.readHumidity();
   temperature = dht.readTemperature();
@@ -121,6 +110,20 @@ void readPM1() {
   }
 }
 
+void processingPM1Data(char c) {
+  // Serial.write(c);
+  pm1_buff[pm1_i]=c;
+  if (pm1_buff[pm1_i]   == 0xC0 && 
+      pm1_buff[pm1_i-1] == 0xAA && 
+      pm1_buff[pm1_i-2] == 0xAB) {
+    pm1_value = (pm1_buff[2]*256 + pm1_buff[1])/10;
+    pm1_i=0;
+    pm1_ok=true;
+  }
+  pm1_i++;
+  if (pm1_i>=pm1_buff_size) {pm1_i=0; pm1_ok=false;}
+}
+
 void processingPM2Data(char c) {
   // Serial.write(c);
   pm2_buff[pm2_i]=c;
@@ -136,73 +139,42 @@ void processingPM2Data(char c) {
   if (pm2_i>=pm2_buff_size) {pm2_i=0; pm2_ok=false;}
 }
 
-void processingPM1Data(char c) {
-  // Serial.write(c);
-  pm1_buff[pm1_i]=c;
-  if (pm1_buff[pm1_i]   == 0xC0 && 
-      pm1_buff[pm1_i-1] == 0xAA && 
-      pm1_buff[pm1_i-2] == 0xAB) {
-    pm1_value = pm1_buff[2]*256 + pm1_buff[1];
-    pm1_i=0;
-    pm1_ok=true;
-  }
-  pm1_i++;
-  if (pm1_i>=pm1_buff_size) {pm1_i=0; pm1_ok=false;}
-}
 
 void displayValues() {
-  Serial.print("temp: ");
-  Serial.print(temperature);
-  Serial.print(", hum: ");
-  Serial.print(humidity);
-  Serial.print(", PM1: ");
-  Serial.print(pm1_value);
-  Serial.print(", PM2: ");
-  Serial.print(pm2_value);
-  Serial.println();
-  Serial.println();
+  char temp_buffer[120];
+  sprintf(
+    temp_buffer,
+    "temp: %2.2f, hum: %2.2f\n"
+    "pm1: %2.2f, pm2: %d\n"
+    "lat: %s, lon: %s\n"
+    "time: %s\n",
+    temperature, humidity,
+    pm1_value, pm2_value,
+    latitude, longitude,
+    timestamp
+  );
+  Serial.println(temp_buffer);
 }
 
-void sendFrame(Stream *s) {
-  s->print("{\"sensor\":{");
-  s->print("\"id\":[");
-  s->print(key_temperature); s->print(",");
-  s->print(key_humidity); s->print(",");
-  s->print(key_latitude); s->print(",");
-  s->print(key_longitude); s->print(",");
-  s->print(key_pm1_value); s->print(",");
-  s->print(key_pm2_value); s->print(",");
-  s->print(key_timestamp); s->print("],");
-  s->print("\"value\":[");
-  s->print(padding3(temperature)); s->print(",");
-  s->print(padding3(humidity)); s->print(",");
-  s->print(latitude); s->print(",");
-  s->print(longitude); s->print(",");
-  s->print(padding4(pm1_value)); s->print(",");
-  s->print(padding4(pm2_value)); s->print(",");
-  s->print(timestamp); s->print("]");
-  s->print("}}");
-}
-
-void padding4(int number){
-  int count = 0;
-  if(number < 1000) count++;
-  if(number < 100) count++;
-  if(number < 10) count++;
-  while (count > 0){
-    Serial.print('0');  
-    count--;}
-  Serial.print(number);
-}
-
-void padding3(int number){
-  int count = 0;
-  if(number < 100) count++;
-  if(number < 10) count++;
-  while (count > 0){
-    Serial.print('0');  
-    count--;}
-  Serial.print(number);
+void sendFrame(Stream *port) {
+  sprintf(
+    post_buffer,
+    "{"
+      "\"sensor\":{"
+        "\"id\":[%s,%s,%s,%s,%s,%s,%s],"
+        "\"value\":[%2.1f,%2.1f,%s,%s,%2.1f,%d,%s]"
+      "}"
+    "}",
+    key_temperature, key_humidity,
+    key_latitude, key_longitude,
+    key_pm1_value, key_pm2_value,
+    key_timestamp,
+    temperature, humidity,
+    latitude, longitude,
+    pm1_value, pm2_value,
+    timestamp
+  );
+  port->print(post_buffer);
 }
 
 void showBuffers(){
@@ -254,7 +226,9 @@ void loop(){
   // showBuffers();
   // displayValues();
   sendFrame(&Serial);
-  Serial.println();
+  
+  Serial.print("len:");
+  Serial.print(strlen(post_buffer));
   Serial.println();
 }
 

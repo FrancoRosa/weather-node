@@ -1,7 +1,7 @@
 {
     "sketch": "weatherSIM808.ino",
-    "board": "stm32duino:STM32F1:genericSTM32F103C6",
+    "board": "stm32duino:STM32F1:genericSTM32F103C",
     "output": "output",
     "port": "COM3",
-    "configuration": "upload_method=DFUUploadMethod,cpu_speed=speed_72mhz,opt=osstd"
+    "configuration": "device_variant=STM32F103C8,upload_method=STLinkMethod,cpu_speed=speed_48mhz,opt=osstd"
 }
