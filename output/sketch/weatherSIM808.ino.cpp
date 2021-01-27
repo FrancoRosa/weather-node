@@ -9,51 +9,29 @@
 //                   cpu_speed=speed_48mhz,
 //                   opt=osstd
 
-// Conections:
+// Connections:
 //   Device   Port      TX   RX
-//   USB      Serial0   --   --  
+//   USB      Serial    --   --  
 //   SIM808   Serial1   PA9  PA10  
 //   PM1      Serial2   PA2  PA3      SDS011
 //   PM2      Serial3   PB10 PB11     PMS5003
 //   AM3201   GPIO      PB0
 
+#include "MapleFreeRTOS821.h"
 #include "DHT.h"
 
 #define led_pin  PC13
-#define dht_pin  PB0
+#define dht_pin  PB9
+#define pkey_pin PA0
 #define dht_type DHT21
-#define m_tx 2
-#define m_rx 3
-#define m_pw 7
 
-DHT dht(dht_pin, dht_type);
-
-// variables to save temp and humidity
+// Variables of environment
 volatile float temperature = 0;
 volatile float humidity = 0;
 
-// variables to manage PM1
-const int pm1_buff_size = 15;
-volatile int pm1_i = 0;
-volatile float pm1_value = 0;
-char pm1_buff[pm1_buff_size];
-volatile bool pm1_ok = false;
-
-// variables to manage PM2
-const int pm2_buff_size = 40;
-volatile int pm2_i = 0;
+// Variables of particle measurement
 volatile int pm2_value = 0;
-char pm2_buff[pm2_buff_size];
-volatile bool pm2_ok = false;
-
-// json keys
-const char key_temperature[] = "18";
-const char key_humidity[]    = "19";
-const char key_latitude[]    = "21";
-const char key_longitude[]   = "22";
-const char key_pm1_value[]   = "23";
-const char key_pm2_value[]   = "24";
-const char key_timestamp[]   = "26";
+volatile float pm1_value = 0;
 
 // GNSS Variables
 char timestamp[19] = "20210125060840.000";
@@ -61,41 +39,70 @@ char latitude[11] = "-13.536150";
 char longitude[11] = "-71.953617";
 
 // POST Variables
+const char key_temperature[] = "18";
+const char key_humidity[]    = "19";
+const char key_latitude[]    = "21";
+const char key_longitude[]   = "22";
+const char key_pm1_value[]   = "23";
+const char key_pm2_value[]   = "24";
+const char key_timestamp[]   = "26";
 char post_buffer[120];
 
-#line 63 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+DHT dht(dht_pin, dht_type);
+// variables to manage PM1
+const int pm1_buff_size = 15;
+int pm1_i = 0;
+char pm1_buff[pm1_buff_size];
+bool pm1_ok = false;
+
+// variables to manage PM2
+const int pm2_buff_size = 40;
+int pm2_i = 0;
+char pm2_buff[pm2_buff_size];
+bool pm2_ok = false;
+
+// Modem management variables
+volatile bool flagOK = false;
+volatile bool flagERROR = false;
+
+#line 65 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void readTempHum();
-#line 73 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 70 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void readPM2();
-#line 79 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 76 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void readPM1();
-#line 85 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 82 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void processingPM1Data(char c);
-#line 99 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 96 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void processingPM2Data(char c);
-#line 115 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 111 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void displayValues();
-#line 131 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 127 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void sendFrame(Stream *port);
-#line 152 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 148 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void showBuffers();
-#line 173 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 169 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void mPower();
-#line 179 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 175 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void blink();
-#line 184 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 180 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+bool sendCommand(const char *command,int timeout);
+#line 188 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+bool waitOk(int timeout);
+#line 203 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+bool sim808Init();
+#line 213 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+static void task_modem(void *pvParameters);
+#line 222 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+static void task_sensors(void *pvParameters);
+#line 239 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void setup();
-#line 193 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 252 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void loop();
-#line 63 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 65 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void readTempHum() {
   humidity = dht.readHumidity();
   temperature = dht.readTemperature();
-  // Serial.print("temp: ");
-  // Serial.print(temperature);
-  // Serial.print(", hum: ");
-  // Serial.print(humidity);
-  // Serial.println();
 }
 
 void readPM2() {
@@ -138,7 +145,6 @@ void processingPM2Data(char c) {
   pm2_i++;
   if (pm2_i>=pm2_buff_size) {pm2_i=0; pm2_ok=false;}
 }
-
 
 void displayValues() {
   char temp_buffer[120];
@@ -199,37 +205,93 @@ void showBuffers(){
 }
 
 void mPower() {
-  digitalWrite(m_pw,LOW);
-  delay(1000);
-  digitalWrite(m_pw,HIGH);
+  digitalWrite(pkey_pin,LOW);
+  vTaskDelay(1000);
+  digitalWrite(pkey_pin,HIGH);
 }
 
 void blink() {
-  digitalWrite(led_pin, HIGH); delay(500);
-  digitalWrite(led_pin, LOW); delay(500);
+  digitalWrite(led_pin, HIGH); vTaskDelay(500);
+  digitalWrite(led_pin, LOW); vTaskDelay(500);
 }
 
-void setup() {
+bool sendCommand(const char *command,int timeout)
+{
+  Serial1.print("AT+");
+  Serial1.print(command);
+  Serial1.print("\r");
+  return waitOk(timeout);
+}
+
+bool waitOk(int timeout)
+{
+  flagOK=0;
+  flagERROR=0;
+  timeout= timeout*10;
+  int t = 0;
+  while (timeout>t)
+  {
+    t++;
+    if (flagOK || flagERROR) return true;
+    vTaskDelay(100);
+  }
+  return false;
+}
+
+bool sim808Init()
+{
+  while(true)
+  {
+    if(sendCommand("GSN",5) && sendCommand("CGNSPWR=1",5))
+    break;
+  }
+
+}
+
+static void task_modem(void *pvParameters) {
+  Serial1.begin(9600);
+  Serial1.println("Start >>>");
+  while(true) {
+    vTaskDelay(500);
+    Serial1.println("Succcess");
+  }
+}
+
+static void task_sensors(void *pvParameters) {
   pinMode(led_pin, OUTPUT);
   Serial.begin(9600);
-  Serial1.begin(9600);
   Serial2.begin(9600);
   Serial3.begin(9600);
   dht.begin();
+  Serial.println("Start >>>");
+  while(true) {
+    blink();
+    readTempHum();
+    readPM2();
+    readPM1();
+    displayValues();
+    Serial.println();
+  }
+}
+
+void setup() {
+  xTaskCreate(
+    task_modem,"TModem",
+    64,NULL,2,NULL
+  );
+  xTaskCreate(
+    task_sensors,"TSensors",
+    256,NULL,1,NULL
+  );
+  vTaskStartScheduler();
+  while(true);
 }
 
 void loop(){
-  blink();
-  readTempHum();
-  readPM2();
-  readPM1();
-  // showBuffers();
-  // displayValues();
-  sendFrame(&Serial);
+  while (true){
+    ;
+  }
   
-  Serial.print("len:");
-  Serial.print(strlen(post_buffer));
-  Serial.println();
 }
 
 

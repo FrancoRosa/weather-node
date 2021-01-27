@@ -8,12 +8,13 @@
 
 // Connections:
 //   Device   Port      TX   RX
-//   USB      Serial0   --   --  
+//   USB      Serial    --   --  
 //   SIM808   Serial1   PA9  PA10  
 //   PM1      Serial2   PA2  PA3      SDS011
 //   PM2      Serial3   PB10 PB11     PMS5003
 //   AM3201   GPIO      PB0
 
+#include "MapleFreeRTOS821.h"
 #include "DHT.h"
 
 #define led_pin  PC13
@@ -21,25 +22,13 @@
 #define pkey_pin PA0
 #define dht_type DHT21
 
-
-// variables to save temp and humidity
-DHT dht(dht_pin, dht_type);
+// Variables of environment
 volatile float temperature = 0;
 volatile float humidity = 0;
 
-// variables to manage PM1
-const int pm1_buff_size = 15;
-volatile int pm1_i = 0;
-volatile float pm1_value = 0;
-char pm1_buff[pm1_buff_size];
-volatile bool pm1_ok = false;
-
-// variables to manage PM2
-const int pm2_buff_size = 40;
-volatile int pm2_i = 0;
+// Variables of particle measurement
 volatile int pm2_value = 0;
-char pm2_buff[pm2_buff_size];
-volatile bool pm2_ok = false;
+volatile float pm1_value = 0;
 
 // GNSS Variables
 char timestamp[19] = "20210125060840.000";
@@ -56,14 +45,26 @@ const char key_pm2_value[]   = "24";
 const char key_timestamp[]   = "26";
 char post_buffer[120];
 
+DHT dht(dht_pin, dht_type);
+// variables to manage PM1
+const int pm1_buff_size = 15;
+int pm1_i = 0;
+char pm1_buff[pm1_buff_size];
+bool pm1_ok = false;
+
+// variables to manage PM2
+const int pm2_buff_size = 40;
+int pm2_i = 0;
+char pm2_buff[pm2_buff_size];
+bool pm2_ok = false;
+
+// Modem management variables
+volatile bool flagOK = false;
+volatile bool flagERROR = false;
+
 void readTempHum() {
   humidity = dht.readHumidity();
   temperature = dht.readTemperature();
-  // Serial.print("temp: ");
-  // Serial.print(temperature);
-  // Serial.print(", hum: ");
-  // Serial.print(humidity);
-  // Serial.println();
 }
 
 void readPM2() {
@@ -167,30 +168,91 @@ void showBuffers(){
 
 void mPower() {
   digitalWrite(pkey_pin,LOW);
-  delay(1000);
+  vTaskDelay(1000);
   digitalWrite(pkey_pin,HIGH);
 }
 
 void blink() {
-  digitalWrite(led_pin, HIGH); delay(500);
-  digitalWrite(led_pin, LOW); delay(500);
+  digitalWrite(led_pin, HIGH); vTaskDelay(500);
+  digitalWrite(led_pin, LOW); vTaskDelay(500);
 }
 
-void setup() {
+bool sendCommand(const char *command,int timeout)
+{
+  Serial1.print("AT+");
+  Serial1.print(command);
+  Serial1.print("\r");
+  return waitOk(timeout);
+}
+
+bool waitOk(int timeout)
+{
+  flagOK=0;
+  flagERROR=0;
+  timeout= timeout*10;
+  int t = 0;
+  while (timeout>t)
+  {
+    t++;
+    if (flagOK || flagERROR) return true;
+    vTaskDelay(100);
+  }
+  return false;
+}
+
+bool sim808Init()
+{
+  while(true)
+  {
+    if(sendCommand("GSN",5) && sendCommand("CGNSPWR=1",5))
+    break;
+  }
+
+}
+
+static void task_modem(void *pvParameters) {
+  Serial1.begin(9600);
+  Serial1.println("Start >>>");
+  while(true) {
+    vTaskDelay(500);
+    Serial1.println("Succcess");
+  }
+}
+
+static void task_sensors(void *pvParameters) {
   pinMode(led_pin, OUTPUT);
   Serial.begin(9600);
-  Serial1.begin(9600);
   Serial2.begin(9600);
   Serial3.begin(9600);
   dht.begin();
+  Serial.println("Start >>>");
+  while(true) {
+    blink();
+    readTempHum();
+    readPM2();
+    readPM1();
+    displayValues();
+    Serial.println();
+  }
+}
+
+void setup() {
+  xTaskCreate(
+    task_modem,"TModem",
+    64,NULL,2,NULL
+  );
+  xTaskCreate(
+    task_sensors,"TSensors",
+    256,NULL,1,NULL
+  );
+  vTaskStartScheduler();
+  while(true);
 }
 
 void loop(){
-  blink();
-  readTempHum();
-  readPM2();
-  readPM1();
-  displayValues();
-  Serial.println();
+  while (true){
+    ;
+  }
+  
 }
 

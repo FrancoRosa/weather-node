@@ -1,5 +1,5 @@
 {
-  "additionalFiles": "\\output\\preproc\\ctags_target_for_gcc_minus_e.cpp,\\output\\sketch\\output\\preproc\\ctags_target_for_gcc_minus_e.cpp,\\output\\sketch\\output\\sketch\\weatherSIM808.ino.cpp,\\output\\sketch\\weatherSIM808.ino.cpp",
+  "additionalFiles": "\\output\\preproc\\ctags_target_for_gcc_minus_e.cpp,\\output\\sketch\\weatherSIM808.ino.cpp",
   "builtInLibrariesFolders": "C:\\Program Files (x86)\\Arduino\\libraries",
   "customBuildProperties": "build.path=c:\\Users\\fx\\Upwork\\weather-node\\output,build.warn_data_percentage=75,runtime.tools.stm32tools.path=C:\\Users\\fx\\AppData\\Local\\Arduino15\\packages\\stm32duino\\tools\\stm32tools\\2020.12.26,runtime.tools.arm-none-eabi-gcc.path=C:\\Users\\fx\\AppData\\Local\\Arduino15\\packages\\arduino\\tools\\arm-none-eabi-gcc\\4.8.3-2014q1",
   "fqbn": "stm32duino:STM32F1:genericSTM32F103C:device_variant=STM32F103C8,upload_method=STLinkMethod,cpu_speed=speed_48mhz,opt=osstd",

@@ -8,44 +8,29 @@
 //                   cpu_speed=speed_48mhz,
 //                   opt=osstd
 
-// Conections:
+// Connections:
 //   Device   Port      TX   RX
-//   USB      Serial0   --   --  
+//   USB      Serial    --   --  
 //   SIM808   Serial1   PA9  PA10  
 //   PM1      Serial2   PA2  PA3      SDS011
 //   PM2      Serial3   PB10 PB11     PMS5003
 //   AM3201   GPIO      PB0
 
 # 18 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino" 2
-# 26 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
-DHT dht(PB0, 21 /**< DHT TYPE 21 */);
+# 19 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino" 2
 
-// variables to save temp and humidity
+
+
+
+
+
+// Variables of environment
 volatile float temperature = 0;
 volatile float humidity = 0;
 
-// variables to manage PM1
-const int pm1_buff_size = 15;
-volatile int pm1_i = 0;
-volatile float pm1_value = 0;
-char pm1_buff[pm1_buff_size];
-volatile bool pm1_ok = 0x0;
-
-// variables to manage PM2
-const int pm2_buff_size = 40;
-volatile int pm2_i = 0;
+// Variables of particle measurement
 volatile int pm2_value = 0;
-char pm2_buff[pm2_buff_size];
-volatile bool pm2_ok = 0x0;
-
-// json keys
-const char key_temperature[] = "18";
-const char key_humidity[] = "19";
-const char key_latitude[] = "21";
-const char key_longitude[] = "22";
-const char key_pm1_value[] = "23";
-const char key_pm2_value[] = "24";
-const char key_timestamp[] = "26";
+volatile float pm1_value = 0;
 
 // GNSS Variables
 char timestamp[19] = "20210125060840.000";
@@ -53,16 +38,35 @@ char latitude[11] = "-13.536150";
 char longitude[11] = "-71.953617";
 
 // POST Variables
+const char key_temperature[] = "18";
+const char key_humidity[] = "19";
+const char key_latitude[] = "21";
+const char key_longitude[] = "22";
+const char key_pm1_value[] = "23";
+const char key_pm2_value[] = "24";
+const char key_timestamp[] = "26";
 char post_buffer[120];
+
+DHT dht(PB9, 21 /**< DHT TYPE 21 */);
+// variables to manage PM1
+const int pm1_buff_size = 15;
+int pm1_i = 0;
+char pm1_buff[pm1_buff_size];
+bool pm1_ok = 0x0;
+
+// variables to manage PM2
+const int pm2_buff_size = 40;
+int pm2_i = 0;
+char pm2_buff[pm2_buff_size];
+bool pm2_ok = 0x0;
+
+// Modem management variables
+volatile bool flagOK = 0x0;
+volatile bool flagERROR = 0x0;
 
 void readTempHum() {
   humidity = dht.readHumidity();
   temperature = dht.readTemperature();
-  // Serial.print("temp: ");
-  // Serial.print(temperature);
-  // Serial.print(", hum: ");
-  // Serial.print(humidity);
-  // Serial.println();
 }
 
 void readPM2() {
@@ -105,7 +109,6 @@ void processingPM2Data(char c) {
   pm2_i++;
   if (pm2_i>=pm2_buff_size) {pm2_i=0; pm2_ok=0x0;}
 }
-
 
 void displayValues() {
   char temp_buffer[120];
@@ -166,35 +169,91 @@ void showBuffers(){
 }
 
 void mPower() {
-  digitalWrite(7,0x0);
-  delay(1000);
-  digitalWrite(7,0x1);
+  digitalWrite(PA0,0x0);
+  vTaskDelay(1000);
+  digitalWrite(PA0,0x1);
 }
 
 void blink() {
-  digitalWrite(PC13, 0x1); delay(500);
-  digitalWrite(PC13, 0x0); delay(500);
+  digitalWrite(PC13, 0x1); vTaskDelay(500);
+  digitalWrite(PC13, 0x0); vTaskDelay(500);
 }
 
-void setup() {
+bool sendCommand(const char *command,int timeout)
+{
+  Serial1.print("AT+");
+  Serial1.print(command);
+  Serial1.print("\r");
+  return waitOk(timeout);
+}
+
+bool waitOk(int timeout)
+{
+  flagOK=0;
+  flagERROR=0;
+  timeout= timeout*10;
+  int t = 0;
+  while (timeout>t)
+  {
+    t++;
+    if (flagOK || flagERROR) return 0x1;
+    vTaskDelay(100);
+  }
+  return 0x0;
+}
+
+bool sim808Init()
+{
+  while(0x1)
+  {
+    if(sendCommand("GSN",5) && sendCommand("CGNSPWR=1",5))
+    break;
+  }
+
+}
+
+static void task_modem(void *pvParameters) {
+  Serial1.begin(9600);
+  Serial1.println("Start >>>");
+  while(0x1) {
+    vTaskDelay(500);
+    Serial1.println("Succcess");
+  }
+}
+
+static void task_sensors(void *pvParameters) {
   pinMode(PC13, OUTPUT);
   Serial.begin(9600);
-  Serial1.begin(9600);
   Serial2.begin(9600);
   Serial3.begin(9600);
   dht.begin();
+  Serial.println("Start >>>");
+  while(0x1) {
+    blink();
+    readTempHum();
+    readPM2();
+    readPM1();
+    displayValues();
+    Serial.println();
+  }
+}
+
+void setup() {
+  xTaskGenericCreate( ( task_modem ), ( "TModem" ), ( 64 ), ( __null ), ( 2 ), ( __null ), ( __null ), ( __null ) )
+
+
+   ;
+  xTaskGenericCreate( ( task_sensors ), ( "TSensors" ), ( 256 ), ( __null ), ( 1 ), ( __null ), ( __null ), ( __null ) )
+
+
+   ;
+  vTaskStartScheduler();
+  while(0x1);
 }
 
 void loop(){
-  blink();
-  readTempHum();
-  readPM2();
-  readPM1();
-  // showBuffers();
-  // displayValues();
-  sendFrame(&Serial);
+  while (0x1){
+    ;
+  }
 
-  Serial.print("len:");
-  Serial.print(strlen(post_buffer));
-  Serial.println();
 }
