@@ -27,6 +27,7 @@
 #define m_pw 7
 
 DHT dht(dht_pin, dht_type);
+
 // variables to save temp and humidity
 volatile float temperature = 0;
 volatile float humidity = 0;
@@ -60,35 +61,44 @@ char latitude[] = "-13.536150";
 char longitude[] = "-71.953617";
 
 // POST Variables
-char post_buffer[300];
-char id_buffer[50];
-char value_buffer[200];
+#define post_size 30
+#define id_size 50
+#define value_size 50
 
-#line 64 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+
+char post_buffer[post_size];
+char id_buffer[id_size];
+char value_buffer[value_size];
+
+#line 70 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void readTempHum();
-#line 74 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
-void readPM2();
 #line 80 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
-void readPM1();
+void readPM2();
 #line 86 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+void readPM1();
+#line 92 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void processingPM2Data(char c);
-#line 101 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 107 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void processingPM1Data(char c);
-#line 115 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 121 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void displayValues();
-#line 128 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
-void createFrame();
-#line 163 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 134 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+void sendFrame(Stream *s);
+#line 155 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+void padding4(int number);
+#line 166 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+void padding3(int number);
+#line 176 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void showBuffers();
-#line 184 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 197 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void mPower();
-#line 190 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 203 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void blink();
-#line 195 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 208 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void setup();
-#line 204 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 217 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void loop();
-#line 64 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+#line 70 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
 void readTempHum() {
   humidity = dht.readHumidity();
   temperature = dht.readTemperature();
@@ -153,39 +163,46 @@ void displayValues() {
   Serial.println();
 }
 
-void createFrame() {
-  // sprintf(
-  //   id_buffer,
-  //   "'id':[%s,%s,%s,%s,%s,%s,%s]",
-  //   key_temperature,
-  //   key_humidity,
-  //   key_latitude,
-  //   key_longitude,
-  //   key_pm1_value,
-  //   key_pm2_value,
-  //   key_timestamp
-  // );
+void sendFrame(Stream *s) {
+  s->print("{\"sensor\":{");
+  s->print("\"id\":[");
+  s->print(key_temperature); s->print(",");
+  s->print(key_humidity); s->print(",");
+  s->print(key_latitude); s->print(",");
+  s->print(key_longitude); s->print(",");
+  s->print(key_pm1_value); s->print(",");
+  s->print(key_pm2_value); s->print(",");
+  s->print(key_timestamp); s->print("],");
+  s->print("\"value\":[");
+  s->print(padding3(temperature)); s->print(",");
+  s->print(padding3(humidity)); s->print(",");
+  s->print(latitude); s->print(",");
+  s->print(longitude); s->print(",");
+  s->print(padding4(pm1_value)); s->print(",");
+  s->print(padding4(pm2_value)); s->print(",");
+  s->print(timestamp); s->print("]");
+  s->print("}}");
+}
 
-  // sprintf(
-  //   value_buffer,
-  //   "'value':[%s,%s,%s,%s,%s,%s,%s]",
-  //   key_temperature,
-  //   key_humidity,
-  //   key_latitude,
-  //   key_longitude,
-  //   key_pm1_value,
-  //   key_pm2_value,
-  //   key_timestamp
-  // );
+void padding4(int number){
+  int count = 0;
+  if(number < 1000) count++;
+  if(number < 100) count++;
+  if(number < 10) count++;
+  while (count > 0){
+    Serial.print('0');  
+    count--;}
+  Serial.print(number);
+}
 
-  // sprintf(
-  //   post_buffer,
-  //   "{'sensor': {%s, %s}}",
-  //   id_buffer,
-  //   value_buffer
-  // );
-
-  sprintf(post_buffer, "{\"sensor\": {%d, %d}}", 1, 2);
+void padding3(int number){
+  int count = 0;
+  if(number < 100) count++;
+  if(number < 10) count++;
+  while (count > 0){
+    Serial.print('0');  
+    count--;}
+  Serial.print(number);
 }
 
 void showBuffers(){
@@ -236,9 +253,9 @@ void loop(){
   readPM1();
   // showBuffers();
   // displayValues();
-  createFrame();
-  // Serial.println();
-  Serial.println(post_buffer);
+  sendFrame(&Serial);
+  Serial.println();
+  Serial.println();
 }
 
 

@@ -3,5 +3,5 @@
     "board": "stm32duino:STM32F1:genericSTM32F103C6",
     "output": "output",
     "port": "COM3",
-    "configuration": "upload_method=STLinkMethod,cpu_speed=speed_48mhz,opt=osstd"
+    "configuration": "upload_method=DFUUploadMethod,cpu_speed=speed_72mhz,opt=osstd"
 }

@@ -24,6 +24,7 @@
 #define m_pw 7
 
 DHT dht(dht_pin, dht_type);
+
 // variables to save temp and humidity
 volatile float temperature = 0;
 volatile float humidity = 0;
@@ -57,9 +58,14 @@ char latitude[] = "-13.536150";
 char longitude[] = "-71.953617";
 
 // POST Variables
-char post_buffer[300];
-char id_buffer[50];
-char value_buffer[200];
+#define post_size 30
+#define id_size 50
+#define value_size 50
+
+
+char post_buffer[post_size];
+char id_buffer[id_size];
+char value_buffer[value_size];
 
 void readTempHum() {
   humidity = dht.readHumidity();
@@ -125,39 +131,46 @@ void displayValues() {
   Serial.println();
 }
 
-void createFrame() {
-  // sprintf(
-  //   id_buffer,
-  //   "'id':[%s,%s,%s,%s,%s,%s,%s]",
-  //   key_temperature,
-  //   key_humidity,
-  //   key_latitude,
-  //   key_longitude,
-  //   key_pm1_value,
-  //   key_pm2_value,
-  //   key_timestamp
-  // );
+void sendFrame(Stream *s) {
+  s->print("{\"sensor\":{");
+  s->print("\"id\":[");
+  s->print(key_temperature); s->print(",");
+  s->print(key_humidity); s->print(",");
+  s->print(key_latitude); s->print(",");
+  s->print(key_longitude); s->print(",");
+  s->print(key_pm1_value); s->print(",");
+  s->print(key_pm2_value); s->print(",");
+  s->print(key_timestamp); s->print("],");
+  s->print("\"value\":[");
+  s->print(padding3(temperature)); s->print(",");
+  s->print(padding3(humidity)); s->print(",");
+  s->print(latitude); s->print(",");
+  s->print(longitude); s->print(",");
+  s->print(padding4(pm1_value)); s->print(",");
+  s->print(padding4(pm2_value)); s->print(",");
+  s->print(timestamp); s->print("]");
+  s->print("}}");
+}
 
-  // sprintf(
-  //   value_buffer,
-  //   "'value':[%s,%s,%s,%s,%s,%s,%s]",
-  //   key_temperature,
-  //   key_humidity,
-  //   key_latitude,
-  //   key_longitude,
-  //   key_pm1_value,
-  //   key_pm2_value,
-  //   key_timestamp
-  // );
+void padding4(int number){
+  int count = 0;
+  if(number < 1000) count++;
+  if(number < 100) count++;
+  if(number < 10) count++;
+  while (count > 0){
+    Serial.print('0');  
+    count--;}
+  Serial.print(number);
+}
 
-  // sprintf(
-  //   post_buffer,
-  //   "{'sensor': {%s, %s}}",
-  //   id_buffer,
-  //   value_buffer
-  // );
-
-  sprintf(post_buffer, "{\"sensor\": {%d, %d}}", 1, 2);
+void padding3(int number){
+  int count = 0;
+  if(number < 100) count++;
+  if(number < 10) count++;
+  while (count > 0){
+    Serial.print('0');  
+    count--;}
+  Serial.print(number);
 }
 
 void showBuffers(){
@@ -208,8 +221,8 @@ void loop(){
   readPM1();
   // showBuffers();
   // displayValues();
-  createFrame();
-  // Serial.println();
-  Serial.println(post_buffer);
+  sendFrame(&Serial);
+  Serial.println();
+  Serial.println();
 }
 
