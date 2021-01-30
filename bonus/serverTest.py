@@ -1,5 +1,5 @@
-# Update sensor data on server with python
-
+# Frame test with hier level programming in order to test if the server works
+#  
 import requests
 url = 'http://sensor-network-lora.herokuapp.com/api/sensors'
 
