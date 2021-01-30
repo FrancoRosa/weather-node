@@ -1,13 +1,22 @@
 # weather node
-> Portable weather station node with SIM808
-## Arduino
-In this project we use the classic arduino uno.
+> Portable weather station node with SIM808, STM32F103 (AKA Bluepill), SDS011, PM5003, AM3201
+## Bluepill
+In this project we use the STM32F103C6T8 Microcontroller, because it is cheap and powerful enough to manage up to 4 Serial port devices, and has enough memory for string processing, even capable of running FreeRTOS.
+In order to develop we use the following tools.
 
-![arduino uno](/assets/uno.jpg)
+- (VS Code)[https://code.visualstudio.com/]
+- (Arduino for VS Code)[https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.vscode-arduino]
+- (Arduino)[https://www.arduino.cc/en/Main/OldSoftwareReleases#previous] 1.8.6 For compatibility issues
+- (stm32duino)[https://www.stm32duino.com/] Library to be able to use the bluepill with Arduino IDE
+- Package (Libreary)[http://dan.drown.org/stm32duino/package_STM32duino_index.json]
+
+![bluepill](/assets/bluepill.jpg)
+
+
 ## GPRS Modem
-To send data to our server we use the SIM808 GPRS modem [Duinopeak SIM808 GSM/GPRS/GPS/Bluetooth Shield for Arduino](https://www.gudreviews.com/boards-shields/612970688/duinopeak-sim-gsm-gprs-gps.html)
+To send data to our server we use the SIM808 GPRS modem Aliexpress link [here](https://www.aliexpress.com/i/32435607442.html)
 
-![SIM808 Shield](/assets/sim808.jpg)
+![SIM808 Module](/assets/sim808.jpg)
 
 The data will be sent periodicly to our server using POST requests, for this purpose we can use the available documentation [SIM808 IP Appication Note](/assets/sim800_series_ip_application_note_v1.00.jpg).
 
@@ -158,6 +167,10 @@ Data frame fields:
 | 31,32    |   --    | CRC High & low |
 
 As we are focus on the standard particle (CF=1) we will read bytes 7 and 8 
+## AM3201 - Temperature, humidity Sensor
+This is a common sensor, it uses the One-wire protocol, its datasheet is attached [here](/assets/am2301.pdf)
+
+![AM2301](/assets/am2301.jpeg)
 
 ## Steps followed to build this project.
  - Set up enviroment make the arduino blink
