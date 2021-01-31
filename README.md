@@ -171,7 +171,3 @@ As we are focus on the standard particle (CF=1) we will read bytes 7 and 8
 This is a common sensor, it uses the One-wire protocol, its datasheet is attached [here](/assets/am2301.pdf)
 
 ![AM2301](/assets/am2301.jpeg)
-
-## Steps followed to build this project.
- - Set up enviroment make the arduino blink
- - Echo the terminal to the simcom808 input and test the AT command
