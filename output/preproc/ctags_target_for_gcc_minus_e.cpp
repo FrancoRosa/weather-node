@@ -1,5 +1,5 @@
-# 1 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
-# 1 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino"
+# 1 "/home/fx/Upwork/weather-node/weatherSIM808.ino"
+# 1 "/home/fx/Upwork/weather-node/weatherSIM808.ino"
 // Weather station node
 // BoardURL: http://dan.drown.org/stm32duino/package_STM32duino_index.json
 // Version: 2020.12.26
@@ -11,13 +11,13 @@
 // Connections:
 //   Device   Port      TX   RX
 //   USB      Serial    --   --  
-//   SIM808   Serial1   PA9  PA10  
-//   PM1      Serial2   PA2  PA3      SDS011
-//   PM2      Serial3   PB10 PB11     PMS5003
-//   AM3201   GPIO      PB0
+//   SIM808   Serial1   PA9  PA10               9600bps
+//   PM1      Serial2   PA2  PA3      SDS011    9600bps
+//   PM2      Serial3   PB10 PB11     PMS5003   9600bps
+//   AM2301   GPIO      PB0  --       
 
-# 18 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino" 2
-# 19 "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino" 2
+# 18 "/home/fx/Upwork/weather-node/weatherSIM808.ino" 2
+# 19 "/home/fx/Upwork/weather-node/weatherSIM808.ino" 2
 
 
 
@@ -42,14 +42,14 @@ char latitude[11] = "-13.536150";
 char longitude[11] = "-71.953617";
 
 // POST Variables
-const char key_temperature[] = "18";
-const char key_humidity[] = "19";
-const char key_latitude[] = "21";
-const char key_longitude[] = "22";
-const char key_pm1_value[] = "23";
-const char key_pm2_value[] = "24";
-const char key_timestamp[] = "26";
-char post_buffer[120];
+const char key_temperature[] = "temperature";
+const char key_humidity[] = "humidity";
+const char key_latitude[] = "latitude";
+const char key_longitude[] = "longitude";
+const char key_pm1_value[] = "PM1";
+const char key_pm2_value[] = "PM2";
+const char key_timestamp[] = "timestamp";
+char post_buffer[180];
 const int post_period = 10; // Seconds before next post
 
 // variables to manage PM1
@@ -142,19 +142,21 @@ void buildJSON() {
   sprintf(
     post_buffer,
     "{"
-      "\"sensor\":{"
-        "\"id\":[%s,%s,%s,%s,%s,%s,%s],"
-        "\"value\":[%2.1f,%2.1f,%s,%s,%2.1f,%d,%s]"
-      "}"
+      "\"%s\": %2.1f,"
+      "\"%s\": %2.1f,"
+      "\"%s\": %s,"
+      "\"%s\": %s,"
+      "\"%s\": %2.1f,"
+      "\"%s\": %d,"
+      "\"%s\": %s"
     "}",
-    key_temperature, key_humidity,
-    key_latitude, key_longitude,
-    key_pm1_value, key_pm2_value,
-    key_timestamp,
-    temperature, humidity,
-    latitude, longitude,
-    pm1_value, pm2_value,
-    timestamp
+    key_temperature, temperature,
+    key_humidity, humidity,
+    key_latitude, latitude,
+    key_longitude, longitude,
+    key_pm1_value, pm1_value,
+    key_pm2_value, pm2_value,
+    key_timestamp, timestamp
   );
 }
 
@@ -264,7 +266,7 @@ static void task_modem(void *pvParameters) {
         sendCommand("HTTPINIT", 5);
         sendCommand("HTTPPARA=\"CID\",1", 5);
         sendCommand("HTTPPARA=\"CONTENT\",\"application/json\"", 5);
-        sendCommand("HTTPPARA=\"URL\",\"http://sensor-network-lora.herokuapp.com/api/sensors\"", 5);
+        sendCommand("HTTPPARA=\"URL\",\"http://us-central1-weather-node-ui.cloudfunctions.net/measurements\"", 5);
         buildJSON();
         char request_buffer[20] = "";
         sprintf(request_buffer, "AT+HTTPDATA=%d,1000\r", strlen(post_buffer));
@@ -293,7 +295,7 @@ static void task_modem(void *pvParameters) {
           timeout--;
           vTaskDelay(100);
         }
-        vTaskDelay(10000);
+        vTaskDelay(60000);
       } else {
         continue;
       }

@@ -1,11 +1,11 @@
 {
-  "additionalFiles": "\\output\\preproc\\ctags_target_for_gcc_minus_e.cpp,\\output\\sketch\\weatherSIM808.ino.cpp",
-  "builtInLibrariesFolders": "C:\\Program Files (x86)\\Arduino\\libraries",
-  "customBuildProperties": "build.path=c:\\Users\\fx\\Upwork\\weather-node\\output,build.warn_data_percentage=75,runtime.tools.stm32tools.path=C:\\Users\\fx\\AppData\\Local\\Arduino15\\packages\\stm32duino\\tools\\stm32tools\\2020.12.26,runtime.tools.arm-none-eabi-gcc.path=C:\\Users\\fx\\AppData\\Local\\Arduino15\\packages\\arduino\\tools\\arm-none-eabi-gcc\\4.8.3-2014q1",
+  "additionalFiles": "/output/preproc/ctags_target_for_gcc_minus_e.cpp,/output/sketch/weatherSIM808.ino.cpp",
+  "builtInLibrariesFolders": "/home/fx/Downloads/arduino-1.8.6-linux64/arduino-1.8.6/libraries",
+  "customBuildProperties": "build.path=/home/fx/Upwork/weather-node/output,build.warn_data_percentage=75,runtime.tools.arm-none-eabi-gcc.path=/home/fx/.arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1,runtime.tools.stm32tools.path=/home/fx/.arduino15/packages/stm32duino/tools/stm32tools/2021.2.9",
   "fqbn": "stm32duino:STM32F1:genericSTM32F103C:device_variant=STM32F103C8,upload_method=STLinkMethod,cpu_speed=speed_48mhz,opt=osstd",
-  "hardwareFolders": "C:\\Program Files (x86)\\Arduino\\hardware,C:\\Users\\fx\\AppData\\Local\\Arduino15\\packages",
-  "otherLibrariesFolders": "C:\\Users\\fx\\Documents\\Arduino\\libraries",
+  "hardwareFolders": "/home/fx/Downloads/arduino-1.8.6-linux64/arduino-1.8.6/hardware,/home/fx/.arduino15/packages",
+  "otherLibrariesFolders": "/home/fx/Arduino/libraries",
   "runtime.ide.version": "10806",
-  "sketchLocation": "c:\\Users\\fx\\Upwork\\weather-node\\weatherSIM808.ino",
-  "toolsFolders": "C:\\Program Files (x86)\\Arduino\\tools-builder,C:\\Program Files (x86)\\Arduino\\hardware\\tools\\avr,C:\\Users\\fx\\AppData\\Local\\Arduino15\\packages"
+  "sketchLocation": "/home/fx/Upwork/weather-node/weatherSIM808.ino",
+  "toolsFolders": "/home/fx/Downloads/arduino-1.8.6-linux64/arduino-1.8.6/tools-builder,/home/fx/Downloads/arduino-1.8.6-linux64/arduino-1.8.6/hardware/tools/avr,/home/fx/.arduino15/packages"
 }

@@ -2,43 +2,19 @@
 #  
 import requests
 url = 'http://sensor-network-lora.herokuapp.com/api/sensors'
+url = 'http://us-central1-weather-node-ui.cloudfunctions.net/measurements'
 
-sensors = {
-  "temperature": 18,
-  "humidity": 19,
-  "latitude": 21,
-  "longitude": 22,
-  "PM1": 23,
-  "PM2": 24,
-  "timestamp": 26
+measurements = {
+  "temperature": 27.1,
+  "humidity": 66.0,
+  "latitude": -13.124,
+  "longitude": -72.4321,
+  "PM1": 4,
+  "PM2": 31,
+  "timestamp": 0
 }
 
-# Update sensors
-data = { 
-        'sensor': {
-          'id': [
-            sensors["temperature"],
-            sensors["humidity"],
-            sensors["latitude"],
-            sensors["longitude"],
-            sensors["PM1"],
-            sensors["PM2"],
-            sensors["timestamp"]
-          ], 
-          
-          'value': [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7
-          ]
-        }
-      } #many sensors
-
-response = requests.post(url, json=data)
+response = requests.post(url, json=measurements)
 print(">> url:", url)
-print(">>> tx:", data)
+print(">>> tx:", measurements)
 print(">>> rx:", response.json())
