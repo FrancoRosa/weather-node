@@ -1,7 +1,7 @@
 {
   "additionalFiles": "/output/preproc/ctags_target_for_gcc_minus_e.cpp,/output/sketch/weatherSIM808.ino.cpp",
   "builtInLibrariesFolders": "/home/fx/Downloads/arduino-1.8.6-linux64/arduino-1.8.6/libraries",
-  "customBuildProperties": "build.path=/home/fx/Upwork/weather-node/output,build.warn_data_percentage=75,runtime.tools.arm-none-eabi-gcc.path=/home/fx/.arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1,runtime.tools.stm32tools.path=/home/fx/.arduino15/packages/stm32duino/tools/stm32tools/2021.2.9",
+  "customBuildProperties": "build.path=/home/fx/Upwork/weather-node/output,build.warn_data_percentage=75,runtime.tools.stm32tools.path=/home/fx/.arduino15/packages/stm32duino/tools/stm32tools/2021.2.9,runtime.tools.arm-none-eabi-gcc.path=/home/fx/.arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1",
   "fqbn": "stm32duino:STM32F1:genericSTM32F103C:device_variant=STM32F103C8,upload_method=STLinkMethod,cpu_speed=speed_48mhz,opt=osstd",
   "hardwareFolders": "/home/fx/Downloads/arduino-1.8.6-linux64/arduino-1.8.6/hardware,/home/fx/.arduino15/packages",
   "otherLibrariesFolders": "/home/fx/Arduino/libraries",
