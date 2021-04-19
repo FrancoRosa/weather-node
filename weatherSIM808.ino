@@ -12,7 +12,7 @@
 //   SIM808   Serial1   PA9  PA10               9600bps
 //   PM1      Serial2   PA2  PA3      SDS011    9600bps
 //   PM2      Serial3   PB10 PB11     PMS5003   9600bps
-//   AM2301   GPIO      PB0  --       
+//   AM2301   GPIO      PB9  --       
 
 #include "MapleFreeRTOS821.h"
 #include "DHT.h"
